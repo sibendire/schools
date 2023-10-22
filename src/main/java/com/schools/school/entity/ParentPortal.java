@@ -8,16 +8,27 @@ public class ParentPortal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "first_Name")
     private String firstName;
+    @Column(name = "mid_Name")
     private String midName;
+    @Column(name = "last_Name")
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "phone_Number")
     private String phoneNumber;
+    @Column(name = "NIN")
     private String nationalIdentificationNumber;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "occupation")
     private String occupation;
+    @Column(name = "address")
     private String address;
+    @Column(name = "sub_County")
     private String subCounty;
+    @Column(name = "home_District")
     private String homeDistrict;
 
     public ParentPortal() {
