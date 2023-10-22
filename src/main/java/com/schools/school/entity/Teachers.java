@@ -2,8 +2,6 @@ package com.schools.school.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "Teacher")
 public class Teachers {
@@ -22,7 +20,7 @@ public class Teachers {
     private String email;
     @Column(name = "phone_Number")
     private String phoneNumber;
-    @Column(name = "nin")
+    @Column(name = "NIN")
     private String nationalIdentificationNumber;
     @Column(name = "birth_Date")
     private String dateOfBirth;
