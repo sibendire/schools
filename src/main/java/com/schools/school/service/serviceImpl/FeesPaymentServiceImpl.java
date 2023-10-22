@@ -4,9 +4,11 @@ import com.schools.school.entity.FeesPayment;
 import com.schools.school.repository.FeesPaymentRepository;
 import com.schools.school.service.FeesPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+@Service
 
 public class FeesPaymentServiceImpl implements FeesPaymentService {
     private final FeesPaymentRepository feesPaymentRepository;

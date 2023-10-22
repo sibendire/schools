@@ -1,42 +1,43 @@
 package com.schools.school.controller;
 
+
 import com.schools.school.entity.Teachers;
 import com.schools.school.service.TeachersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-
 public class TeacherController {
     private final TeachersService teachersService;
 
     public TeacherController(TeachersService teachersService) {
         this.teachersService = teachersService;
     }
-    @PostMapping("/api/save/teacher")
-    public String saveTeacher(@ModelAttribute("teacher") Teachers teachers) {
-        teachersService.saveTeacher(teachers);
+
+    @GetMapping("/teacherForm")
+    public String showTeachersForm(Model model) {
+        model.addAttribute("teacher", new Teachers());
         return "teacher";
     }
 
+    @PostMapping("/teach")
+    public String saveTeacher(@ModelAttribute("teacher") Teachers teachers) {
+
+        teachersService.saveTeacher(teachers);
+        return "redirect:/students";
+    }
+
+    @RequestMapping("/teacher/list")
     public String listTeachers(Model model) {
         model.addAttribute("teachers", teachersService.getAllTeachers());
         return "teachers_list";
     }
 
-    public String createNewTeacher(Model model) {
-        Teachers teachers = new Teachers();
-        model.addAttribute("teacher", teachers);
-        return "new_teacher";
-    }
-
-    public String updateTeachersRecords(@PathVariable Long id, @ModelAttribute("teacher")
-    Teachers teachers, Model model) {
+    @RequestMapping("/teacher/update/{id}")
+    public String updateTeachersRecords(@PathVariable("id") Long id, @ModelAttribute("teacher") Teachers teachers, Model model) {
         Teachers existingTeacher = teachersService.getTeacherById(id);
-        existingTeacher.setId(id);
+        // Update teacher attributes
         existingTeacher.setFirstName(teachers.getFirstName());
         existingTeacher.setMidName(teachers.getMidName());
         existingTeacher.setLastName(teachers.getLastName());
@@ -44,18 +45,19 @@ public class TeacherController {
         existingTeacher.setEmail(teachers.getEmail());
         existingTeacher.setPhoneNumber(teachers.getPhoneNumber());
         existingTeacher.setNationalIdentificationNumber(teachers.getNationalIdentificationNumber());
-//        existingTeacher.setTeachersSalary(teachers.getTeachersSalary());
-//        existingTeacher.
+
         teachersService.updateTeachers(existingTeacher);
         return "updated";
     }
 
-    public String getTeachersSalary() {
-        teachersService.getAllTeachersSalary();
+    @RequestMapping("/teacher/salary")
+    public String getTeachersSalary(Model model) {
+        model.addAttribute("teachersSalary", teachersService.getAllTeachersSalary());
         return "list_salary";
     }
 
-    public String deleteTeachersSalaryById(Long id) {
+    @RequestMapping("/teacher/delete/{id}")
+    public String deleteTeachersSalaryById(@PathVariable("id") Long id) {
         teachersService.deleteTeachersById(id);
         return "redirect:/updated";
     }

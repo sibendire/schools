@@ -13,26 +13,30 @@ public class Teachers {
     private String firstName;
     private String midName;
     private String lastName;
+    private String gender;
     private String email;
     private String phoneNumber;
     private String nationalIdentificationNumber;
-    private Date dateOfBirth;
+    private String dateOfBirth;
 
-    public Teachers(Long id, String firstName, String midName, String lastName, String email,
-                    String phoneNumber, String nationalIdentificationNumber, Date dateOfBirth) {
+    public Teachers() {
+
+    }
+
+
+    public Teachers(Long id, String firstName, String midName, String lastName, String gender, String email,
+                    String phoneNumber, String nationalIdentificationNumber, String dateOfBirth) {
         this.id = id;
         this.firstName = firstName;
         this.midName = midName;
         this.lastName = lastName;
+        this.gender = gender;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.nationalIdentificationNumber = nationalIdentificationNumber;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Teachers() {
-
-    }
 
     public Long getId() {
         return id;
@@ -66,6 +70,14 @@ public class Teachers {
         this.lastName = lastName;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -90,11 +102,11 @@ public class Teachers {
         this.nationalIdentificationNumber = nationalIdentificationNumber;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }

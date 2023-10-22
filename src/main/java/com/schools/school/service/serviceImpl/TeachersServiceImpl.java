@@ -13,10 +13,10 @@ import java.util.List;
     @Service
     public class TeachersServiceImpl implements TeachersService {
         private final TeachersRepository teachersRepository;
-        @Override
-        public Teachers saveTeacher(Teachers teachers) {
-            return teachersRepository.save(teachers);
-        }
+    @Override
+    public Teachers saveTeacher(Teachers teachers) {
+        return teachersRepository.save(teachers);
+    }
 
         @Override
         public List<Teachers> getAllTeachers() {

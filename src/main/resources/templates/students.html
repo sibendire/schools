@@ -36,7 +36,7 @@
     </div>
     <div class="mb-3">
       <label for="birth" class="form-label">Date of birth</label>
-      <input type="datetime-local" class="form-control" id="birth" aria-describedby="emailHelp" name="StudentDateOfBirth" required>
+      <input type="date" class="form-control" id="birth" aria-describedby="emailHelp" name="StudentDateOfBirth" required>
     </div>
     <div class="mb-3">
       <label for="national" class="form-label">National Identification Number(NIN)</label>
@@ -53,12 +53,13 @@
       <select class="form-select" id="gender" name="studentGender" required>
         <option value="male">Male</option>
         <option value="female">Female</option>
+        <option value="others">Others</option>
       </select>
 
     </div>
     <div class="mb-3">
       <label for="classes" class="form-label">Class Room</label>
-      <select class="form-select" id="classes" name="studentGender" required>
+      <select class="form-select" id="classes" name="studentClass" required>
         <option value="one">S.1</option>
         <option value="two">S.2</option>
         <option value="three">S.3</option>
@@ -67,7 +68,7 @@
     </div>
     <div class="mb-3">
       <label for="fees" class="form-label">Fees to be paid</label>
-      <input type="number" class="form-control" id="fees" aria-describedby="emailHelp" name="FeesToBePaid" required>
+      <input type="number" class="form-control" id="fees" aria-describedby="emailHelp" name="feesToBeePaid" required>
     </div>
     <div class="mb-3">
       <label for="health" class="form-label">Student Health Record</label>

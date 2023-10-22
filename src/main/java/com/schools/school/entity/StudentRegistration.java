@@ -24,7 +24,7 @@ public class StudentRegistration {
     private String studentGender;
     @Column(name = "Class")
     private String studentClass;
-    @Column(name = "Fees_to_be_paid")
+    @Column(name = "Fees")
     private double feesToBeePaid;
     @Column(name = "Health_Record")
     private String studentHealthRecord;
