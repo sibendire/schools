@@ -10,13 +10,21 @@ public class Teachers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "first_Name")
     private String firstName;
+    @Column(name = "mid_Name")
     private String midName;
+    @Column(name = "last_Name")
     private String lastName;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "email")
     private String email;
+    @Column(name = "phone_Number")
     private String phoneNumber;
+    @Column(name = "nin")
     private String nationalIdentificationNumber;
+    @Column(name = "birth_Date")
     private String dateOfBirth;
 
     public Teachers() {
