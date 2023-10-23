@@ -18,6 +18,8 @@ public class ParentPortal {
     private String email;
     @Column(name = "phone_Number")
     private String phoneNumber;
+    @Column(name = "photo")
+    private String parentPhoto;
     @Column(name = "NIN")
     private String nationalIdentificationNumber;
     @Column(name = "gender")
@@ -35,7 +37,7 @@ public class ParentPortal {
     }
 
     public ParentPortal(Long id, String firstName, String midName, String lastName, String email,
-                        String phoneNumber, String nationalIdentificationNumber, String gender,
+                        String phoneNumber,String parentPhoto, String nationalIdentificationNumber, String gender,
                         String occupation, String address, String subCounty, String homeDistrict) {
         this.id = id;
         this.firstName = firstName;
@@ -43,6 +45,7 @@ public class ParentPortal {
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.parentPhoto = parentPhoto;
         this.nationalIdentificationNumber = nationalIdentificationNumber;
         this.gender = gender;
         this.occupation = occupation;
@@ -93,6 +96,14 @@ public class ParentPortal {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getParentPhoto() {
+        return parentPhoto;
+    }
+
+    public void setParentPhoto(String parentPhoto) {
+        this.parentPhoto = parentPhoto;
     }
 
     public void setPhoneNumber(String phoneNumber) {

@@ -20,6 +20,8 @@ public class Teachers {
     private String email;
     @Column(name = "phone_Number")
     private String phoneNumber;
+    @Column(name = "teachers_Photo")
+    private String teachersPhoto;
     @Column(name = "NIN")
     private String nationalIdentificationNumber;
     @Column(name = "birth_Date")
@@ -31,7 +33,7 @@ public class Teachers {
 
 
     public Teachers(Long id, String firstName, String midName, String lastName, String gender, String email,
-                    String phoneNumber, String nationalIdentificationNumber, String dateOfBirth) {
+                    String phoneNumber,String teachersPhoto, String nationalIdentificationNumber, String dateOfBirth) {
         this.id = id;
         this.firstName = firstName;
         this.midName = midName;
@@ -39,6 +41,7 @@ public class Teachers {
         this.gender = gender;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.teachersPhoto = teachersPhoto;
         this.nationalIdentificationNumber = nationalIdentificationNumber;
         this.dateOfBirth = dateOfBirth;
     }
@@ -98,6 +101,14 @@ public class Teachers {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getTeachersPhoto() {
+        return teachersPhoto;
+    }
+
+    public void setTeachersPhoto(String teachersPhoto) {
+        this.teachersPhoto = teachersPhoto;
     }
 
     public String getNationalIdentificationNumber() {
