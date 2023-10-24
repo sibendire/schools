@@ -13,6 +13,6 @@ public interface TeachersService {
     Teachers getTeacherSalaryById(Long id);
     Teachers updateSalaryById(Long id);
     List<Teachers> getAllTeachersSalary();
-    void deleteTeachersById(Long id);
+    boolean deleteTeachersById(Long id);
     long getTeacherBalance(double balance);
 }

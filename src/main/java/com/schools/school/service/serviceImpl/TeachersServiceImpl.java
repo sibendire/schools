@@ -54,8 +54,9 @@ import java.util.List;
         }
 
         @Override
-        public void deleteTeachersById(Long id) {
+        public boolean deleteTeachersById(Long id) {
             teachersRepository.deleteById(id);
+            return false;
         }
 
         @Override

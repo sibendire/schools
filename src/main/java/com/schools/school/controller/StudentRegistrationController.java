@@ -4,10 +4,7 @@ import com.schools.school.entity.StudentRegistration;
 import com.schools.school.service.StudentRegistrationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class StudentRegistrationController {
@@ -16,10 +13,12 @@ public class StudentRegistrationController {
     public StudentRegistrationController(StudentRegistrationService studentRegistrationService) {
         this.studentRegistrationService = studentRegistrationService;
     }
+
     @GetMapping("/api")
-    public String home(){
+    public String home() {
         return "home";
     }
+
     @GetMapping("/studentForm")
     public String showStudentForm(Model model) {
         model.addAttribute("student", new StudentRegistration());
@@ -31,6 +30,7 @@ public class StudentRegistrationController {
         studentRegistrationService.saveStudentInformation(studentRegistration);
         return "redirect:/students";
     }
+
     @GetMapping("/api/student")
     public String listStudentRegistered(Model model) {
         model.addAttribute("students", studentRegistrationService.getAllStudents());
@@ -46,14 +46,14 @@ public class StudentRegistrationController {
 
     }
 
-    @GetMapping("/api/student/edit/{id}")
+    @RequestMapping("/api/student/edit/{id}")
     public String editStudentInformation(@PathVariable Long id, Model model) {
         model.addAttribute("student", studentRegistrationService.getStudentById(id));
         return "edit_student";
 
     }
 
-    @GetMapping("/api/student/update/{id}")
+    @RequestMapping("/api/student/update/{id}")
     public String updateStudentRecord(@PathVariable Long id, @ModelAttribute("student")
     StudentRegistration studentRegistration, Model model) {
         // get the student record from the database by if exists
@@ -85,8 +85,9 @@ public class StudentRegistrationController {
         studentRegistrationService.deleteStudentRecordById(id);
         return "redirect:/students";
     }
+
     @GetMapping("/gender")
-    public String getStudentByGender(){
+    public String getStudentByGender() {
         studentRegistrationService.getByGender();
         return "student_sex";
     }

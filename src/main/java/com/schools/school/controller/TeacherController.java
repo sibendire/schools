@@ -57,7 +57,10 @@ public class TeacherController {
     }
 
     @RequestMapping("/teacher/delete/{id}")
-    public String deleteTeachersSalaryById(@PathVariable("id") Long id) {
+    public String deleteTeachersSalaryById(@PathVariable("id") Long id) throws TeacherNoFoundException {
+        if(!teachersService.deleteTeachersById(id)){
+            throw new TeacherNoFoundException(id);
+        }
         teachersService.deleteTeachersById(id);
         return "redirect:/updated";
     }
