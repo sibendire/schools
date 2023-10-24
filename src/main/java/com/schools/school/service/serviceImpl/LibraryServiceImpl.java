@@ -22,26 +22,27 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public List<Library> getAllBook() {
-        return null;
+        return libraryRepository.findAll();
     }
 
     @Override
     public Library getBookById(Long id) {
-        return null;
+        return libraryRepository.findById(id).get();
     }
 
     @Override
     public List<Library> getListBooksBorrowed() {
-        return null;
+        return libraryRepository.findAll();
     }
 
     @Override
     public void deleteBookById(Long id) {
+        libraryRepository.deleteById(id);
 
     }
 
     @Override
     public Library updateBookById(Long id) {
-        return null;
+        return libraryRepository.findById(id).get();
     }
 }
