@@ -10,16 +10,23 @@ public class Library {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "book_Name")
     private String bookTitle;
+    @Column(name = "author_Name")
     private String authorName;
-    private Date yearOfPublicity;
+    @Column(name = "year")
+    private String yearOfPublicity;
 //    private List<Library> books;
 
-    public Library(Long id, String bookTitle, String authorName, Date yearOfPublicity) {
+    public Library(Long id, String bookTitle, String authorName, String yearOfPublicity) {
         this.id = id;
         this.bookTitle = bookTitle;
         this.authorName = authorName;
         this.yearOfPublicity = yearOfPublicity;
+    }
+
+    public Library() {
+
     }
 
     public Long getId() {
@@ -46,11 +53,11 @@ public class Library {
         this.authorName = authorName;
     }
 
-    public Date getYearOfPublicity() {
+    public String getYearOfPublicity() {
         return yearOfPublicity;
     }
 
-    public void setYearOfPublicity(Date yearOfPublicity) {
+    public void setYearOfPublicity(String yearOfPublicity) {
         this.yearOfPublicity = yearOfPublicity;
     }
 }

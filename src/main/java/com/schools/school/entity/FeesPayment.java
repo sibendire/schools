@@ -10,20 +10,28 @@ public class FeesPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "class_Room")
     private String classRoom;
+    @Column(name = "first_Name")
     private String firstName;
+    @Column(name = "other_Name")
     private String minName;
+    @Column(name = "last_Name")
     private String lastName;
+    @Column(name = "photo")
     private String photo;
-    private Date feesOfPayment;
+    @Column(name = "date")
+    private String feesOfPayment;
+    @Column(name = "amount")
     private double feesPaid;
+    @Column(name = "balance")
     private double feeBalance;
 
     public FeesPayment() {
     }
 
     public FeesPayment(Long id, String classRoom, String firstName, String minName,
-                       String lastName, String photo, Date feesOfPayment,
+                       String lastName, String photo, String feesOfPayment,
                        double feesPaid, double feeBalance) {
         this.id = id;
         this.classRoom = classRoom;
@@ -84,11 +92,11 @@ public class FeesPayment {
         this.photo = photo;
     }
 
-    public Date getFeesOfPayment() {
+    public String getFeesOfPayment() {
         return feesOfPayment;
     }
 
-    public void setFeesOfPayment(Date feesOfPayment) {
+    public void setFeesOfPayment(String feesOfPayment) {
         this.feesOfPayment = feesOfPayment;
     }
 
