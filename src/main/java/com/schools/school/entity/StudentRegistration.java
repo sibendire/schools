@@ -28,6 +28,12 @@ public class StudentRegistration {
     private double feesToBeePaid;
     @Column(name = "Health_Record")
     private String studentHealthRecord;
+    @Column(name = "school_Name")
+    private String formerSchoolName;
+    @Column(name = "reason")
+    private String reasonWhyChangedSchool;
+    @Column(name = "performance_records")
+    private String formerSchoolPerformanceRecords;
     @Column(name = "Photo")
     private String studentPhoto;
     @Column(name = "Phone_Number")
@@ -52,7 +58,9 @@ public class StudentRegistration {
             String studentGender,
             String studentClass,
             double feesToBeePaid,
-            String studentHealthRecord, String studentPhoto,
+            String studentHealthRecord,
+            String formerSchoolName, String reasonWhyChangedSchool, String formerSchoolPerformanceRecords,
+            String studentPhoto,
             String studentPhoneNumber, String studentHomeAddress,
             String studentSubCounty,
             String studentDistrict) {
@@ -67,6 +75,9 @@ public class StudentRegistration {
         this.studentClass = studentClass;
         this.feesToBeePaid = feesToBeePaid;
         this.studentHealthRecord = studentHealthRecord;
+        this.formerSchoolName = formerSchoolName;
+        this.reasonWhyChangedSchool = reasonWhyChangedSchool;
+        this.formerSchoolPerformanceRecords = formerSchoolPerformanceRecords;
         this.studentPhoto = studentPhoto;
         this.studentPhoneNumber = studentPhoneNumber;
         this.studentHomeAddress = studentHomeAddress;
@@ -152,6 +163,30 @@ public class StudentRegistration {
 
     public void setStudentHealthRecord(String studentHealthRecord) {
         this.studentHealthRecord = studentHealthRecord;
+    }
+
+    public String getFormerSchoolName() {
+        return formerSchoolName;
+    }
+
+    public void setFormerSchoolName(String formerSchoolName) {
+        this.formerSchoolName = formerSchoolName;
+    }
+
+    public String getReasonWhyChangedSchool() {
+        return reasonWhyChangedSchool;
+    }
+
+    public void setReasonWhyChangedSchool(String reasonWhyChangedSchool) {
+        this.reasonWhyChangedSchool = reasonWhyChangedSchool;
+    }
+
+    public String getFormerSchoolPerformanceRecords() {
+        return formerSchoolPerformanceRecords;
+    }
+
+    public void setFormerSchoolPerformanceRecords(String formerSchoolPerformanceRecords) {
+        this.formerSchoolPerformanceRecords = formerSchoolPerformanceRecords;
     }
 
     public String getStudentPhoto() {
