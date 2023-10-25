@@ -1,6 +1,8 @@
 package com.schools.school.controller;
 
+import com.schools.school.entity.ParentPortal;
 import com.schools.school.entity.StudentRegistration;
+import com.schools.school.service.ParentPortalService;
 import com.schools.school.service.StudentRegistrationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class StudentRegistrationController {
     private final StudentRegistrationService studentRegistrationService;
+    private final ParentPortalService parentPortalService;
 
-    public StudentRegistrationController(StudentRegistrationService studentRegistrationService) {
+    public StudentRegistrationController(StudentRegistrationService studentRegistrationService, ParentPortalService parentPortalService) {
         this.studentRegistrationService = studentRegistrationService;
+        this.parentPortalService = parentPortalService;
     }
 
     @GetMapping("/api")
@@ -25,17 +29,31 @@ public class StudentRegistrationController {
         return "students";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/saveStudent")
     public String saveStudent(@ModelAttribute("student") StudentRegistration studentRegistration) {
         studentRegistrationService.saveStudentInformation(studentRegistration);
-        return "redirect:/students";
+        return "redirect:/api/student/list"; // Redirect to the list of students
     }
 
-    @GetMapping("/api/student")
+    @GetMapping("/api/student/list") // Change the URL path
     public String listStudentRegistered(Model model) {
         model.addAttribute("students", studentRegistrationService.getAllStudents());
-        return "students";
+        return "student_List";
     }
+    @GetMapping("/parentForm")
+    public String showParentForm(Model model) {
+        model.addAttribute("parent", new ParentPortal());
+        return "parents";
+    }
+
+    @PostMapping("saveParent")
+    public String saveParentInformation(@ModelAttribute("parent") ParentPortal parentPortal) {
+        parentPortalService.saveParent(parentPortal);
+        return "redirect:/api";
+
+    }
+
+
 
     @GetMapping("/student/new")
     public String createStudentForm(Model model) {
@@ -82,7 +100,10 @@ public class StudentRegistrationController {
 
     @GetMapping("/api/student/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {
-        studentRegistrationService.deleteStudentRecordById(id);
+       if(!studentRegistrationService.existsById(id)){
+           throw new IllegalArgumentException("student not found by the id");
+       }
+           studentRegistrationService.deleteStudentRecordById(id);
         return "redirect:/students";
     }
 

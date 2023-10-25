@@ -12,4 +12,5 @@ public interface StudentRegistrationService {
     void deleteStudentRecordById(Long id);
     List<StudentRegistration> getByGender();
 
+    boolean existsById(Long id);
 }

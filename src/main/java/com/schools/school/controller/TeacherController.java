@@ -25,7 +25,7 @@ public class TeacherController {
     public String saveTeacher(@ModelAttribute("teacher") Teachers teachers) {
 
         teachersService.saveTeacher(teachers);
-        return "redirect:/students";
+        return "redirect:/teacher";
     }
 
     @RequestMapping("/teacher/list")

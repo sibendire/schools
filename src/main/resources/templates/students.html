@@ -13,15 +13,15 @@
   <div class="container-fluid">
     <div class="d-flex align-items-center">
       <a class="nav-link me-3" href="home">Home</a>
-      <a class="nav-link active" aria-current="page" href="available_books">Available Student</a>
+      <a class="nav-link active" aria-current="page" href="student">Available Student</a>
       <a class="nav-link" href="my_book">My Books</a>
     </div>
-    <a class="nav-link" href="book_register">New Student Register</a>
+    <a class="nav-link" href="studentForm">New Student Register</a>
   </div>
 </nav>
 <h1 class="text-center">Student Admission Form</h1>
 <div class="container my-2" style="border: 1px solid black;">
-  <form class="col-md-4 offset-md-4" th:action="@{save}" method="post" th:object="${student}">
+  <form class="col-md-4 offset-md-4" th:action="@{saveStudent}" method="post" th:object="${student}">
     <div class="mb-3">
       <label for="firstName" class="form-label">First Name</label>
       <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="studentFirstName" required >
@@ -108,6 +108,7 @@
     </div>
     <center>
       <button type="submit" class="btn btn-primary">Save</button>
+      <button type="cancel" class="btn btn-primary">Cancel</button>
     </center>
   </form>
 </div>

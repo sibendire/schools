@@ -44,5 +44,10 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
         return studentRegistrationRepository.findAll();
     }
 
+    @Override
+    public boolean existsById(Long id) {
+        return studentRegistrationRepository.existsById(id);
+    }
+
 
 }

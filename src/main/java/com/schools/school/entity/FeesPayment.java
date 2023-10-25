@@ -2,8 +2,6 @@ package com.schools.school.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "Fees")
 public class FeesPayment {
