@@ -40,20 +40,6 @@ public class StudentRegistrationController {
         model.addAttribute("students", studentRegistrationService.getAllStudents());
         return "student_List";
     }
-    @GetMapping("/parentForm")
-    public String showParentForm(Model model) {
-        model.addAttribute("parent", new ParentPortal());
-        return "parents";
-    }
-
-    @PostMapping("saveParent")
-    public String saveParentInformation(@ModelAttribute("parent") ParentPortal parentPortal) {
-        parentPortalService.saveParent(parentPortal);
-        return "redirect:/api";
-
-    }
-
-
 
     @GetMapping("/student/new")
     public String createStudentForm(Model model) {
@@ -100,10 +86,10 @@ public class StudentRegistrationController {
 
     @GetMapping("/api/student/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {
-       if(!studentRegistrationService.existsById(id)){
-           throw new IllegalArgumentException("student not found by the id");
-       }
-           studentRegistrationService.deleteStudentRecordById(id);
+        if (!studentRegistrationService.existsById(id)) {
+            throw new IllegalArgumentException("student not found by the id");
+        }
+        studentRegistrationService.deleteStudentRecordById(id);
         return "redirect:/students";
     }
 
@@ -112,4 +98,25 @@ public class StudentRegistrationController {
         studentRegistrationService.getByGender();
         return "student_sex";
     }
+
+    @GetMapping("/parentForm")
+    public String showParentForm(Model model) {
+        model.addAttribute("parent", new ParentPortal());
+        return "parents";
+    }
+
+    @PostMapping("saveParent")
+    public String saveParentInformation(@ModelAttribute("parent") ParentPortal parentPortal) {
+        parentPortalService.saveParent(parentPortal);
+        return "redirect:/api/parent/list";
+
+    }
+
+    @GetMapping("/api/parent/list")
+    public String listParents(Model model) {
+        model.addAttribute("parents", parentPortalService.getAllParents());
+        return "parent_list";
+    }
+
+
 }
