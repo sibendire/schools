@@ -69,13 +69,10 @@ public class StudentRegistrationController {
         existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
         existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
                 .getStudentNationalIdentificationNumberNIN());
-        existingStudent.setStudentNationalIdentificationCardNumber(studentRegistration
-                .getStudentNationalIdentificationCardNumber());
         existingStudent.setStudentGender(studentRegistration.getStudentGender());
         existingStudent.setStudentClass(studentRegistration.getStudentClass());
         existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
         existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
-        existingStudent.setStudentPhoneNumber(studentRegistration.getStudentPhoneNumber());
         existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
         existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
         existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());

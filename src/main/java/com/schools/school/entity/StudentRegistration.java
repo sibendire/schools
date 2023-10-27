@@ -18,8 +18,6 @@ public class StudentRegistration {
     private String studentDateOfBirth;
     @Column(name = "NIN")
     private String studentNationalIdentificationNumberNIN;
-    @Column(name = "Card_number")
-    private String studentNationalIdentificationCardNumber;
     @Column(name = "Gender")
     private String studentGender;
     @Column(name = "Class")
@@ -36,8 +34,6 @@ public class StudentRegistration {
     private String formerSchoolPerformanceRecords;
     @Column(name = "Photo")
     private String studentPhoto;
-    @Column(name = "Phone_Number")
-    private String studentPhoneNumber;
     @Column(name = "Home_Address")
     private String studentHomeAddress;
     @Column(name = "SubCounty")
@@ -54,14 +50,13 @@ public class StudentRegistration {
             String studentLastName,
             String studentDateOfBirth,
             String studentNationalIdentificationNumberNIN,
-            String studentNationalIdentificationCardNumber,
             String studentGender,
             String studentClass,
             double feesToBeePaid,
             String studentHealthRecord,
             String formerSchoolName, String reasonWhyChangedSchool, String formerSchoolPerformanceRecords,
             String studentPhoto,
-            String studentPhoneNumber, String studentHomeAddress,
+            String studentHomeAddress,
             String studentSubCounty,
             String studentDistrict) {
 
@@ -70,7 +65,6 @@ public class StudentRegistration {
         this.studentLastName = studentLastName;
         this.studentDateOfBirth = studentDateOfBirth;
         this.studentNationalIdentificationNumberNIN = studentNationalIdentificationNumberNIN;
-        this.studentNationalIdentificationCardNumber = studentNationalIdentificationCardNumber;
         this.studentGender = studentGender;
         this.studentClass = studentClass;
         this.feesToBeePaid = feesToBeePaid;
@@ -79,7 +73,6 @@ public class StudentRegistration {
         this.reasonWhyChangedSchool = reasonWhyChangedSchool;
         this.formerSchoolPerformanceRecords = formerSchoolPerformanceRecords;
         this.studentPhoto = studentPhoto;
-        this.studentPhoneNumber = studentPhoneNumber;
         this.studentHomeAddress = studentHomeAddress;
         this.studentSubCounty = studentSubCounty;
         this.studentDistrict = studentDistrict;
@@ -133,13 +126,6 @@ public class StudentRegistration {
         this.studentNationalIdentificationNumberNIN = studentNationalIdentificationNumberNIN;
     }
 
-    public String getStudentNationalIdentificationCardNumber() {
-        return studentNationalIdentificationCardNumber;
-    }
-
-    public void setStudentNationalIdentificationCardNumber(String studentNationalIdentificationCardNumber) {
-        this.studentNationalIdentificationCardNumber = studentNationalIdentificationCardNumber;
-    }
 
     public String getStudentGender() {
         return studentGender;
@@ -195,14 +181,6 @@ public class StudentRegistration {
 
     public void setStudentPhoto(String studentPhoto) {
         this.studentPhoto = studentPhoto;
-    }
-
-    public String getStudentPhoneNumber() {
-        return studentPhoneNumber;
-    }
-
-    public void setStudentPhoneNumber(String studentPhoneNumber) {
-        this.studentPhoneNumber = studentPhoneNumber;
     }
 
     public String getStudentHomeAddress() {
