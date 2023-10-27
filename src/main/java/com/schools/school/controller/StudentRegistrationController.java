@@ -98,12 +98,12 @@ public class StudentRegistrationController {
 
     @GetMapping("/parentForm")
     public String showParentForm(Model model) {
-        model.addAttribute("parent", new ParentPortal());
-        return "parents";
+        model.addAttribute("parents", new ParentPortal());
+        return "parent";
     }
 
     @PostMapping("saveParent")
-    public String saveParentInformation(@ModelAttribute("parent") ParentPortal parentPortal) {
+    public String saveParentInformation(@ModelAttribute("parents") ParentPortal parentPortal) {
         parentPortalService.saveParent(parentPortal);
         return "redirect:/api/parent/list";
 
