@@ -2,12 +2,17 @@ package com.schools.school.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Parents")
 public class ParentPortal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+    private List<StudentRegistration> students;
+
     @Column(name = "first_Name")
     private String firstName;
     @Column(name = "mid_Name")
