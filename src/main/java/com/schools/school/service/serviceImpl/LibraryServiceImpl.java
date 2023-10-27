@@ -4,6 +4,7 @@ import com.schools.school.entity.Library;
 import com.schools.school.repository.LibraryRepository;
 import com.schools.school.service.LibraryService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -37,12 +38,17 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void deleteBookById(Long id) {
-        libraryRepository.deleteById(id);
+        if(!libraryRepository.existsById(id)){
+            throw new IllegalArgumentException("Book does not exist in the Library!");
+        }
+        else {
+            libraryRepository.deleteById(id);
+        }
 
     }
 
     @Override
-    public Library updateBookById(Long id) {
+    public Library updateBookById(@PathVariable Long id) {
         return libraryRepository.findById(id).get();
     }
 }

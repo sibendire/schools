@@ -8,9 +8,9 @@ public class StudentRegistration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", nullable = false)
-    private ParentPortal parent;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "parent_id", nullable = false)
+//    private ParentPortal parent;
     @Column(name = "First_name")
     private String studentFirstName;
     @Column(name = "Mid_name")

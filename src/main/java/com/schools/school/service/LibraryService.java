@@ -10,5 +10,5 @@ public interface LibraryService {
     Library getBookById(Long id);
     List<Library> getListBooksBorrowed();
     void deleteBookById(Long id);
-    Library updateBookById(Long id);
+    Library updateBookById(Long id );
 }

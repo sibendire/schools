@@ -10,8 +10,8 @@ public class ParentPortal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-    private List<StudentRegistration> students;
+//    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+//    private List<StudentRegistration> students;
 
     @Column(name = "first_Name")
     private String firstName;

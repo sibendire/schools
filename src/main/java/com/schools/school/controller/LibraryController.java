@@ -26,7 +26,7 @@ public class LibraryController {
     @PostMapping("/save_book")
     public String saveBooks(@ModelAttribute("book") Library library) {
         libraryService.saveBook(library);
-        return "redirect:available_books";
+        return "redirect:/available_books";
     }
 
     @GetMapping("/listBooks")
@@ -53,6 +53,6 @@ public class LibraryController {
     public String editBook(@PathVariable("id") long id, Model model) {
         Library library = libraryService.updateBookById(id);
         model.addAttribute("book", library);
-        return "redirect:available_books";
+        return "redirect:/available_books";
     }
 }
