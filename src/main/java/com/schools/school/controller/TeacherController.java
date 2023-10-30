@@ -17,15 +17,15 @@ public class TeacherController {
 
     @GetMapping("/teacherForm")
     public String showTeachersForm(Model model) {
-        model.addAttribute("teacher", new Teachers());
+        model.addAttribute("teachers", new Teachers());
         return "teacher";
     }
 
     @PostMapping("/teach")
-    public String saveTeacher(@ModelAttribute("teacher") Teachers teachers) {
+    public String saveTeacher(@ModelAttribute("teachers") Teachers teachers) {
 
         teachersService.saveTeacher(teachers);
-        return "redirect:/teacher";
+        return "redirect:/teacher/list";
     }
 
     @RequestMapping("/teacher/list")
@@ -35,7 +35,7 @@ public class TeacherController {
     }
 
     @RequestMapping("/teacher/update/{id}")
-    public String updateTeachersRecords(@PathVariable("id") Long id, @ModelAttribute("teacher") Teachers teachers, Model model) {
+    public String updateTeachersRecords(@PathVariable("id") Long id, @ModelAttribute("teachers") Teachers teachers, Model model) {
         Teachers existingTeacher = teachersService.getTeacherById(id);
         // Update teacher attributes
         existingTeacher.setFirstName(teachers.getFirstName());
