@@ -21,9 +21,10 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
 
     @Override
     public double calculateTotalFeesPaidByStudent(String firstName, String minName, String lastName) {
-        List<FeesPayment> paymentsByStudent = feesPaymentRepository.findByFirstNameAndMinNameAndLastName(firstName, minName, lastName);
+        List<FeesPayment> paymentsByStudent = feesPaymentRepository.findByFirstNameAndMinNameAndLastName(firstName,
+                minName, lastName);
 
-        double totalFeesPaid = 0.0;
+        double totalFeesPaid = 0.00;
         for (FeesPayment payment : paymentsByStudent) {
             totalFeesPaid += payment.getFeesPaid();
         }

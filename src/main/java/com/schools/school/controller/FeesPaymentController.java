@@ -4,6 +4,7 @@ import com.schools.school.entity.FeesPayment;
 import com.schools.school.service.FeesPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,11 +28,21 @@ public class FeesPaymentController {
     public FeesPayment getFeesPaymentById(@PathVariable Long id) {
         return feesPaymentService.getFeesPaymentById(id);
     }
+    @GetMapping("/paymentForm")
+    public String showPaymentForm(Model model) {
+        model.addAttribute("payment", new FeesPayment());
+        return "payment";
+    }
 
-    @PostMapping("/add")
-    public String saveFeesPayment(@RequestBody FeesPayment feesPayment) {
+    @PostMapping("/saveFees")
+    public String saveFeesPayment(@ModelAttribute FeesPayment feesPayment) {
         feesPaymentService.saveFeesPayment(feesPayment);
-        return "fees_payment";
+        return "redirect:/fees/list";
+    }
+    @GetMapping("/fees/list")
+    public String listStudentPayment(Model model){
+        model.addAttribute("payment",feesPaymentService.getAllFeesPayments());
+        return "list_payment";
     }
 
     @PutMapping("/update")
