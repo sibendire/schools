@@ -99,7 +99,7 @@ public class StudentRegistrationController {
     @GetMapping("/parentForm")
     public String showParentForm(Model model) {
         model.addAttribute("parents", new ParentPortal());
-        return "parent";
+        return "parents";
     }
 
     @PostMapping("saveParent")
