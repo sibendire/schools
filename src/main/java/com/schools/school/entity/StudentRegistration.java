@@ -19,7 +19,7 @@ public class StudentRegistration {
     private String studentLastName;
     @Column(name = "Date_of_Birth")
     private String studentDateOfBirth;
-    @Column(name = "NIN")
+    @Column(name = "NIN",unique = true)
     private String studentNationalIdentificationNumberNIN;
     @Column(name = "Gender")
     private String studentGender;

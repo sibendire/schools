@@ -19,13 +19,13 @@ public class ParentPortal {
     private String midName;
     @Column(name = "last_Name")
     private String lastName;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
     @Column(name = "phone_Number")
     private String phoneNumber;
     @Column(name = "photo")
     private String parentPhoto;
-    @Column(name = "NIN")
+    @Column(name = "NIN",unique = true)
     private String nationalIdentificationNumber;
     @Column(name = "gender")
     private String gender;
