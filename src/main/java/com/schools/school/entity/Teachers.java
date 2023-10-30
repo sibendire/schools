@@ -16,13 +16,13 @@ public class Teachers {
     private String lastName;
     @Column(name = "gender")
     private String gender;
-    @Column(name = "email")
+    @Column(name = "email" ,unique=true)
     private String email;
     @Column(name = "phone_Number")
     private String phoneNumber;
     @Column(name = "teachers_Photo")
     private String teachersPhoto;
-    @Column(name = "NIN")
+    @Column(name = "NIN",unique = true,length = 14)
     private String nationalIdentificationNumber;
     @Column(name = "birth_Date")
     private String dateOfBirth;
