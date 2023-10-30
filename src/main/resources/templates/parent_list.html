@@ -39,6 +39,7 @@
    </thead>
    <tbody>
    <tr th:each="parent : ${parents}">
+     <td th:text="${parent.id}"></td>
      <td th:text="${parent.firstName}"></td>
      <td th:text="${parent.midName}"></td>
      <td th:text="${parent.lastName}"></td>
