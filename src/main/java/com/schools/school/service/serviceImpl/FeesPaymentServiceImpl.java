@@ -55,8 +55,9 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
     }
 
     @Override
-    public void saveFeesPayment(FeesPayment feesPayment) {
+    public FeesPayment saveFeesPayment(FeesPayment feesPayment) {
         feesPaymentRepository.save(feesPayment);
+        return feesPayment;
     }
 
     @Override

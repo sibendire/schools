@@ -12,7 +12,7 @@ public interface FeesPaymentService {
 
     List<FeesPayment> getAllFeesPayments();
     FeesPayment getFeesPaymentById(Long id);
-    void saveFeesPayment(FeesPayment feesPayment);
+    FeesPayment saveFeesPayment(FeesPayment feesPayment);
     void updateFeesPayment( FeesPayment feesPayment);
 
     void updateFeesPayment(@PathVariable long id, FeesPayment feesPayment);
