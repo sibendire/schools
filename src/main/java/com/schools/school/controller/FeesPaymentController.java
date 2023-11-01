@@ -30,18 +30,18 @@ public class FeesPaymentController {
     }
     @GetMapping("/paymentForm")
     public String showPaymentForm(Model model) {
-        model.addAttribute("payment", new FeesPayment());
+        model.addAttribute("payments", new FeesPayment());
         return "payment";
     }
 
     @PostMapping("/saveFees")
     public String saveFeesPayment(@ModelAttribute FeesPayment feesPayment) {
-        feesPaymentService.saveFeesPayment(feesPayment);
+        feesPaymentService.saveFees(feesPayment);
         return "redirect:/fees/list";
     }
     @GetMapping("/fees/list")
     public String listStudentPayment(Model model){
-        model.addAttribute("payment",feesPaymentService.getAllFeesPayments());
+        model.addAttribute("payments",feesPaymentService.getAllFeesPayments());
         return "list_payment";
     }
 
