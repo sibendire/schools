@@ -12,10 +12,10 @@
     <div class="container-fluid">
         <div class="d-flex align-items-center">
             <a class="nav-link me-3" href="home">Home</a>
-            <a class="nav-link active" aria-current="page" href="available_books">Available Student</a>
-            <a class="nav-link" href="my_book">My Books</a>
+            <a class="nav-link active" aria-current="page" href="fees/list">Available Payment made</a>
+            <a class="nav-link" href="my_book">Update Account</a>
         </div>
-        <a class="nav-link" href="book_register">New Student Register</a>
+        <a class="nav-link" href="paymentForm">New Student pay</a>
     </div>
 </nav>
 <form class="col-md-4 offset-md-4" th:action="@{/saveFees}" method="post" th:object="${payment}">
