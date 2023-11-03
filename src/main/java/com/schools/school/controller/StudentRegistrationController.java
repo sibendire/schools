@@ -51,10 +51,14 @@ public class StudentRegistrationController {
     }
 
     @RequestMapping("/api/student/edit/{id}")
-    public String editStudentInformation(@PathVariable Long id, Model model) {
-        model.addAttribute("student", studentRegistrationService.getStudentById(id));
-        return "edit_student";
-
+    public String editStudentInformation(@PathVariable  String id, Model model) {
+        try {
+            Long studentId = Long.parseLong(id);
+            model.addAttribute("student", studentRegistrationService.getStudentById(studentId));
+            return "edit_student";
+        }catch (NumberFormatException e){
+            return "message";
+        }
     }
 
     @RequestMapping("/api/student/update/{id}")
@@ -98,12 +102,12 @@ public class StudentRegistrationController {
 
     @GetMapping("/parentForm")
     public String showParentForm(Model model) {
-        model.addAttribute("parents", new ParentPortal());
+        model.addAttribute("parent", new ParentPortal());
         return "parents";
     }
 
     @PostMapping("saveParent")
-    public String saveParentInformation(@ModelAttribute("parents") ParentPortal parentPortal) {
+    public String saveParentInformation(@ModelAttribute("parent") ParentPortal parentPortal) {
         parentPortalService.saveParent(parentPortal);
         return "redirect:/api/parent/list";
 
@@ -111,7 +115,7 @@ public class StudentRegistrationController {
 
     @GetMapping("/api/parent/list")
     public String listParents(Model model) {
-        model.addAttribute("parents", parentPortalService.getAllParents());
+        model.addAttribute("parent", parentPortalService.getAllParents());
         return "parent_list";
     }
 
