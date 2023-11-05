@@ -40,7 +40,6 @@
         <th scope="col">Address</th>
         <th scope="col">Sub-county</th>
         <th scope="col">District</th>
-
     </tr>
     </thead>
     <tbody>
@@ -48,9 +47,10 @@
         <td th:text="${student.id}"></td>
         <td th:text="${student.studentFirstName}"></td>
         <td th:text="${student.studentMidName}"></td>
-        <td th:date="${student.studentLastName}"></td>
+        <td th:text="${student.studentLastName}"></td>
         <td th:text="${student.studentDateOfBirth}"></td>
         <td th:text="${student.studentNationalIdentificationNumberNIN}"></td>
+        <td th:text="${student.studentGender}"></td>
         <td th:text="${student.studentClass}"></td>
         <td th:text="${student.feesToBeePaid}"></td>
         <td th:text="${student.studentHealthRecord}"></td>
