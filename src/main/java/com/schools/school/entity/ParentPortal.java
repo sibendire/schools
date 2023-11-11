@@ -25,7 +25,7 @@ public class ParentPortal {
     private String phoneNumber;
     @Column(name = "photo")
     private String parentPhoto;
-    @Column(name = "NIN",unique = true)
+    @Column(name = "nin",unique = true)
     private String nationalIdentificationNumber;
     @Column(name = "gender")
     private String gender;
