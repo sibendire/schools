@@ -1,11 +1,11 @@
 package com.schools.school.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jdk.jfr.Enabled;
 
-@Enabled
+@Entity
 @Table (name = "S.1")
 public class SeniorOne {
     @Id
