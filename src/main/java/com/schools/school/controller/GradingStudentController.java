@@ -70,9 +70,5 @@ public class GradingStudentController {
         gradingStudentService.deleteMarksById(id);
         return "redirect:/marks_update_list";
     }
-    @PostMapping("/saveToS1")
-    public String saveToSeniorOne(SeniorOne seniorOne){
-        seniorOneService.save(seniorOne);
-        return "SeniorOne_List";
-    }
+
 }

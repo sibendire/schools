@@ -1,19 +1,26 @@
 package com.schools.school.controller;
 
 import com.schools.school.entity.ParentPortal;
+import com.schools.school.entity.SeniorOne;
 import com.schools.school.entity.StudentRegistration;
 import com.schools.school.service.ParentPortalService;
+import com.schools.school.service.SeniorOneService;
 import com.schools.school.service.StudentRegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class StudentRegistrationController {
+    @Autowired
+    private final SeniorOneService seniorOneService;
+    @Autowired
     private final StudentRegistrationService studentRegistrationService;
     private final ParentPortalService parentPortalService;
 
-    public StudentRegistrationController(StudentRegistrationService studentRegistrationService, ParentPortalService parentPortalService) {
+    public StudentRegistrationController(SeniorOneService seniorOneService, StudentRegistrationService studentRegistrationService, ParentPortalService parentPortalService) {
+        this.seniorOneService = seniorOneService;
         this.studentRegistrationService = studentRegistrationService;
         this.parentPortalService = parentPortalService;
     }
@@ -117,6 +124,11 @@ public class StudentRegistrationController {
     public String listParents(Model model) {
         model.addAttribute("parents", parentPortalService.getAllParents());
         return "parent_list";
+    }
+    @PostMapping("/saveToS1")
+    public String saveToSeniorOne(SeniorOne seniorOne){
+        seniorOneService.save(seniorOne);
+        return "SeniorOne_List";
     }
 
 
