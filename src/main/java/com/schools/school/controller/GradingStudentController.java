@@ -1,7 +1,9 @@
 package com.schools.school.controller;
 
 import com.schools.school.entity.GradingStudent;
+import com.schools.school.entity.SeniorOne;
 import com.schools.school.service.GradingStudentService;
+import com.schools.school.service.SeniorOneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/students")
 public class GradingStudentController {
     private final GradingStudentService gradingStudentService;
+    private final SeniorOneService seniorOneService;
 
     @Autowired
-    public GradingStudentController(GradingStudentService gradingStudentService) {
+    public GradingStudentController(GradingStudentService gradingStudentService, SeniorOneService seniorOneService) {
         this.gradingStudentService = gradingStudentService;
+        this.seniorOneService = seniorOneService;
     }
     @PostMapping("/api/save/marks")
     public String saveMarks(GradingStudent gradingStudent){
@@ -65,5 +69,10 @@ public class GradingStudentController {
     public String deleteMarksById(@PathVariable Long id){
         gradingStudentService.deleteMarksById(id);
         return "redirect:/marks_update_list";
+    }
+    @PostMapping("/saveToS1")
+    public String saveToSeniorOne(SeniorOne seniorOne){
+        seniorOneService.save(seniorOne);
+        return "SeniorOne_List";
     }
 }
