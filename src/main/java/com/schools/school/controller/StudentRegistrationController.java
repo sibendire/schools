@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class StudentRegistrationController {
     @Autowired
@@ -126,7 +128,9 @@ public class StudentRegistrationController {
         return "parent_list";
     }
     @GetMapping("/seniorOne")
-    public String getSeniorOne(){
+    public String getSeniorOne(Model model){
+        List<SeniorOne> list = seniorOneService.getAllSeniorList();
+        model.addAttribute("student",list);
         return "SeniorOne_List";
     }
     @RequestMapping("/saveToS1/{id}")

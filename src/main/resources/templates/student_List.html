@@ -61,12 +61,12 @@
         <td th:text="${student.studentHomeAddress}"></td>
         <td th:text="${student.studentSubCounty}"></td>
         <td th:text="${student.studentDistrict}"></td>
-<!--        <td>-->
+        <td>
 <!--            &lt;!&ndash; Update the link to pass the book's ID &ndash;&gt;-->
-<!--            <a class="btn btn-secondary btn-sm" th:href="@{/my_book/{id}(id=${book.id})}">Add Book</a>-->
+            <a class="btn btn-secondary btn-sm" th:href="@{/saveToS1/{id}(id=${student.id})}">Add class</a>
 
 <!--            <a style="color: red" th:href="@{/deleteBook/{id}(id=${book.id})}"><i class="btn btn-danger">Delete</i></a>-->
-<!--        </td>-->
+        </td>
     </tr>
     </tbody>
 </table>

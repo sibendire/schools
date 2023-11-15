@@ -6,6 +6,8 @@ import com.schools.school.service.SeniorOneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SeniorOneServiceImpl implements SeniorOneService {
     @Autowired
@@ -13,5 +15,10 @@ public class SeniorOneServiceImpl implements SeniorOneService {
     @Override
     public SeniorOne save(SeniorOne seniorOne) {
         return seniorOneRepository.save(seniorOne);
+    }
+
+    @Override
+    public List<SeniorOne> getAllSeniorList() {
+        return seniorOneRepository.findAll();
     }
 }

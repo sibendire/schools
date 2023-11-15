@@ -14,7 +14,7 @@
         <div class="d-flex align-items-center">
             <a class="nav-link me-3" href="api">Home</a>
             <!--            <a class="nav-link active" aria-current="page" href="available_books">Available Student</a>-->
-            <a class="nav-link" href="parentForm">Parent</a>
+            <a class="nav-link" href="seniorOne">Senior One</a>
         </div>
         <a class="nav-link" href="api/student/edit/{id}">New Student Register</a>
     </div>
@@ -43,30 +43,30 @@
     </tr>
     </thead>
     <tbody>
-<!--    <tr th:each="student : ${students }">-->
-<!--        <td th:text="${student.id}"></td>-->
-<!--        <td th:text="${student.studentFirstName}"></td>-->
-<!--        <td th:text="${student.studentMidName}"></td>-->
-<!--        <td th:text="${student.studentLastName}"></td>-->
-<!--        <td th:text="${student.studentDateOfBirth}"></td>-->
-<!--        <td th:text="${student.studentNationalIdentificationNumberNIN}"></td>-->
-<!--        <td th:text="${student.studentGender}"></td>-->
-<!--        <td th:text="${student.studentClass}"></td>-->
-<!--        <td th:text="${student.feesToBeePaid}"></td>-->
-<!--        <td th:text="${student.studentHealthRecord}"></td>-->
-<!--        <td th:text="${student.formerSchoolName}"></td>-->
-<!--        <td th:text="${student.reasonWhyChangedSchool}"></td>-->
-<!--        <td th:text="${student.formerSchoolPerformanceRecords}"></td>-->
-<!--        <td th:text="${student.studentPhoto}"></td>-->
-<!--        <td th:text="${student.studentHomeAddress}"></td>-->
-<!--        <td th:text="${student.studentSubCounty}"></td>-->
-<!--        <td th:text="${student.studentDistrict}"></td>-->
-        <!--        <td>-->
+    <tr th:each="student : ${students }">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.studentFirstName}"></td>
+        <td th:text="${student.studentMidName}"></td>
+        <td th:text="${student.studentLastName}"></td>
+        <td th:text="${student.studentDateOfBirth}"></td>
+        <td th:text="${student.studentNationalIdentificationNumberNIN}"></td>
+        <td th:text="${student.studentGender}"></td>
+        <td th:text="${student.studentClass}"></td>
+        <td th:text="${student.feesToBeePaid}"></td>
+        <td th:text="${student.studentHealthRecord}"></td>
+        <td th:text="${student.formerSchoolName}"></td>
+        <td th:text="${student.reasonWhyChangedSchool}"></td>
+        <td th:text="${student.formerSchoolPerformanceRecords}"></td>
+        <td th:text="${student.studentPhoto}"></td>
+        <td th:text="${student.studentHomeAddress}"></td>
+        <td th:text="${student.studentSubCounty}"></td>
+        <td th:text="${student.studentDistrict}"></td>
+               <td>
         <!--            &lt;!&ndash; Update the link to pass the book's ID &ndash;&gt;-->
-        <!--            <a class="btn btn-secondary btn-sm" th:href="@{/my_book/{id}(id=${book.id})}">Add Book</a>-->
+                    <a class="btn btn-secondary btn-sm" th:href="@{/saveToS1/{id}(id=${student.id})}">Add S.1</a>
 
         <!--            <a style="color: red" th:href="@{/deleteBook/{id}(id=${book.id})}"><i class="btn btn-danger">Delete</i></a>-->
-        <!--        </td>-->
+                </td>
     </tr>
     </tbody>
 </table>
