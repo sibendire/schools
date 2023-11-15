@@ -125,10 +125,21 @@ public class StudentRegistrationController {
         model.addAttribute("parents", parentPortalService.getAllParents());
         return "parent_list";
     }
-    @PostMapping("/saveToS1")
-    public String saveToSeniorOne(SeniorOne seniorOne){
-        seniorOneService.save(seniorOne);
+    @GetMapping("/seniorOne")
+    public String getSeniorOne(){
         return "SeniorOne_List";
+    }
+    @RequestMapping("/saveToS1/{id}")
+    public String getSeniorOneList(@PathVariable("id") Long id){
+        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+        SeniorOne seniorOne = new SeniorOne(studentRegistration.getId(),studentRegistration.getStudentFirstName(),
+                studentRegistration.getStudentMidName(),studentRegistration.getStudentLastName(),studentRegistration.getStudentDateOfBirth()
+        ,studentRegistration.getStudentNationalIdentificationNumberNIN(),studentRegistration.getStudentGender(),
+                studentRegistration.getStudentClass(),studentRegistration.getFeesToBeePaid(),studentRegistration.getStudentHealthRecord()
+        ,studentRegistration.getFormerSchoolName(),studentRegistration.getReasonWhyChangedSchool(),studentRegistration.getFormerSchoolPerformanceRecords()
+        ,studentRegistration.getStudentPhoto(),studentRegistration.getStudentHomeAddress(),studentRegistration.getStudentSubCounty(),studentRegistration.getStudentDistrict());
+        SeniorOneService.saveToSeniorOne(seniorOne);
+        return "redirect:/SeniorOne_List";
     }
 
 
