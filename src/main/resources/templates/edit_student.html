@@ -25,23 +25,24 @@
 <div class="container my-2" style="border: 1px solid black;">
   <form class="col-md-4 offset-md-4" th:action="@{/saveStudent}" method="post" th:object="${student}">
     <input type="hidden" th:field="*{id}">
-    <div class="mb-3">
+    <div class="row g-3">
+    <div class="col-md-5">
       <label for="firstName" class="form-label">First Name</label>
       <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" th:field="*{studentFirstName}">
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="other" class="form-label">Other Name</label>
       <input type="text" class="form-control" id="other" aria-describedby="emailHelp" th:field="*{studentMidName}">
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="lastName" class="form-label">last Name</label>
       <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" th:field="*{studentLastName}">
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="birth" class="form-label">Date of birth</label>
       <input type="date" class="form-control" id="birth" aria-describedby="emailHelp" th:field="*{StudentDateOfBirth}" >
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="national" class="form-label">National Identification Number(NIN)</label>
       <input type="text" class="form-control" id="national" aria-describedby="emailHelp"
              th:field="*{studentNationalIdentificationNumberNIN}">
@@ -51,7 +52,7 @@
 <!--      <input type="number" class="form-control" id="card" aria-describedby="emailHelp"-->
 <!--             th:field=*"{studentNationalIdentificationCardNumber}">-->
 <!--    </div>-->
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="gender" class="form-label">Gender</label>
       <select class="form-select" id="gender" th:field="*{studentGender}" >
         <option value="male">Male</option>
@@ -60,7 +61,7 @@
       </select>
 
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="classes" class="form-label">Class Room</label>
       <select class="form-select" id="classes" th:field="*{studentClass}" >
         <option value="one">S.1</option>
@@ -69,27 +70,27 @@
         <option value="four">S.4</option>
       </select>
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="fees" class="form-label">Fees to be paid</label>
       <input type="number" class="form-control" id="fees" aria-describedby="emailHelp" th:field="*{feesToBeePaid}" >
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="health" class="form-label">Student Health Record</label>
       <input type="text" class="form-control" id="health" aria-describedby="emailHelp" th:field="*{studentHealthRecord}" >
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="formerschool" class="form-label">Student former school name</label>
       <input type="text" class="form-control" id="formerschool" aria-describedby="emailHelp" th:field="*{formerSchoolName}" >
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="reasontochange" class="form-label">Reason why Student to change school </label>
       <input type="text-area" class="form-control" id="reasontochange" aria-describedby="emailHelp" th:field="*{reasonWhyChangedSchool}" >
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="performance" class="form-label"> New student performance record</label>
       <input type="text" class="form-control" id="performance" aria-describedby="emailHelp" th:field="*{formerSchoolPerformanceRecords}" >
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="photo" class="form-label">Students photo</label>
       <input type="file" class="form-control" id="photo" aria-describedby="emailHelp" th:field="*{studentPhoto}" >
     </div>
@@ -97,15 +98,15 @@
 <!--      <label for="phone" class="form-label">Phone Number</label>-->
 <!--      <input type="number" class="form-control" id="phone" aria-describedby="emailHelp" th:field="*{studentPhoneNumber}" >-->
 <!--    </div>-->
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="home" class="form-label">Home Address</label>
       <input type="text" class="form-control" id="home" aria-describedby="emailHelp" th:field="*{studentHomeAddress}" >
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="subcounty" class="form-label">Sub-County</label>
       <input type="text" class="form-control" id="subcounty" aria-describedby="emailHelp" th:field="*{studentSubCounty}" >
     </div>
-    <div class="mb-3">
+      <div class="col-md-5">
       <label for="district" class="form-label">District</label>
       <input type="text" class="form-control" id="district" aria-describedby="emailHelp" th:field="*{studentDistrict}" >
     </div>
@@ -113,6 +114,7 @@
       <button type="submit" class="btn btn-primary">Save</button>
       <button type="cancel" class="btn btn-primary">Cancel</button>
     </center>
+      </div>
   </form>
 </div>
 

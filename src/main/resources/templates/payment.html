@@ -19,7 +19,8 @@
     </div>
 </nav>
 <form class="col-md-4 offset-md-4" th:action="@{/saveFees}" method="post" th:object="${payment}">
-    <div class="mb-3">
+    <div class="row g-3">
+    <div class="col-md-5">
         <label for="classes" class="form-label">Select student class</label>
         <select class="form-select" id="classes" name="classRoom" required>
             <option value="s1">S.1</option>
@@ -29,32 +30,32 @@
         </select>
 
     </div>
-    <div class="mb-3">
+    <div class="col-md-5">
         <label for="firstName" class="form-label">Fill in student first name</label>
         <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="firstName" required >
     </div>
 
-    <div class="mb-3">
+    <div class="col-md-5">
         <label for="otherName" class="form-label">Fill in student mid name</label>
         <input type="text" class="form-control" id="otherName" aria-describedby="emailHelp" name="minName"  >
     </div>
-    <div class="mb-3">
+    <div class="col-md-5">
         <label for="lastName" class="form-label">Fill in student last name</label>
         <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name="lastName" required >
     </div>
-    <div class="mb-3">
+    <div class="col-md-5">
         <label for="photo" class="form-label">Enter student profile photo</label>
         <input type="file" class="form-control" id="photo" aria-describedby="emailHelp" name="photo" required >
     </div>
-    <div class="mb-3">
+    <div class="col-md-5">
         <label for="date" class="form-label">Provide  Date of payment</label>
         <input type="date" class="form-control" id="date" aria-describedby="emailHelp" name="feesOfPayment" required >
     </div>
-    <div class="mb-3">
+    <div class="col-md-5">
         <label for="amount" class="form-label">Please enter the amount paid </label>
         <input type="number" step="00.0" class="form-control" id="amount" aria-describedby="emailHelp" name="feesPaid" required >
     </div>
-    <div class="mb-3">
+    <div class="col-md-5">
         <label for="balance" class="form-label">Fees Balance  </label>
         <input type="number" class="form-control" id="balance" aria-describedby="emailHelp" name="feeBalance" required >
     </div>
@@ -62,6 +63,7 @@
         <button type="submit" class="btn btn-primary">Save</button>
         <button type="cancel" class="btn btn-primary">Cancel</button>
     </center>
+    </div>
 </form>
 </body>
 </html>
