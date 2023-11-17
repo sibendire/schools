@@ -19,9 +19,9 @@
     </div>
 </nav>
 <div class="container my-2">
-    <h1 class="text-center">Fill this form to a teacher to staff</h1>
+    <h1 class="text-center p-3">Fill this form to a teacher to staff</h1>
     <form th:action="@{/teach}" method="post" th:object="${teacher}">
-        <div class="row g-3">
+        <div class="row g-3 bg-light p-3">
             <div class=" col-md-5">
                 <label for="firstName" class="form-label">Fill in Teachers first name</label>
                 <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="firstName"
