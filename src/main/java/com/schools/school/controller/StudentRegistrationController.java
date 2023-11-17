@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,6 +21,7 @@ public class StudentRegistrationController {
     @Autowired
     private final StudentRegistrationService studentRegistrationService;
     private final ParentPortalService parentPortalService;
+    private List<StudentRegistration> selectedStudent  = new ArrayList<StudentRegistration>();
 
     public StudentRegistrationController(SeniorOneService seniorOneService, StudentRegistrationService studentRegistrationService, ParentPortalService parentPortalService) {
         this.seniorOneService = seniorOneService;
@@ -130,10 +132,10 @@ public class StudentRegistrationController {
     @GetMapping("/seniorOne")
     public String getSeniorOne(Model model){
         List<SeniorOne> list = seniorOneService.getAllSeniorList();
-        model.addAttribute("student",list);
-        return "SeniorOne_List";
+       model.addAttribute("student",list);
+        return "senior_List";
     }
-    @RequestMapping("/saveToS1/{id}")
+    @RequestMapping ("/saveToS1/{id}")
     public String getSeniorOneList(@PathVariable("id") Long id){
         StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
         SeniorOne seniorOne = new SeniorOne(studentRegistration.getId(),studentRegistration.getStudentFirstName(),
@@ -142,8 +144,9 @@ public class StudentRegistrationController {
                 studentRegistration.getStudentClass(),studentRegistration.getFeesToBeePaid(),studentRegistration.getStudentHealthRecord()
         ,studentRegistration.getFormerSchoolName(),studentRegistration.getReasonWhyChangedSchool(),studentRegistration.getFormerSchoolPerformanceRecords()
         ,studentRegistration.getStudentPhoto(),studentRegistration.getStudentHomeAddress(),studentRegistration.getStudentSubCounty(),studentRegistration.getStudentDistrict());
-        SeniorOneService.saveToSeniorOne(seniorOne);
-        return "redirect:/SeniorOne_List";
+        seniorOneService.saveToSeniorOne(seniorOne);
+       selectedStudent.add(studentRegistration);
+        return "redirect:/seniorOne";
     }
 
 

@@ -12,9 +12,10 @@ import java.util.List;
 public class SeniorOneServiceImpl implements SeniorOneService {
     @Autowired
     SeniorOneRepository seniorOneRepository;
+
     @Override
-    public SeniorOne save(SeniorOne seniorOne) {
-        return seniorOneRepository.save(seniorOne);
+    public void saveToSeniorOne(SeniorOne seniorOne) {
+        seniorOneRepository.save(seniorOne);
     }
 
     @Override
