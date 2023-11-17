@@ -132,7 +132,7 @@ public class StudentRegistrationController {
     @GetMapping("/seniorOne")
     public String getSeniorOne(Model model){
         List<SeniorOne> list = seniorOneService.getAllSeniorList();
-       model.addAttribute("student",list);
+       model.addAttribute("students",list);
         return "senior_List";
     }
     @RequestMapping ("/saveToS1/{id}")
