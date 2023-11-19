@@ -1,11 +1,7 @@
 package com.schools.school.controller;
 
-import com.schools.school.entity.ParentPortal;
-import com.schools.school.entity.SeniorOne;
-import com.schools.school.entity.StudentRegistration;
-import com.schools.school.service.ParentPortalService;
-import com.schools.school.service.SeniorOneService;
-import com.schools.school.service.StudentRegistrationService;
+import com.schools.school.entity.*;
+import com.schools.school.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +15,27 @@ public class StudentRegistrationController {
     @Autowired
     private final SeniorOneService seniorOneService;
     @Autowired
+    private final SeniorTwoService seniorTwoService;
+    @Autowired
+    private final SeniorThreeService seniorThreeService;
+    @Autowired
+    private final SeniorFourService seniorFourService;
+    @Autowired
     private final StudentRegistrationService studentRegistrationService;
+    @Autowired
     private final ParentPortalService parentPortalService;
-    private List<StudentRegistration> selectedStudent  = new ArrayList<StudentRegistration>();
+    private List<StudentRegistration> selectedStudent = new ArrayList<StudentRegistration>();
 
-    public StudentRegistrationController(SeniorOneService seniorOneService, StudentRegistrationService studentRegistrationService, ParentPortalService parentPortalService) {
+    public StudentRegistrationController(SeniorOneService seniorOneService,
+                                         SeniorTwoService seniorTwoService,
+                                         SeniorThreeService seniorThreeService,
+                                         SeniorFourService seniorFourService,
+                                         StudentRegistrationService studentRegistrationService,
+                                         ParentPortalService parentPortalService) {
         this.seniorOneService = seniorOneService;
+        this.seniorTwoService = seniorTwoService;
+        this.seniorThreeService = seniorThreeService;
+        this.seniorFourService = seniorFourService;
         this.studentRegistrationService = studentRegistrationService;
         this.parentPortalService = parentPortalService;
     }
@@ -62,12 +73,12 @@ public class StudentRegistrationController {
     }
 
     @RequestMapping("/api/student/edit/{id}")
-    public String editStudentInformation(@PathVariable  String id, Model model) {
+    public String editStudentInformation(@PathVariable String id, Model model) {
         try {
             Long studentId = Long.parseLong(id);
             model.addAttribute("student", studentRegistrationService.getStudentById(studentId));
             return "edit_student";
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return "message";
         }
     }
@@ -129,25 +140,136 @@ public class StudentRegistrationController {
         model.addAttribute("parents", parentPortalService.getAllParents());
         return "parent_list";
     }
+
     @GetMapping("/seniorOne")
-    public String getSeniorOne(Model model){
+    public String getSeniorOne(Model model) {
         List<SeniorOne> list = seniorOneService.getAllSeniorList();
-       model.addAttribute("students",list);
+        model.addAttribute("students", list);
         return "senior_List";
     }
-    @RequestMapping ("/saveToS1/{id}")
-    public String getSeniorOneList(@PathVariable("id") Long id){
+
+    @RequestMapping("/saveToS1/{id}")
+    public String getSeniorOneList(@PathVariable("id") Long id) {
         StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
-        SeniorOne seniorOne = new SeniorOne(studentRegistration.getId(),studentRegistration.getStudentFirstName(),
-                studentRegistration.getStudentMidName(),studentRegistration.getStudentLastName(),studentRegistration.getStudentDateOfBirth()
-        ,studentRegistration.getStudentNationalIdentificationNumberNIN(),studentRegistration.getStudentGender(),
-                studentRegistration.getStudentClass(),studentRegistration.getFeesToBeePaid(),studentRegistration.getStudentHealthRecord()
-        ,studentRegistration.getFormerSchoolName(),studentRegistration.getReasonWhyChangedSchool(),studentRegistration.getFormerSchoolPerformanceRecords()
-        ,studentRegistration.getStudentPhoto(),studentRegistration.getStudentHomeAddress(),studentRegistration.getStudentSubCounty(),studentRegistration.getStudentDistrict());
+        SeniorOne seniorOne = new SeniorOne(studentRegistration.getId(),
+                studentRegistration.getStudentFirstName(),
+                studentRegistration.getStudentMidName(),
+                studentRegistration.getStudentLastName(),
+                studentRegistration.getStudentDateOfBirth(),
+                studentRegistration.getStudentNationalIdentificationNumberNIN(),
+                studentRegistration.getStudentGender(),
+                studentRegistration.getStudentClass(),
+                studentRegistration.getFeesToBeePaid(),
+                studentRegistration.getStudentHealthRecord(),
+                studentRegistration.getFormerSchoolName(),
+                studentRegistration.getReasonWhyChangedSchool(),
+                studentRegistration.getFormerSchoolPerformanceRecords(),
+                studentRegistration.getStudentPhoto(),
+                studentRegistration.getStudentHomeAddress(),
+                studentRegistration.getStudentSubCounty(),
+                studentRegistration.getStudentDistrict());
         seniorOneService.saveToSeniorOne(seniorOne);
-       selectedStudent.add(studentRegistration);
+        selectedStudent.add(studentRegistration);
         return "redirect:/seniorOne";
     }
 
+    @GetMapping("/seniorTwo")
+    public String getSeniorTwo(Model model) {
+        List<SeniorTwo> list = seniorTwoService.getAllSeniorList();
+        model.addAttribute("students", list);
+        return "seniorTwo_List";
+    }
+
+    @RequestMapping("/saveSeniorTwo/{id}")
+    public String getSeniorTwoList(@PathVariable("id") Long id) {
+        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+        SeniorTwo seniorTwo = new SeniorTwo(studentRegistration.getId(),
+                studentRegistration.getStudentFirstName(),
+                studentRegistration.getStudentMidName(),
+                studentRegistration.getStudentLastName(),
+                studentRegistration.getStudentDateOfBirth(),
+                studentRegistration.getStudentNationalIdentificationNumberNIN(),
+                studentRegistration.getStudentGender(),
+                studentRegistration.getStudentClass(),
+                studentRegistration.getFeesToBeePaid(),
+                studentRegistration.getStudentHealthRecord(),
+                studentRegistration.getFormerSchoolName(),
+                studentRegistration.getReasonWhyChangedSchool(),
+                studentRegistration.getFormerSchoolPerformanceRecords(),
+                studentRegistration.getStudentPhoto(),
+                studentRegistration.getStudentHomeAddress(),
+                studentRegistration.getStudentSubCounty(),
+                studentRegistration.getStudentDistrict());
+        seniorTwoService.saveToSeniorTwo(seniorTwo);
+        selectedStudent.add(studentRegistration);
+
+        return "redirect:/seniorTwo";
+    }
+
+    @GetMapping("/seniorThree")
+    public String getSeniorThree(Model model) {
+        List<SeniorThree> list = seniorThreeService.getAllSeniorList();
+        model.addAttribute("students", list);
+        return "seniorThree_List";
+    }
+
+    @RequestMapping("/saveSeniorThree/{id}")
+    public String getSeniorThreeList(@PathVariable("id") Long id) {
+        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+        SeniorThree seniorThree = new SeniorThree(studentRegistration.getId(),
+                studentRegistration.getStudentFirstName(),
+                studentRegistration.getStudentMidName(),
+                studentRegistration.getStudentLastName(),
+                studentRegistration.getStudentDateOfBirth(),
+                studentRegistration.getStudentNationalIdentificationNumberNIN(),
+                studentRegistration.getStudentGender(),
+                studentRegistration.getStudentClass(),
+                studentRegistration.getFeesToBeePaid(),
+                studentRegistration.getStudentHealthRecord(),
+                studentRegistration.getFormerSchoolName(),
+                studentRegistration.getReasonWhyChangedSchool(),
+                studentRegistration.getFormerSchoolPerformanceRecords(),
+                studentRegistration.getStudentPhoto(),
+                studentRegistration.getStudentHomeAddress(),
+                studentRegistration.getStudentSubCounty(),
+                studentRegistration.getStudentDistrict());
+        seniorThreeService.saveToSeniorThree(seniorThree);
+        selectedStudent.add(studentRegistration);
+
+        return "redirect:/seniorThree";
+    }
+
+    @GetMapping("/seniorFour")
+    public String getSeniorFour(Model model) {
+        List<SeniorFour> list = seniorFourService.getAllSeniorList();
+        model.addAttribute("students", list);
+        return "seniorFour_List";
+    }
+
+    @RequestMapping("/saveSeniorFour/{id}")
+    public String getSeniorFourList(@PathVariable("id") Long id) {
+        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+        SeniorFour seniorFour = new SeniorFour(studentRegistration.getId(),
+                studentRegistration.getStudentFirstName(),
+                studentRegistration.getStudentMidName(),
+                studentRegistration.getStudentLastName(),
+                studentRegistration.getStudentDateOfBirth(),
+                studentRegistration.getStudentNationalIdentificationNumberNIN(),
+                studentRegistration.getStudentGender(),
+                studentRegistration.getStudentClass(),
+                studentRegistration.getFeesToBeePaid(),
+                studentRegistration.getStudentHealthRecord(),
+                studentRegistration.getFormerSchoolName(),
+                studentRegistration.getReasonWhyChangedSchool(),
+                studentRegistration.getFormerSchoolPerformanceRecords(),
+                studentRegistration.getStudentPhoto(),
+                studentRegistration.getStudentHomeAddress(),
+                studentRegistration.getStudentSubCounty(),
+                studentRegistration.getStudentDistrict());
+        seniorFourService.saveToSeniorFour(seniorFour);
+        selectedStudent.add(studentRegistration);
+
+        return "redirect:/seniorFour";
+    }
 
 }

@@ -80,14 +80,23 @@
         <label for="formerschool" class="form-label">Student former school name</label>
         <input type="text" class="form-control" id="formerschool" aria-describedby="emailHelp" name="formerSchoolName" required>
       </div>
+
       <div class="col-md-5">
         <label for="reasontochange" class="form-label">Reason why Student to change school </label>
         <input type="text-area" class="form-control" id="reasontochange" aria-describedby="emailHelp" name="reasonWhyChangedSchool"
                required>
       </div>
+
       <div class="col-md-5">
-        <label for="performance" class="form-label"> New student performance record</label>
-        <input type="text" class="form-control" id="performance" aria-describedby="emailHelp" name="formerSchoolPerformanceRecords" required>
+        <label for="performance" class="form-label">Performance Status</label>
+        <select class="form-select" id="performance" name="formerSchoolPerformanceRecords" required>
+          <option value="good">Good</option>
+          <option value="Very">Very good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+          <option value="excellent">Excellent</option>
+          <option value="very">Very Excellent</option>
+        </select>
       </div>
       <div class="col-md-5">
         <label for="photo" class="form-label">Students photo</label>
