@@ -1,8 +1,11 @@
 package com.schools.school.controller;
 
 import com.schools.school.entity.FeesPayment;
+import com.schools.school.entity.ResponseDTO;
 import com.schools.school.service.FeesPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,9 +38,25 @@ public class FeesPaymentController {
     }
 
     @PostMapping("/saveFees")
-    public String saveFeesPayment(@ModelAttribute FeesPayment feesPayment) {
-        feesPaymentService.saveFees(feesPayment);
-        return "redirect:/fees/list";
+    public ResponseEntity<ResponseDTO> saveFeesPayment(@ModelAttribute FeesPayment feesPayment) {
+        try {
+            FeesPayment savedPayment = feesPaymentService.saveFees(feesPayment);
+
+            // Calculate total fees paid and fee balance for the student
+            double totalFeesPaid = feesPaymentService.calculateTotalFeesPaidByStudent(
+                    feesPayment.getFirstName(), feesPayment.getMinName(), feesPayment.getLastName());
+
+            double feeBalance = feesPaymentService.calculateFeeBalanceForStudent(
+                    feesPayment.getFirstName(), feesPayment.getMinName(), feesPayment.getLastName());
+
+            // You can include these values in the response or perform further actions
+
+            ResponseDTO responseDTO = new ResponseDTO("Payment saved successfully", savedPayment);
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
+        } catch (Exception e) {
+            ResponseDTO responseDTO = new ResponseDTO("Error saving payment", null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDTO);
+        }
     }
     @GetMapping("/fees/list")
     public String listStudentPayment(Model model){
@@ -56,8 +75,8 @@ public class FeesPaymentController {
         feesPaymentService.deleteFeesPayment(id);
     }
 
-    @GetMapping("/balance")
-    public double calculateFeeBalance(@RequestParam String firstName, @RequestParam String minName, @RequestParam String lastName) {
-        return feesPaymentService.calculateFeeBalanceForStudent(firstName, minName, lastName);
-    }
+//    @GetMapping("/balance")
+//    public double calculateFeeBalance() {
+//        return feesPaymentService.calculateFeeBalanceForStudent(firstName, minName, lastName);
+//    }
 }
