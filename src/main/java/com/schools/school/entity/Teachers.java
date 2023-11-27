@@ -16,16 +16,18 @@ public class Teachers {
     private String lastName;
     @Column(name = "gender")
     private String gender;
-    @Column(name = "email" ,unique=true)
+    @Column(name = "email", unique = true)
     private String email;
     @Column(name = "phone_Number")
     private String phoneNumber;
     @Column(name = "teachers_Photo")
     private String teachersPhoto;
-    @Column(name = "NIN",unique = true,length = 14)
+    @Column(name = "NIN", unique = true, length = 14)
     private String nationalIdentificationNumber;
     @Column(name = "birth_Date")
     private String dateOfBirth;
+    @Column(name = "status")
+    private String maritalStatus;
 
     public Teachers() {
 
@@ -33,7 +35,8 @@ public class Teachers {
 
 
     public Teachers(Long id, String firstName, String midName, String lastName, String gender, String email,
-                    String phoneNumber,String teachersPhoto, String nationalIdentificationNumber, String dateOfBirth) {
+                    String phoneNumber, String teachersPhoto, String nationalIdentificationNumber,
+                    String dateOfBirth, String maritalStatus) {
         this.id = id;
         this.firstName = firstName;
         this.midName = midName;
@@ -44,6 +47,8 @@ public class Teachers {
         this.teachersPhoto = teachersPhoto;
         this.nationalIdentificationNumber = nationalIdentificationNumber;
         this.dateOfBirth = dateOfBirth;
+        this.maritalStatus = maritalStatus;
+
     }
 
 
@@ -125,5 +130,13 @@ public class Teachers {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
     }
 }
