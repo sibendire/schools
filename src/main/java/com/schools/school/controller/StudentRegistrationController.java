@@ -25,6 +25,7 @@ public class StudentRegistrationController {
     @Autowired
     private final ParentPortalService parentPortalService;
     private List<StudentRegistration> selectedStudent = new ArrayList<StudentRegistration>();
+    private Long id;
 
     public StudentRegistrationController(SeniorOneService seniorOneService,
                                          SeniorTwoService seniorTwoService,
@@ -40,6 +41,7 @@ public class StudentRegistrationController {
         this.parentPortalService = parentPortalService;
     }
 
+
     @GetMapping("/api")
     public String home() {
         return "home";
@@ -54,14 +56,19 @@ public class StudentRegistrationController {
     @PostMapping("/saveStudent")
     public String saveStudent(@ModelAttribute("student") StudentRegistration studentRegistration) {
         studentRegistrationService.saveStudentInformation(studentRegistration);
-        return "redirect:/api/student/list"; // Redirect to the list of students
+        return "redirect:/api/student/list";
     }
 
-    @GetMapping("/api/student/list") // Change the URL path
+    @GetMapping("/api/student/list")
     public String listStudentRegistered(Model model) {
-        model.addAttribute("students", studentRegistrationService.getAllStudents());
+        List<StudentRegistration> students = studentRegistrationService.getAllStudents();
+        boolean doesStudentExist = studentRegistrationService.existsById(id);
+
+        model.addAttribute("students", students);
+        model.addAttribute("doesStudentExist", doesStudentExist);
         return "student_List";
     }
+
 
     @GetMapping("/student/new")
     public String createStudentForm(Model model) {
@@ -86,26 +93,33 @@ public class StudentRegistrationController {
     @RequestMapping("/api/student/update/{id}")
     public String updateStudentRecord(@PathVariable Long id, @ModelAttribute("student")
     StudentRegistration studentRegistration, Model model) {
-        // get the student record from the database by if exists
+        // get the student record from the database if it exists
         StudentRegistration existingStudent = studentRegistrationService.getStudentById(id);
-        existingStudent.setId(id);
-        existingStudent.setStudentFirstName(studentRegistration.getStudentFirstName());
-        existingStudent.setStudentMidName(studentRegistration.getStudentMidName());
-        existingStudent.setStudentLastName(studentRegistration.getStudentLastName());
-        existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
-        existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
-                .getStudentNationalIdentificationNumberNIN());
-        existingStudent.setStudentGender(studentRegistration.getStudentGender());
-        existingStudent.setStudentClass(studentRegistration.getStudentClass());
-        existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
-        existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
-        existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
-        existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
-        existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());
 
-        studentRegistrationService.updateStudentRecords(existingStudent);
-        return "redirect:/student";
+        if (existingStudent != null) {
+            existingStudent.setStudentFirstName(studentRegistration.getStudentFirstName());
+            existingStudent.setStudentMidName(studentRegistration.getStudentMidName());
+            existingStudent.setStudentLastName(studentRegistration.getStudentLastName());
+            existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
+            existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
+                    .getStudentNationalIdentificationNumberNIN());
+            existingStudent.setStudentGender(studentRegistration.getStudentGender());
+            existingStudent.setStudentClass(studentRegistration.getStudentClass());
+            existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
+            existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
+            existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
+            existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
+            existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());
+
+            studentRegistrationService.updateStudentRecords(existingStudent);
+            return "redirect:/api/student/list"; // Redirect to the list of students
+        } else {
+            // Handle the case where the student with the given ID is not found
+            model.addAttribute("errorMessage", "Student not found with ID: " + id);
+            return "error_page"; // Create an error page template for handling such cases
+        }
     }
+
 
     @GetMapping("/api/student/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {

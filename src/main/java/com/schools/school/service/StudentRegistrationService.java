@@ -9,6 +9,7 @@ public interface StudentRegistrationService {
     List<StudentRegistration> getAllStudents();
     StudentRegistration updateStudentRecords(StudentRegistration studentRegistration);
     StudentRegistration getStudentById(Long id);
+    StudentRegistration getStudentRegistrationById(Long id);
     void deleteStudentRecordById(Long id);
     List<StudentRegistration> getByGender();
 

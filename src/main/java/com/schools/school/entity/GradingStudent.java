@@ -25,6 +25,10 @@ public class GradingStudent {
         this.french = french;
     }
 
+    public GradingStudent() {
+
+    }
+
     public Long getId() {
         return id;
     }

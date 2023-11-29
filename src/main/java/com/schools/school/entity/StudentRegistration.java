@@ -21,7 +21,7 @@ public class StudentRegistration {
     private String studentDateOfBirth;
     @Column(name = "NIN",unique = true)
     private String studentNationalIdentificationNumberNIN;
-    @Column(name = "Gender")
+    @Column(name = "gender")
     private String studentGender;
     @Column(name = "Class")
     private String studentClass;
@@ -43,7 +43,9 @@ public class StudentRegistration {
     private String studentSubCounty;
     @Column(name = "District")
     private String studentDistrict;
-
+//    @OneToOne
+//    @JoinColumn(name = "parent_id")
+//    private ParentPortal parentPortal;
     public StudentRegistration() {
     }
 

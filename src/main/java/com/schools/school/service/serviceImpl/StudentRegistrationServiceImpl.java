@@ -35,6 +35,11 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
     }
 
     @Override
+    public StudentRegistration getStudentRegistrationById(Long id) {
+        return studentRegistrationRepository.findById(id).get();
+    }
+
+    @Override
     public void deleteStudentRecordById(Long id) {
         studentRegistrationRepository.deleteById(id);
     }

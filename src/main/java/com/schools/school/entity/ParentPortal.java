@@ -25,7 +25,7 @@ public class ParentPortal {
     private String phoneNumber;
     @Column(name = "photo")
     private String parentPhoto;
-    @Column(name = "nin",unique = true)
+    @Column(name = "nin", unique = true)
     private String nationalIdentificationNumber;
     @Column(name = "gender")
     private String gender;
@@ -37,12 +37,14 @@ public class ParentPortal {
     private String subCounty;
     @Column(name = "home_District")
     private String homeDistrict;
+//    @OneToMany(mappedBy = "gender")
+//    private List<StudentRegistration> studentRegistrations;
 
     public ParentPortal() {
     }
 
     public ParentPortal(Long id, String firstName, String midName, String lastName, String email,
-                        String phoneNumber,String parentPhoto, String nationalIdentificationNumber, String gender,
+                        String phoneNumber, String parentPhoto, String nationalIdentificationNumber, String gender,
                         String occupation, String address, String subCounty, String homeDistrict) {
         this.id = id;
         this.firstName = firstName;
