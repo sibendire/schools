@@ -33,6 +33,7 @@
         <th scope="col">Sex</th>
         <th scope="col">D.O.B</th>
         <th scope="col">Status</th>
+        <th scope="col"> Action</th>
     </tr>
     </thead>
     <tbody>
@@ -48,7 +49,10 @@
         <td th:text="${teacher.gender}"></td>
         <td th:text="${teacher.dateOfBirth}"></td>
         <td th:text="${teacher.maritalStatus}"></td>
-
+        <td>
+            <a class="btn btn-secondary btn-sm" th:href="@{/teacher/update/{id} (id=${teacher.id})}">Update</a>
+            <a class="btn btn-secondary btn-sm" th:href="@{/teacher/delete/{id} (id=${teacher.id})}">Delete</a>
+        </td>
 
     </tr>
     </tbody>

@@ -15,12 +15,14 @@ public class TeacherController {
         this.teachersService = teachersService;
     }
 
+    // this method is tested
     @GetMapping("/teacherForm")
     public String showTeachersForm(Model model) {
         model.addAttribute("teachers", new Teachers());
         return "teacher";
     }
 
+    // this method is tested
     @PostMapping("/teach")
     public String saveTeacher(@ModelAttribute("teachers") Teachers teachers) {
 
@@ -28,26 +30,19 @@ public class TeacherController {
         return "redirect:/teacher/list";
     }
 
+    // this method is tested
     @RequestMapping("/teacher/list")
     public String listTeachers(Model model) {
         model.addAttribute("teachers", teachersService.getAllTeachers());
         return "teachers_list";
     }
 
+    // this method is tested
     @RequestMapping("/teacher/update/{id}")
-    public String updateTeachersRecords(@PathVariable("id") Long id, @ModelAttribute("teachers") Teachers teachers, Model model) {
-        Teachers existingTeacher = teachersService.getTeacherById(id);
-        // Update teacher attributes
-        existingTeacher.setFirstName(teachers.getFirstName());
-        existingTeacher.setMidName(teachers.getMidName());
-        existingTeacher.setLastName(teachers.getLastName());
-        existingTeacher.setDateOfBirth(teachers.getDateOfBirth());
-        existingTeacher.setEmail(teachers.getEmail());
-        existingTeacher.setPhoneNumber(teachers.getPhoneNumber());
-        existingTeacher.setNationalIdentificationNumber(teachers.getNationalIdentificationNumber());
-
-        teachersService.updateTeachers(existingTeacher);
-        return "updated";
+    public String updateTeachersRecords(@PathVariable("id") Long id, Model model) {
+        Teachers teachers = teachersService.getTeacherById(id);
+        model.addAttribute("teachers", teachers);
+        return "update_teacher";
     }
 
     @RequestMapping("/teacher/salary")
@@ -57,11 +52,8 @@ public class TeacherController {
     }
 
     @RequestMapping("/teacher/delete/{id}")
-    public String deleteTeachersSalaryById(@PathVariable("id") Long id) throws TeacherNoFoundException {
-        if(!teachersService.deleteTeachersById(id)){
-            throw new TeacherNoFoundException(id);
-        }
+    public String deleteTeachersSalaryById(@PathVariable("id") Long id)  {
         teachersService.deleteTeachersById(id);
-        return "redirect:/updated";
+        return "success_delete";
     }
 }

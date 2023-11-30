@@ -22,4 +22,24 @@ public class SeniorOneServiceImpl implements SeniorOneService {
     public List<SeniorOne> getAllSeniorList() {
         return seniorOneRepository.findAll();
     }
+
+    @Override
+    public SeniorOne updateSeniorOne(SeniorOne seniorOne) {
+        return seniorOneRepository.save(seniorOne);
+    }
+
+    @Override
+    public SeniorOne getSeniorOneById(Long id) {
+        return seniorOneRepository.findById(id).get();
+    }
+
+    @Override
+    public void deleteSeniorOneById(Long id) {
+        seniorOneRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existById(Long id) {
+        return false;
+    }
 }

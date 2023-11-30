@@ -17,103 +17,123 @@
       <a class="nav-link" href="my_book">My Books</a>
 
     </div>
-    <a class="nav-link" th:href="@{/api/student/update/{id}(id=${student.id})}">New Student Register</a>
+    <a class="nav-link" th:href="@{/update/{id}(id=${student.id})}">New Student Register</a>
   </div>
   </div>
 </nav>
 <h1 class="text-center">Student Admission Form</h1>
 <div class="container my-2" style="border: 1px solid black;">
   <form class="col-md-4 offset-md-4" th:action="@{/saveStudent}" method="post" th:object="${student}">
-    <input type="hidden" th:field="*{id}">
+    <input type="hidden" name="id" th:value="${student.id}">
     <div class="row g-3">
-    <div class="col-md-5">
-      <label for="firstName" class="form-label">First Name</label>
-      <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" th:field="*{studentFirstName}">
-    </div>
       <div class="col-md-5">
-      <label for="other" class="form-label">Other Name</label>
-      <input type="text" class="form-control" id="other" aria-describedby="emailHelp" th:field="*{studentMidName}">
-    </div>
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="studentFirstName"
+               required th:value="${student.studentFirstName}">
+      </div>
       <div class="col-md-5">
-      <label for="lastName" class="form-label">last Name</label>
-      <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" th:field="*{studentLastName}">
-    </div>
+        <label for="other" class="form-label">Other Name</label>
+        <input type="text" class="form-control" id="other" aria-describedby="emailHelp" name="studentMidName"
+        th:value="${student.studentMidName}">
+      </div>
       <div class="col-md-5">
-      <label for="birth" class="form-label">Date of birth</label>
-      <input type="date" class="form-control" id="birth" aria-describedby="emailHelp" th:field="*{StudentDateOfBirth}" >
-    </div>
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name="studentLastName"
+               required th:value="${student.studentLastName}">
+      </div>
       <div class="col-md-5">
-      <label for="national" class="form-label">National Identification Number(NIN)</label>
-      <input type="text" class="form-control" id="national" aria-describedby="emailHelp"
-             th:field="*{studentNationalIdentificationNumberNIN}">
-    </div>
-<!--    <div class="mb-3">-->
-<!--      <label for="card" class="form-label">Card Number</label>-->
-<!--      <input type="number" class="form-control" id="card" aria-describedby="emailHelp"-->
-<!--             th:field=*"{studentNationalIdentificationCardNumber}">-->
-<!--    </div>-->
+        <label for="birth" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="birth" aria-describedby="emailHelp" name="StudentDateOfBirth" required
+        th:value="${student.StudentDateOfBirth}">
+      </div>
       <div class="col-md-5">
-      <label for="gender" class="form-label">Gender</label>
-      <select class="form-select" id="gender" th:field="*{studentGender}" >
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="others">Others</option>
-      </select>
+        <label for="national" class="form-label">National Identification Number(NIN)</label>
+        <input type="text" class="form-control" id="national" aria-describedby="emailHelp"
+               name="studentNationalIdentificationNumberNIN" required th:value="${student.studentNationalIdentificationNumberNIN}">
+      </div>
+      <div class="col-md-5">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-select" id="gender" name="studentGender" required th:value="${student.studentGender}">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
 
-    </div>
       <div class="col-md-5">
-      <label for="classes" class="form-label">Class Room</label>
-      <select class="form-select" id="classes" th:field="*{studentClass}" >
-        <option value="one">S.1</option>
-        <option value="two">S.2</option>
-        <option value="three">S.3</option>
-        <option value="four">S.4</option>
-      </select>
-    </div>
+        <label for="classes" class="form-label">Class Room</label>
+        <select class="form-select" id="classes" name="studentClass" required th:value="${student.studentClass}">
+          <option value="one">S.1</option>
+          <option value="two">S.2</option>
+          <option value="three">S.3</option>
+          <option value="four">S.4</option>
+        </select>
+      </div>
+
       <div class="col-md-5">
-      <label for="fees" class="form-label">Fees to be paid</label>
-      <input type="number" class="form-control" id="fees" aria-describedby="emailHelp" th:field="*{feesToBeePaid}" >
-    </div>
+        <label for="fees" class="form-label">Fees to be paid</label>
+        <input type="number" class="form-control" id="fees" aria-describedby="emailHelp" name="feesToBeePaid"
+               required th:value="${student.feesToBeePaid}">
+
+      </div>
       <div class="col-md-5">
-      <label for="health" class="form-label">Student Health Record</label>
-      <input type="text" class="form-control" id="health" aria-describedby="emailHelp" th:field="*{studentHealthRecord}" >
-    </div>
+        <label for="health" class="form-label">Student Health Record</label>
+        <input type="text" class="form-control" id="health" aria-describedby="emailHelp" name="studentHealthRecord"
+               required th:value="${student.studentHealthRecord}">
+      </div>
       <div class="col-md-5">
-      <label for="formerschool" class="form-label">Student former school name</label>
-      <input type="text" class="form-control" id="formerschool" aria-describedby="emailHelp" th:field="*{formerSchoolName}" >
-    </div>
+        <label for="formerschool" class="form-label">Student former school name</label>
+        <input type="text" class="form-control" id="formerschool" aria-describedby="emailHelp"
+               name="formerSchoolName" required th:value="${student.formerSchoolName}">
+      </div>
+
       <div class="col-md-5">
-      <label for="reasontochange" class="form-label">Reason why Student to change school </label>
-      <input type="text-area" class="form-control" id="reasontochange" aria-describedby="emailHelp" th:field="*{reasonWhyChangedSchool}" >
-    </div>
+        <label for="reasontochange" class="form-label">Reason why Student to change school </label>
+        <input type="text-area" class="form-control" id="reasontochange" aria-describedby="emailHelp"
+               name="reasonWhyChangedSchool" required th:value="${student.reasonWhyChangedSchool}">
+      </div>
+
       <div class="col-md-5">
-      <label for="performance" class="form-label"> New student performance record</label>
-      <input type="text" class="form-control" id="performance" aria-describedby="emailHelp" th:field="*{formerSchoolPerformanceRecords}" >
-    </div>
+        <label for="performance" class="form-label">Performance Status</label>
+        <select class="form-select" id="performance" name="formerSchoolPerformanceRecords"
+                required th:value="${student.formerSchoolPerformanceRecords}">
+          <option value="good">Good</option>
+          <option value="Very">Very good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+          <option value="excellent">Excellent</option>
+          <option value="very">Very Excellent</option>
+        </select>
+      </div>
       <div class="col-md-5">
-      <label for="photo" class="form-label">Students photo</label>
-      <input type="file" class="form-control" id="photo" aria-describedby="emailHelp" th:field="*{studentPhoto}" >
-    </div>
-<!--    <div class="mb-3">-->
-<!--      <label for="phone" class="form-label">Phone Number</label>-->
-<!--      <input type="number" class="form-control" id="phone" aria-describedby="emailHelp" th:field="*{studentPhoneNumber}" >-->
-<!--    </div>-->
+        <label for="photo" class="form-label">Students photo</label>
+        <input type="file" class="form-control" id="photo" aria-describedby="emailHelp"
+               name="studentPhoto" required th:value="${student.studentPhoto}">
+      </div>
       <div class="col-md-5">
-      <label for="home" class="form-label">Home Address</label>
-      <input type="text" class="form-control" id="home" aria-describedby="emailHelp" th:field="*{studentHomeAddress}" >
-    </div>
+        <label for="home" class="form-label">Home Address</label>
+        <input type="text" class="form-control" id="home" aria-describedby="emailHelp"
+               name="studentHomeAddress" required th:value="${student.studentHomeAddress}">
+      </div>
       <div class="col-md-5">
-      <label for="subcounty" class="form-label">Sub-County</label>
-      <input type="text" class="form-control" id="subcounty" aria-describedby="emailHelp" th:field="*{studentSubCounty}" >
-    </div>
+        <label for="subcounty" class="form-label">Sub-County</label>
+        <input type="text" class="form-control" id="subcounty" aria-describedby="emailHelp"
+               name="studentSubCounty" required th:value="${student.studentSubCounty}">
+      </div>
       <div class="col-md-5">
-      <label for="district" class="form-label">District</label>
-      <input type="text" class="form-control" id="district" aria-describedby="emailHelp" th:field="*{studentDistrict}" >
-    </div>
+        <label for="district" class="form-label">District</label>
+        <input type="text" class="form-control" id="district" aria-describedby="emailHelp"
+               name="studentDistrict" required th:value="${student.studentDistrict}">
+      </div>
+      <!-- Add other form elements similarly using the col-md-6 class -->
+      <!-- ... -->
+
+      <div class="col-md-3 mt-3 ">
     <center>
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button type="cancel" class="btn btn-primary">Cancel</button>
+      <button type="submit" class="btn btn-primary btn-lg">Save</button>
+      <button type="cancel" class="btn btn-primary btn-lg">Cancel</button>
     </center>
+      </div>
       </div>
   </form>
 </div>

@@ -31,10 +31,11 @@ public class GradingStudentController {
         gradingStudentService.saveStudentGrade(gradingStudent);
         return "redirect:/total/marks";
     }
-    @GetMapping("/total/marks")
-    public  String getTotalMark(){
-        return "";
-    }
+//    @GetMapping("/total/marks")
+//    public  String getTotalMark(){
+//     gradingStudentService.calculateGrade();
+//        return "mark_list";
+//    }
 
 
     @GetMapping("/{studentId}/total-marks")

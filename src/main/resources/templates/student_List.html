@@ -16,7 +16,7 @@
             <!--  <a class="nav-link active" aria-current="page" href="available_books">Available Student</a>-->
             <a class="nav-link" href="parentForm">Parent</a>
         </div>
-        <a class="nav-link" href="api/student/update/{id}">New Student Register</a>
+        <a class="nav-link" href="@{/update/{id} (id=${student.id})}">New Student Register</a>
     </div>
 </nav>
 <h1 class="text-center m-3">LIST OF STUDENT IN SCHOOL </h1>
@@ -63,8 +63,12 @@
         <td th:text="${student.studentDistrict}"></td>
         <td>
             <a class="btn btn-secondary btn-sm" th:href="@{/saveToS1/{id}(id=${student.id})}">Add</a>
+            <a class="btn btn-secondary btn-sm" th:href="@{/update/{id} (id=${student.id})}">Edit</a>
+<!--            <a class="btn btn-secondary btn-sm" th:href="@{/api/student/delete/{id} (id=${student.id})}">Delete</a>-->
 
-            <!--            <a style="color: red" th:href="@{/deleteBook/{id}(id=${book.id})}"><i class="btn btn-danger">Delete</i></a>-->
+
+            <!--          StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+     model.addAttribute("student", studentRegistration);  <a style="color: red" th:href="@{/deleteBook/{id}(id=${book.id})}"><i class="btn btn-danger">Delete</i></a>-->
         </td>
     </tr>
     </tbody>

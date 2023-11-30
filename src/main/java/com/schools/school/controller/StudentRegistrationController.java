@@ -59,13 +59,10 @@ public class StudentRegistrationController {
         return "redirect:/api/student/list";
     }
 
-    @GetMapping("/api/student/list")
+    @RequestMapping("/api/student/list")
     public String listStudentRegistered(Model model) {
         List<StudentRegistration> students = studentRegistrationService.getAllStudents();
-        boolean doesStudentExist = studentRegistrationService.existsById(id);
-
         model.addAttribute("students", students);
-        model.addAttribute("doesStudentExist", doesStudentExist);
         return "student_List";
     }
 
@@ -90,32 +87,57 @@ public class StudentRegistrationController {
         }
     }
 
-    @RequestMapping("/api/student/update/{id}")
+    @RequestMapping("/update/{id}")
     public String updateStudentRecord(@PathVariable Long id, @ModelAttribute("student")
     StudentRegistration studentRegistration, Model model) {
         // get the student record from the database if it exists
         StudentRegistration existingStudent = studentRegistrationService.getStudentById(id);
 
         if (existingStudent != null) {
-            existingStudent.setStudentFirstName(studentRegistration.getStudentFirstName());
-            existingStudent.setStudentMidName(studentRegistration.getStudentMidName());
-            existingStudent.setStudentLastName(studentRegistration.getStudentLastName());
-            existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
-            existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
-                    .getStudentNationalIdentificationNumberNIN());
-            existingStudent.setStudentGender(studentRegistration.getStudentGender());
-            existingStudent.setStudentClass(studentRegistration.getStudentClass());
-            existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
-            existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
-            existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
-            existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
-            existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());
+            if (studentRegistration.getStudentFirstName() != null) {
+                existingStudent.setStudentFirstName(studentRegistration.getStudentFirstName());
+            }
+            if (studentRegistration.getStudentMidName() != null) {
+                existingStudent.setStudentMidName(studentRegistration.getStudentMidName());
+            }
+            if (studentRegistration.getStudentLastName() != null) {
+                existingStudent.setStudentLastName(studentRegistration.getStudentLastName());
+            }
+            if (studentRegistration.getStudentDateOfBirth() != null) {
+                existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
+            }
+            if (studentRegistration.getStudentNationalIdentificationNumberNIN() != null) {
+                existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
+                        .getStudentNationalIdentificationNumberNIN());
+            }
+            if (studentRegistration.getStudentGender() != null) {
+                existingStudent.setStudentGender(studentRegistration.getStudentGender());
+            }
+            if (studentRegistration.getStudentClass() != null) {
+                existingStudent.setStudentClass(studentRegistration.getStudentClass());
+            }
+            if (studentRegistration.getStudentHealthRecord() != null) {
+                existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
+            }
+            if (studentRegistration.getStudentPhoto() != null) {
+                existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
+            }
+            if (studentRegistration.getStudentHomeAddress() != null) {
+                existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
+            }
+
+            if (studentRegistration.getStudentSubCounty() != null) {
+                existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
+            }
+            if (studentRegistration.getStudentDistrict() != null) {
+                existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());
+            }
 
             studentRegistrationService.updateStudentRecords(existingStudent);
-            return "redirect:/api/student/list"; // Redirect to the list of students
+            return "edit_student"; // Redirect to the list of students
         } else {
             // Handle the case where the student with the given ID is not found
-            model.addAttribute("errorMessage", "Student not found with ID: " + id);
+            model.addAttribute("student", "Student not found with ID: " + id);
             return "error_page"; // Create an error page template for handling such cases
         }
     }
@@ -127,7 +149,7 @@ public class StudentRegistrationController {
             throw new IllegalArgumentException("student not found by the id");
         }
         studentRegistrationService.deleteStudentRecordById(id);
-        return "redirect:/students";
+        return "redirect:/api/student/list";
     }
 
     @GetMapping("/gender")
@@ -185,6 +207,22 @@ public class StudentRegistrationController {
         seniorOneService.saveToSeniorOne(seniorOne);
         selectedStudent.add(studentRegistration);
         return "redirect:/seniorOne";
+    }
+
+    @RequestMapping("/seniorOne/update/{id}")
+    public String updateSeniorOneRecord(@PathVariable("id") Long id, Model model) {
+        SeniorOne seniorOne = seniorOneService.getSeniorOneById(id);
+        model.addAttribute("student", seniorOne);
+        return "edit_student";
+    }
+
+    @GetMapping("/delete/seniorOne/{id}")
+    public String deleteSeniorOne(@PathVariable("id") Long id) {
+        if (!seniorOneService.existById(id)) {
+            throw new IllegalArgumentException("No records found with the ID in senior One");
+        }
+        seniorOneService.deleteSeniorOneById(id);
+        return "records deleted successfully";
     }
 
     @GetMapping("/seniorTwo")
