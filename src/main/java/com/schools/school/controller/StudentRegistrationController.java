@@ -176,6 +176,12 @@ public class StudentRegistrationController {
         model.addAttribute("parents", parentPortalService.getAllParents());
         return "parent_list";
     }
+    @RequestMapping("/update/parent/{id}")
+    public String editParentRecord(@PathVariable("id") Long id ,Model model){
+        ParentPortal parentPortal = parentPortalService.updateParentById(id);
+        model.addAttribute("parents",parentPortal);
+        return "update_parent";
+    }
 
     @GetMapping("/seniorOne")
     public String getSeniorOne(Model model) {

@@ -22,43 +22,46 @@
 <h1 class="text-center">PARENT DETAILS </h1>
 <div class="container my-2" style="border: 1px solid black;">
     <form th:action="@{saveParent}" method="post" th:object="${parent}">
+        <input type="hidden" name="id" th:value="${parents.id}">
         <div class="row g-3">
             <div class="col-md-5">
                 <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="firstName"
-                       required>
+                <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp"
+                       name="firstName" required th:value="${parents.firstName}">
             </div>
             <div class="col-md-5">
                 <label for="other" class="form-label">Other Name</label>
-                <input type="text" class="form-control" id="other" aria-describedby="emailHelp" name="midName">
+                <input type="text" class="form-control" id="other" aria-describedby="emailHelp" name="midName"
+                       th:value="${parents.minName}">
             </div>
             <div class="col-md-5">
                 <label for="lastName" class="form-label">last Name</label>
-                <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name="lastName"
-                       required>
+                <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp"
+                       name="lastName" required th:value="${parents.lastName}">
             </div>
             <div class="col-md-5">
                 <label for="email" class="form-label">Parent email address</label>
-                <input type="text" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+                <input type="text" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+                       required th:value="${parents.email}">
             </div>
             <div class="col-md-5">
                 <label for="phone" class="form-label">Parent phone Number</label>
-                <input type="number" class="form-control" id="phone" aria-describedby="emailHelp" name="PhoneNumber"
-                       required>
+                <input type="number" class="form-control" id="phone" aria-describedby="emailHelp"
+                       name="PhoneNumber" required th:value="${parents.phoneNumber}">
             </div>
             <div class="col-md-5">
                 <label for="photo" class="form-label">Students photo</label>
-                <input type="file" class="form-control" id="photo" aria-describedby="emailHelp" name="parentPhoto"
-                       required>
+                <input type="file" class="form-control" id="photo" aria-describedby="emailHelp"
+                       name="parentPhoto" required th:value="${parents.parentPhoto}">
             </div>
             <div class="col-md-5">
                 <label for="nin" class="form-label">Provide Teaches National Identification Number(NIN)</label>
                 <input type="nin" class="form-control" id="nin" aria-describedby="emailHelp"
-                       name="nationalIdentificationNumber" required>
+                       name="nationalIdentificationNumber" required th:value="parents.nationalIdentificationNumber">
             </div>
             <div class="col-md-5">
                 <label for="gender" class="form-label">Select Parent gender</label>
-                <select class="form-select" id="gender" name="gender" required>
+                <select class="form-select" id="gender" name="gender" required th:value="${parents.gender}">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="others">Others</option>
@@ -67,23 +70,24 @@
             </div>
             <div class="col-md-5">
                 <label for="parent" class="form-label">Parent occupation</label>
-                <input type="text" class="form-control" id="parent" aria-describedby="emailHelp" name="occupation"
-                       required>
+                <input type="text" class="form-control" id="parent" aria-describedby="emailHelp"
+                       name="occupation" required th:value="${parents.occupation}">
             </div>
 
             <div class="col-md-5">
                 <label for="home" class="form-label">Home Address</label>
-                <input type="text" class="form-control" id="home" aria-describedby="emailHelp" name="address" required>
+                <input type="text" class="form-control" id="home" aria-describedby="emailHelp"
+                       name="address" required th:value="${parents.address}">
             </div>
             <div class="col-md-5">
                 <label for="subcounty" class="form-label">Sub-County</label>
-                <input type="text" class="form-control" id="subcounty" aria-describedby="emailHelp" name="subCounty"
-                       required>
+                <input type="text" class="form-control" id="subcounty" aria-describedby="emailHelp"
+                       name="subCounty" required th:value="${parents.subCounty}">
             </div>
             <div class="col-md-5">
                 <label for="district" class="form-label">District</label>
-                <input type="text" class="form-control" id="district" aria-describedby="emailHelp" name="homeDistrict"
-                       required>
+                <input type="text" class="form-control" id="district" aria-describedby="emailHelp"
+                       name="homeDistrict" required th:value="${parents.homeDistrict}">
             </div>
             <center>
                 <button type="submit" class="btn btn-primary">Save</button>

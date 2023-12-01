@@ -35,6 +35,7 @@
      <th scope="col">Address</th>
      <th scope="col">Sub-county</th>
      <th scope="col">District</th>
+     <th scope="col">Action</th>
    </tr>
    </thead>
    <tbody>
@@ -52,6 +53,9 @@
      <td th:text="${parent.address}"></td>
      <td th:text="${parent.subCounty}"></td>
      <td th:text="${parent.homeDistrict}"></td>
+     <td>
+       <a class="btn btn-secondary btn-sm" th:href="@{/update/parent/{id} (id=${parent.id})}">Update</a>
+     </td>
 
    </tr>
    </tbody>
