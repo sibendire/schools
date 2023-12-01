@@ -77,10 +77,19 @@ public class StudentRegistrationController {
     }
 
     @GetMapping("/api/student/single/{id}")
-    public StudentRegistration getSingleStudent(@PathVariable Long id ) {
+    public StudentRegistration getSingleStudent(@PathVariable Long id) {
         StudentRegistration studentRegistration = studentRegistrationService.getStudentRegistrationById(id);
-        if (studentRegistrationService == null){
-            throw new IllegalArgumentException("student not registered with an ID " +  id);
+        if (studentRegistrationService == null) {
+            throw new IllegalArgumentException("student not registered with an ID " + id);
+        }
+        return studentRegistration;
+    }
+
+    @GetMapping("/search/name")
+    public StudentRegistration getStudentByFirstName(@PathVariable String firstName) {
+        StudentRegistration studentRegistration = studentRegistrationService.getStudentByFirstName(firstName);
+        if (studentRegistrationService == null) {
+            throw new IllegalArgumentException("No student name matches your search" + firstName);
         }
         return studentRegistration;
     }
@@ -151,9 +160,12 @@ public class StudentRegistrationController {
     }
 
     @GetMapping("/gender")
-    public String getStudentByGender() {
-        studentRegistrationService.getByGender();
-        return "student_sex";
+    public String getStudentByGender(@PathVariable String gender) {
+        if (studentRegistrationService == null) {
+            throw new RuntimeException("student gender not found" + gender);
+        }
+        studentRegistrationService.getByGender(gender);
+        return "student_sex" + gender;
     }
 
     @GetMapping("/parentForm")
@@ -174,10 +186,11 @@ public class StudentRegistrationController {
         model.addAttribute("parents", parentPortalService.getAllParents());
         return "parent_list";
     }
+
     @RequestMapping("/update/parent/{id}")
-    public String editParentRecord(@PathVariable("id") Long id ,Model model){
+    public String editParentRecord(@PathVariable("id") Long id, Model model) {
         ParentPortal parentPortal = parentPortalService.updateParentById(id);
-        model.addAttribute("parents",parentPortal);
+        model.addAttribute("parents", parentPortal);
         return "update_parent";
     }
 

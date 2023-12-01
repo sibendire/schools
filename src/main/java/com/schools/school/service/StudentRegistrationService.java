@@ -11,7 +11,8 @@ public interface StudentRegistrationService {
     StudentRegistration getStudentById(Long id);
     StudentRegistration getStudentRegistrationById(Long id);
     void deleteStudentRecordById(Long id);
-    List<StudentRegistration> getByGender();
+    List<StudentRegistration> getByGender(String gender);
+    StudentRegistration getStudentByFirstName(String firstName);
 
     boolean existsById(Long id);
 }

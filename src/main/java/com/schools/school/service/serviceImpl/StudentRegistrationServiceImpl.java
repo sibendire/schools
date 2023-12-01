@@ -45,8 +45,13 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
     }
 
     @Override
-    public List<StudentRegistration> getByGender() {
+    public List<StudentRegistration> getByGender(String gender) {
         return studentRegistrationRepository.findAll();
+    }
+
+    @Override
+    public StudentRegistration getStudentByFirstName(String firstName) {
+        return studentRegistrationRepository.findByFirstName();
     }
 
     @Override

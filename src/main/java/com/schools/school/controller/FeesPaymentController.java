@@ -38,25 +38,19 @@ public class FeesPaymentController {
     }
 
     @PostMapping("/saveFees")
-    public ResponseEntity<ResponseDTO> saveFeesPayment(@ModelAttribute FeesPayment feesPayment) {
+    public FeesPayment saveFeesPayment(@ModelAttribute FeesPayment feesPayment) {
         try {
             FeesPayment savedPayment = feesPaymentService.saveFees(feesPayment);
-
-            // Calculate total fees paid and fee balance for the student
             double totalFeesPaid = feesPaymentService.calculateTotalFeesPaidByStudent(
                     feesPayment.getFirstName(), feesPayment.getMinName(), feesPayment.getLastName());
 
             double feeBalance = feesPaymentService.calculateFeeBalanceForStudent(
                     feesPayment.getFirstName(), feesPayment.getMinName(), feesPayment.getLastName());
-
-            // You can include these values in the response or perform further actions
-
-            ResponseDTO responseDTO = new ResponseDTO("Payment saved successfully", savedPayment);
-            return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
-        } catch (Exception e) {
-            ResponseDTO responseDTO = new ResponseDTO("Error saving payment", null);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseDTO);
         }
+        catch (Exception e){
+
+        }
+        return feesPaymentService.saveFees(feesPayment);
     }
     @GetMapping("/fees/list")
     public String listStudentPayment(Model model){
