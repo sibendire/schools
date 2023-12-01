@@ -76,15 +76,13 @@ public class StudentRegistrationController {
 
     }
 
-    @RequestMapping("/api/student/edit/{id}")
-    public String editStudentInformation(@PathVariable String id, Model model) {
-        try {
-            Long studentId = Long.parseLong(id);
-            model.addAttribute("student", studentRegistrationService.getStudentById(studentId));
-            return "edit_student";
-        } catch (NumberFormatException e) {
-            return "message";
+    @GetMapping("/api/student/single/{id}")
+    public StudentRegistration getSingleStudent(@PathVariable Long id ) {
+        StudentRegistration studentRegistration = studentRegistrationService.getStudentRegistrationById(id);
+        if (studentRegistrationService == null){
+            throw new IllegalArgumentException("student not registered with an ID " +  id);
         }
+        return studentRegistration;
     }
 
     @RequestMapping("/update/{id}")
