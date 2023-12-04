@@ -16,8 +16,8 @@ public class FeesPayment {
     private String minName;
     @Column(name = "last_Name")
     private String lastName;
-    @Column(name = "photo")
-    private String photo;
+    @Column(name = "term")
+    private String term;
     @Column(name = "date")
     private String feesOfPayment;
     @Column(name = "amount")
@@ -29,14 +29,14 @@ public class FeesPayment {
     }
 
     public FeesPayment(Long id, String classRoom, String firstName, String minName,
-                       String lastName, String photo, String feesOfPayment,
+                       String lastName, String term, String feesOfPayment,
                        double feesPaid, double feeBalance) {
         this.id = id;
         this.classRoom = classRoom;
         this.firstName = firstName;
         this.minName = minName;
         this.lastName = lastName;
-        this.photo = photo;
+        this.term = term;
         this.feesOfPayment = feesOfPayment;
         this.feesPaid = feesPaid;
         this.feeBalance = feeBalance;
@@ -82,12 +82,12 @@ public class FeesPayment {
         this.lastName = lastName;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getTerm() {
+        return term;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setTerm(String term) {
+        this.term = term;
     }
 
     public String getFeesOfPayment() {

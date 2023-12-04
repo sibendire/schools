@@ -33,6 +33,15 @@
 
             </div>
             <div class="col-md-5">
+                <label for="terms" class="form-label">Select student term </label>
+                <select class="form-select" id="terms" name="term" required>
+                    <option value="one">ONE</option>
+                    <option value="two">TwO</option>
+                    <option value="three">THREE</option>
+                </select>
+
+            </div>
+            <div class="col-md-5">
                 <label for="firstName" class="form-label">Fill in student first name</label>
                 <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="firstName"
                        required>
@@ -48,14 +57,11 @@
                        required>
             </div>
             <div class="col-md-5">
-                <label for="photo" class="form-label">Enter student profile photo</label>
-                <input type="file" class="form-control" id="photo" aria-describedby="emailHelp" name="photo" required>
-            </div>
-            <div class="col-md-5">
                 <label for="date" class="form-label">Provide Date of payment</label>
                 <input type="date" class="form-control" id="date" aria-describedby="emailHelp" name="feesOfPayment"
                        required>
             </div>
+
             <div class="col-md-5">
                 <label for="amount" class="form-label">Please enter the amount paid </label>
                 <input type="number" step="00.0" class="form-control" id="amount" aria-describedby="emailHelp"

@@ -95,59 +95,61 @@ public class StudentRegistrationController {
 //    }
 
     @RequestMapping("/update/{id}")
-    public String updateStudentRecord(@PathVariable Long id, @ModelAttribute("student")
-    StudentRegistration studentRegistration, Model model) {
+    public String updateStudentRecord(@PathVariable("id") Long id,Model model ){
         // get the student record from the database if it exists
-        StudentRegistration existingStudent = studentRegistrationService.getStudentById(id);
-
-        if (existingStudent != null) {
-            if (studentRegistration.getStudentFirstName() != null) {
-                existingStudent.setStudentFirstName(studentRegistration.getStudentFirstName());
-            }
-            if (studentRegistration.getStudentMidName() != null) {
-                existingStudent.setStudentMidName(studentRegistration.getStudentMidName());
-            }
-            if (studentRegistration.getStudentLastName() != null) {
-                existingStudent.setStudentLastName(studentRegistration.getStudentLastName());
-            }
-            if (studentRegistration.getStudentDateOfBirth() != null) {
-                existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
-            }
-            if (studentRegistration.getStudentNationalIdentificationNumberNIN() != null) {
-                existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
-                        .getStudentNationalIdentificationNumberNIN());
-            }
-            if (studentRegistration.getStudentGender() != null) {
-                existingStudent.setStudentGender(studentRegistration.getStudentGender());
-            }
-            if (studentRegistration.getStudentClass() != null) {
-                existingStudent.setStudentClass(studentRegistration.getStudentClass());
-            }
-            if (studentRegistration.getStudentHealthRecord() != null) {
-                existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
-            }
-            if (studentRegistration.getStudentPhoto() != null) {
-                existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
-            }
-            if (studentRegistration.getStudentHomeAddress() != null) {
-                existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
-            }
-
-            if (studentRegistration.getStudentSubCounty() != null) {
-                existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
-            }
-            if (studentRegistration.getStudentDistrict() != null) {
-                existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());
-            }
-
-            studentRegistrationService.updateStudentRecords(existingStudent);
-            return "edit_student"; // Redirect to the list of students
-        } else {
-            // Handle the case where the student with the given ID is not found
-            model.addAttribute("student", "Student not found with ID: " + id);
-            return "error_page"; // Create an error page template for handling such cases
-        }
+        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+        model.addAttribute("student",studentRegistration);
+        return "edit_student";
     }
+
+//        if (existingStudent != null) {
+//            if (studentRegistration.getStudentFirstName() != null) {
+//                existingStudent.setStudentFirstName(studentRegistration.getStudentFirstName());
+//            }
+//            if (studentRegistration.getStudentMidName() != null) {
+//                existingStudent.setStudentMidName(studentRegistration.getStudentMidName());
+//            }
+//            if (studentRegistration.getStudentLastName() != null) {
+//                existingStudent.setStudentLastName(studentRegistration.getStudentLastName());
+//            }
+//            if (studentRegistration.getStudentDateOfBirth() != null) {
+//                existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
+//            }
+//            if (studentRegistration.getStudentNationalIdentificationNumberNIN() != null) {
+//                existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
+//                        .getStudentNationalIdentificationNumberNIN());
+//            }
+//            if (studentRegistration.getStudentGender() != null) {
+//                existingStudent.setStudentGender(studentRegistration.getStudentGender());
+//            }
+//            if (studentRegistration.getStudentClass() != null) {
+//                existingStudent.setStudentClass(studentRegistration.getStudentClass());
+//            }
+//            if (studentRegistration.getStudentHealthRecord() != null) {
+//                existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
+//            }
+//            if (studentRegistration.getStudentPhoto() != null) {
+//                existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
+//            }
+//            if (studentRegistration.getStudentHomeAddress() != null) {
+//                existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
+//            }
+//
+//            if (studentRegistration.getStudentSubCounty() != null) {
+//                existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
+//            }
+//            if (studentRegistration.getStudentDistrict() != null) {
+//                existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());
+//            }
+//
+//            studentRegistrationService.updateStudentRecords(existingStudent);
+//            return "edit_student"; // Redirect to the list of students
+//        } else {
+//            // Handle the case where the student with the given ID is not found
+//            model.addAttribute("student", "Student not found with ID: " + id);
+//            return "error_page"; // Create an error page template for handling such cases
+//        }
+
 
 
     @GetMapping("/api/student/delete/{id}")
