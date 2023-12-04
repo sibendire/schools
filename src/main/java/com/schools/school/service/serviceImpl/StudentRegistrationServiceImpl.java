@@ -49,10 +49,10 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
         return studentRegistrationRepository.findAll();
     }
 
-    @Override
-    public StudentRegistration getStudentByFirstName(String firstName) {
-        return studentRegistrationRepository.findByFirstName();
-    }
+   // @Override
+//    public StudentRegistration getStudentByFirstName(String firstName) {
+//        return studentRegistrationRepository.findByFirstName();
+//    }
 
     @Override
     public boolean existsById(Long id) {

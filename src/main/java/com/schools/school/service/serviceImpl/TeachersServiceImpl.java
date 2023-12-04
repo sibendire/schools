@@ -23,12 +23,13 @@ import java.util.List;
             return teachersRepository.findAll();
         }
 
-        @Override
-        public Teachers updateTeachers(Teachers teachers) {
-            return teachersRepository.save(teachers);
-        }
+//    @Override
+//    public Teachers getTeacherByName(String teachers) {
+//        return teachersRepository.findByName();
+//    }
 
-        @Override
+
+    @Override
         public Teachers updateTeacherById(Long id) {
             return teachersRepository.save(updateTeacherById(id));
         }

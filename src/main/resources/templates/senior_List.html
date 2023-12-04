@@ -61,10 +61,10 @@
         <td th:text="${student.studentSubCounty}"></td>
         <td th:text="${student.studentDistrict}"></td>
                <td>
-        <!--            &lt;!&ndash; Update the link to pass the book's ID &ndash;&gt;-->
-                    <a class="btn btn-secondary btn-sm" th:href="@{/api/student/delete/{id}(id=${student.id})}">Delete</a>
-
-        <!--            <a style="color: red" th:href="@{/deleteBook/{id}(id=${book.id})}"><i class="btn btn-danger">Delete</i></a>-->
+                   <select>
+                   <option> <a class="btn btn-secondary btn-sm" th:href="@{/api/student/delete/{id}(id=${student.id})}">Delete</a> </option>
+                   <option><a class="btn btn-secondary btn-sm" th:href="@{/update/{id} (id=${student.id})}">Edit</a></option>
+                   </select>
                 </td>
     </tr>
     </tbody>

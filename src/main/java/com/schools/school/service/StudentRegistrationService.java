@@ -12,7 +12,7 @@ public interface StudentRegistrationService {
     StudentRegistration getStudentRegistrationById(Long id);
     void deleteStudentRecordById(Long id);
     List<StudentRegistration> getByGender(String gender);
-    StudentRegistration getStudentByFirstName(String firstName);
+   // StudentRegistration getStudentByFirstName(String firstName);
 
     boolean existsById(Long id);
 }

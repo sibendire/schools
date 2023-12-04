@@ -7,7 +7,7 @@ import java.util.List;
 public interface TeachersService {
     Teachers saveTeacher(Teachers teachers);
     List<Teachers> getAllTeachers();
-    Teachers updateTeachers(Teachers teachers);
+    //Teachers getTeacherByName(String teachers);
     Teachers updateTeacherById(Long id);
     Teachers getTeacherById(Long id);
     Teachers getTeacherSalaryById(Long id);

@@ -85,14 +85,14 @@ public class StudentRegistrationController {
         return studentRegistration;
     }
 
-    @GetMapping("/search/name")
-    public StudentRegistration getStudentByFirstName(@PathVariable String firstName) {
-        StudentRegistration studentRegistration = studentRegistrationService.getStudentByFirstName(firstName);
-        if (studentRegistrationService == null) {
-            throw new IllegalArgumentException("No student name matches your search" + firstName);
-        }
-        return studentRegistration;
-    }
+//    @GetMapping("/search/name")
+//    public StudentRegistration getStudentByFirstName(@PathVariable String firstName) {
+//        StudentRegistration studentRegistration = studentRegistrationService.getStudentByFirstName(firstName);
+//        if (studentRegistrationService == null) {
+//            throw new IllegalArgumentException("No student name matches your search" + firstName);
+//        }
+//        return studentRegistration;
+//    }
 
     @RequestMapping("/update/{id}")
     public String updateStudentRecord(@PathVariable Long id, @ModelAttribute("student")
@@ -200,6 +200,7 @@ public class StudentRegistrationController {
         model.addAttribute("students", list);
         return "senior_List";
     }
+    // this method is tested
 
     @RequestMapping("/saveToS1/{id}")
     public String getSeniorOneList(@PathVariable("id") Long id) {

@@ -50,6 +50,14 @@ public class TeacherController {
         model.addAttribute("teachersSalary", teachersService.getAllTeachersSalary());
         return "list_salary";
     }
+//    @GetMapping("/get/teacher/name")
+//    public Teachers getTeachersName(@PathVariable String name){
+//        if (teachersService == null){
+//            throw new IllegalArgumentException("No name matches your search please "  + name);
+//        }else {
+//            return teachersService.getTeacherByName(name);
+//        }
+//    }
 
     @RequestMapping("/teacher/delete/{id}")
     public String deleteTeachersSalaryById(@PathVariable("id") Long id)  {
