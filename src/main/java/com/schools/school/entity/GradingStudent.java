@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+
 @Entity
 public class GradingStudent {
     @Id
@@ -15,18 +16,18 @@ public class GradingStudent {
     private int bios;
     private int cre;
     private int french;
+    private String grade;
 
-    public GradingStudent(Long id, int chemistry, int english, int bios, int cre, int french) {
-        this.id = id;
+    public GradingStudent() {
+    }
+
+    public GradingStudent(int chemistry, int english, int bios, int cre, int french, String grade) {
         this.chemistry = chemistry;
         this.english = english;
         this.bios = bios;
         this.cre = cre;
         this.french = french;
-    }
-
-    public GradingStudent() {
-
+        this.grade = grade;
     }
 
     public Long getId() {
@@ -75,5 +76,13 @@ public class GradingStudent {
 
     public void setFrench(int french) {
         this.french = french;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 }
