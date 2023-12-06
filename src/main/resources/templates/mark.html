@@ -23,6 +23,20 @@
   <form th:action="@{/api/save/marks}" method="post" th:object="${marks}">
     <div class="row g-3 bg-light p-3">
       <div class=" col-md-5">
+        <label for="first" class="form-label">Student name</label>
+        <input type="text" class="form-control" id="first" aria-describedby="emailHelp" name="studentFirstName"
+               required>
+      </div>
+      <div class=" col-md-5">
+        <label for="other" class="form-label">Student other name</label>
+        <input type="text" class="form-control" id="other" aria-describedby="emailHelp" name="studentMidName">
+      </div>
+      <div class=" col-md-5">
+        <label for="last" class="form-label">Student last name</label>
+        <input type="text" class="form-control" id="last" aria-describedby="emailHelp" name="studentLastName"
+               required>
+      </div>
+      <div class=" col-md-5">
         <label for="chem" class="form-label">CHEMISTRY</label>
         <input type="number" class="form-control" id="chem" aria-describedby="emailHelp" name="chemistry"
                required>

@@ -13,4 +13,8 @@ public interface EmployeesService {
     List<Employees> getByGender();
 
     Employees existsById(Long id);
+    void calculateEmployeeSalary(Employees employees);
+    void deductInstallment(Long employeeId, double installmentAmount);
+
+    Employees getBalance(Long id);
 }

@@ -9,7 +9,7 @@ public interface GradingStudentService {
 
     int getTotalMarks(GradingStudent gradingStudent);
 
-    GradingStudent calculateGrade(GradingStudent gradingStudent);
+    void calculateGrade(GradingStudent gradingStudent);
 
     GradingStudent findById(Long studentId);
 

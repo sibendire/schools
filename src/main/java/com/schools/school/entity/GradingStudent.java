@@ -1,9 +1,6 @@
 package com.schools.school.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -11,6 +8,9 @@ public class GradingStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String studentFirstName;
+    private String studentMidName;
+    private String studentLastName;
     private int chemistry;
     private int english;
     private int bios;
@@ -21,6 +21,13 @@ public class GradingStudent {
     public GradingStudent() {
     }
 
+    public GradingStudent(Long id, String studentFirstName, String studentMidName, String studentLastName) {
+        this.id = id;
+        this.studentFirstName = studentFirstName;
+        this.studentMidName = studentMidName;
+        this.studentLastName = studentLastName;
+    }
+
     public GradingStudent(int chemistry, int english, int bios, int cre, int french, String grade) {
         this.chemistry = chemistry;
         this.english = english;
@@ -28,6 +35,7 @@ public class GradingStudent {
         this.cre = cre;
         this.french = french;
         this.grade = grade;
+
     }
 
     public Long getId() {
@@ -84,5 +92,29 @@ public class GradingStudent {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public String getStudentFirstName() {
+        return studentFirstName;
+    }
+
+    public void setStudentFirstName(String studentFirstName) {
+        this.studentFirstName = studentFirstName;
+    }
+
+    public String getStudentMidName() {
+        return studentMidName;
+    }
+
+    public void setStudentMidName(String studentMidName) {
+        this.studentMidName = studentMidName;
+    }
+
+    public String getStudentLastName() {
+        return studentLastName;
+    }
+
+    public void setStudentLastName(String studentLastName) {
+        this.studentLastName = studentLastName;
     }
 }

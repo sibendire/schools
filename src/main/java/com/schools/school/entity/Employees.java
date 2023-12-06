@@ -21,4 +21,6 @@ public class Employees {
     private String lastName;
     private String email;
     private String department;
+    private double salary;
+    private double balance;
 }

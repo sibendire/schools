@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Marks</title>
 </head>
 <body>
 <h1>Mark list</h1>
+
+<!-- mark_list.html -->
+<table>
+    <thead>
+    <tr>
+        <th>Student ID</th>
+        <th>First name</th>
+        <th>Other name</th>
+        <th>Last name</th>
+        <th>Chemistry</th>
+        <th>English</th>
+        <th>Bios</th>
+        <th>CRE</th>
+        <th>French</th>
+        <th>Grade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of students -->
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.studentFirstName}"></td>
+        <td th:text="${student.studentMidName}"></td>
+        <td th:text="${student.studentLastName}"></td>
+        <td th:text="${student.chemistry}"></td>
+        <td th:text="${student.english}"></td>
+        <td th:text="${student.bios}"></td>
+        <td th:text="${student.cre}"></td>
+        <td th:text="${student.french}"></td>
+        <td th:text="${student.grade}"></td>
+
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

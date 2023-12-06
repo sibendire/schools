@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -48,5 +50,50 @@ public class EmployeesServiceImpl implements EmployeesService {
     @Override
     public Employees existsById(Long id) {
         return employeeRepository.findById(id).get();
+    }
+
+    @Override
+    public void calculateEmployeeSalary(Employees employees) {
+        // Set initial balance to 1000000.00
+        double initialBalance = 1000000.00;
+        employees.setBalance(initialBalance);
+
+        //Then Save the initial balance to the employee
+        employeeRepository.save(employees);
+    }
+
+    // Method to deduct installment amount
+    public void deductInstallment(Long employeeId, double installmentAmount) {
+        // Retrieve the employee by ID
+        Optional<Employees> optionalEmployee = employeeRepository.findById(employeeId);
+
+        if (optionalEmployee.isPresent()) {
+            Employees employee = optionalEmployee.get();
+
+            // Get the current balance
+            double currentBalance = employee.getBalance();
+
+            // Validate installment amount
+            if (installmentAmount <= 0 || installmentAmount > currentBalance) {
+                // Handle invalid installment amount
+                throw new IllegalArgumentException("Invalid installment amount");
+            }
+
+            // Deduct the installment amount
+            double newBalance = currentBalance - installmentAmount;
+
+            // Update the balance and save the employee entity
+            employee.setBalance(newBalance);
+            employeeRepository.save(employee);
+        } else {
+            // Handle the case where the employee is not found
+            throw new NoSuchElementException("Employee not found with ID: " + employeeId);
+        }
+    }
+
+
+    @Override
+    public Employees getBalance(Long id) {
+        return employeeRepository.findById( id) .get();
     }
 }

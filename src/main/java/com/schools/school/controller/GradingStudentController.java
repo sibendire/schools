@@ -35,16 +35,23 @@ public class GradingStudentController {
         // Retrieve all students from the service
         List<GradingStudent> allStudents = gradingStudentService.getAllStudents();
 
-        // Calculate grades for each student
+         //Calculate grades for each student
         for (GradingStudent student : allStudents) {
-            gradingStudentService.calculateGradeForStudent(student);
+            gradingStudentService.calculateGrade(student);
         }
+        // Inside your controller method
+//        for (GradingStudent student : allStudents) {
+//            gradingStudentService.calculateGrade(student);
+//            System.out.println("Student ID: " + student.getId() + ", Grade: " + student.getGrade());
+//        }
+
 
         // Add the list of students to the model
         model.addAttribute("students", allStudents);
 
         return "mark_list";
     }
+
 
     @GetMapping("/{studentId}/total-marks")
     public String getTotalMarks(@PathVariable Long studentId, Model model) {
@@ -60,12 +67,12 @@ public class GradingStudentController {
         return "total";
     }
 
-    @GetMapping("/marks/grade")
-    public String getGrade(Model model) {
-        GradingStudent student = gradingStudentService.calculateGrade(new GradingStudent());
-        model.addAttribute("marks", student);
-        return "marks";
-    }
+//    @GetMapping("/marks/grade")
+//    public String getGrade(Model model) {
+//        GradingStudent student = gradingStudentService.calculateGrade(new GradingStudent());
+//        model.addAttribute("marks", student);
+//        return "marks";
+//    }
 
     @GetMapping("/{studentId}/chemistry-grade")
     public String getChemistryGrade(@PathVariable Long studentId, Model model) {
