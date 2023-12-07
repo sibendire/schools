@@ -5,11 +5,10 @@ import com.schools.school.service.EmployeesService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.ErrorResponseException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @Controller
@@ -25,11 +24,13 @@ public class Salary {
     @PostMapping("/saveSalary")
     public String saveSalary(@ModelAttribute("employee") Employees employees) {
         employeesService.saveEmployees(employees);
+        employeesService.calculateEmployeeSalary(employees);
         return "redirect:/paidList";
     }
 
     @GetMapping("/list")
-    public String getListPaidStaff() {
+    public String getListPaidStaff(Model model) {
+        model.addAttribute("employees",employeesService.getEmployeesList());
         return "paidList";
     }
 
@@ -37,16 +38,38 @@ public class Salary {
     public String getListOfStaffWithPending() {
         return "list";
     }
-    @PostMapping("/")
-    public String deductInstallment(@RequestParam Long employeeId, @RequestParam double installmentAmount){
+
+    @PostMapping("/save/Salary")
+    public String deductInstallment(@RequestParam Long employeeId, @RequestParam double installmentAmount) {
         try {
-            employeesService.deductInstallment(employeeId,installmentAmount);
-            return "";
-        }catch (IllegalAccessError error){
-            return "";
-        }catch (ErrorResponseException exception) {
-            return "";
+            employeesService.deductInstallment(employeeId, installmentAmount);
+            return "redirect:/list";  // Redirect to the list page after successful deduction
+        } catch (IllegalArgumentException e) {
+            // Handle invalid installment amount
+            // You might want to add a message to inform the user about the error
+            return "redirect:/list";
+        } catch (NoSuchElementException e) {
+            // Handle employee not found
+            // You might want to add a message to inform the user about the error
+            return "redirect:/list";
+        } catch (Exception e) {
+            // Handle other unexpected exceptions
+            // You might want to log the exception for further analysis
+            e.printStackTrace();
+            return "redirect:/list";
         }
     }
+
+
+    // In your controller or a dedicated controller
+//    @GetMapping("/calculateSalaries")
+//    public String calculateSalaries() {
+//        List<Employees> employeesList = employeesService.getEmployeesList();
+//        for (Employees employee : employeesList) {
+//            employeesService.calculateEmployeeSalary(employee);
+//        }
+//        return "redirect:/paidList";
+//    }
+
 
 }

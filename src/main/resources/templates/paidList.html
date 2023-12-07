@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>payment</title>
+</head>
+<body>
+<h1>Payment List</h1>
+
+
+<table>
+    <thead>
+    <tr>
+        <th> ID</th>
+        <th>First name</th>
+        <th>Other name</th>
+        <th>Last name</th>
+        <th>email</th>
+        <th>department</th>
+        <th>Salary</th>
+        <th>Words</th>
+        <th>Balance</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of students -->
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.firstName}"></td>
+        <td th:text="${employee.otherName}"></td>
+        <td th:text="${employee.lastName}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.department}"></td>
+        <td th:text="${employee.salary}"></td>
+        <td th:text="${employee.amountWords}"></td>
+        <td th:text="${employee.balance}"></td>
+
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

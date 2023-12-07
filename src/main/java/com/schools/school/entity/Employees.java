@@ -18,9 +18,11 @@ public class Employees {
     @GeneratedValue
     private Long id;
     private String firstName;
+    private String otherName;
     private String lastName;
     private String email;
     private String department;
     private double salary;
+    private String amountWords;
     private double balance;
 }

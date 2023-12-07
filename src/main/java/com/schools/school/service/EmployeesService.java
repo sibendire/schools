@@ -17,4 +17,7 @@ public interface EmployeesService {
     void deductInstallment(Long employeeId, double installmentAmount);
 
     Employees getBalance(Long id);
+
+//    void calculateEmployeeSalary(Long employeeId, double balance);
+  //  void totalAmountSpentOnSalary(Employees employees);
 }

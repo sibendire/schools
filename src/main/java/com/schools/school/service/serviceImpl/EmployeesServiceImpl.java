@@ -54,15 +54,16 @@ public class EmployeesServiceImpl implements EmployeesService {
 
     @Override
     public void calculateEmployeeSalary(Employees employees) {
-        // Set initial balance to 1000000.00
-        double initialBalance = 1000000.00;
-        employees.setBalance(initialBalance);
-
-        //Then Save the initial balance to the employee
+        double salary = employees.getSalary();
+        double deductions = 1000000.00;
+        double balance = salary - deductions;
+        employees.setBalance(balance);
         employeeRepository.save(employees);
     }
 
+
     // Method to deduct installment amount
+    @Override
     public void deductInstallment(Long employeeId, double installmentAmount) {
         // Retrieve the employee by ID
         Optional<Employees> optionalEmployee = employeeRepository.findById(employeeId);
@@ -94,6 +95,6 @@ public class EmployeesServiceImpl implements EmployeesService {
 
     @Override
     public Employees getBalance(Long id) {
-        return employeeRepository.findById( id) .get();
+        return employeeRepository.findById(id).get();
     }
 }
