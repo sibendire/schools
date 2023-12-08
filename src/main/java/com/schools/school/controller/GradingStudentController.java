@@ -2,11 +2,17 @@ package com.schools.school.controller;
 
 import com.schools.school.entity.GradingStudent;
 import com.schools.school.service.GradingStudentService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
 
 @Controller
@@ -28,6 +34,19 @@ public class GradingStudentController {
     public String saveMarks(@ModelAttribute("marks") GradingStudent gradingStudent) {
         gradingStudentService.saveStudentGrade(gradingStudent);
         return "redirect:/total/marks";
+    }
+    // Add an exclusion for favicon.ico
+    @GetMapping("/favicon.ico")
+    public ResponseEntity<byte[]> favicon() throws IOException {
+        ClassPathResource resource = new ClassPathResource("/static/favicon.ico");
+
+        byte[] media = Files.readAllBytes(resource.getFile().toPath());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+        headers.setContentType(MediaType.parseMediaType("image/vnd.microsoft.icon"));
+
+        return new ResponseEntity<>(media, headers, HttpStatus.OK);
     }
 
     @GetMapping("/total/marks")

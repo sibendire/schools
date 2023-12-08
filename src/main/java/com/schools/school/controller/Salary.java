@@ -31,6 +31,7 @@ public class Salary {
     @GetMapping("/list")
     public String getListPaidStaff(Model model) {
         model.addAttribute("employees",employeesService.getEmployeesList());
+       // employeesService.calculateEmployeeSalary(new Employees());
         return "paidList";
     }
 
@@ -62,14 +63,16 @@ public class Salary {
 
 
     // In your controller or a dedicated controller
-//    @GetMapping("/calculateSalaries")
-//    public String calculateSalaries() {
-//        List<Employees> employeesList = employeesService.getEmployeesList();
-//        for (Employees employee : employeesList) {
-//            employeesService.calculateEmployeeSalary(employee);
-//        }
-//        return "redirect:/paidList";
-//    }
+    @GetMapping("/calculateSalaries")
+    public String calculateSalaries() {
+        // ...
+        List<Employees> employeesList = employeesService.getEmployeesList();
+        for (Employees employee : employeesList) {
+            employeesService.calculateEmployeeSalary(employee);
+        }
+        return "redirect:/list";
+    }
+
 
 
 }
