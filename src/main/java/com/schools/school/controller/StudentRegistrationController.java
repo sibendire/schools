@@ -5,10 +5,14 @@ import com.schools.school.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class StudentRegistrationController {
@@ -26,6 +30,9 @@ public class StudentRegistrationController {
     private final ParentPortalService parentPortalService;
     private List<StudentRegistration> selectedStudent = new ArrayList<StudentRegistration>();
     private Long id;
+    @Autowired
+    private FileStorageService fileStorageService;
+
 
     public StudentRegistrationController(SeniorOneService seniorOneService,
                                          SeniorTwoService seniorTwoService,
@@ -54,7 +61,19 @@ public class StudentRegistrationController {
     }
 
     @PostMapping("/saveStudent")
-    public String saveStudent(@ModelAttribute("student") StudentRegistration studentRegistration) {
+    public String saveStudent(@ModelAttribute("student") StudentRegistration studentRegistration,
+                              @RequestParam("studentPhoto") MultipartFile studentPhoto) {
+        if (!studentPhoto.isEmpty()) {
+            String fileName = "student_" + studentRegistration.getId() + "_" + UUID.randomUUID() +
+                    StringUtils.getFilenameExtension(studentPhoto.getOriginalFilename());
+
+            // Save the file to your storage service
+            fileStorageService.saveFile(fileName, studentPhoto);
+
+            // Save the file path to the studentRegistration or database
+            studentRegistration.setStudentPhotoPath(fileName);
+        }
+
         studentRegistrationService.saveStudentInformation(studentRegistration);
         return "redirect:/api/student/list";
     }
@@ -170,7 +189,7 @@ public class StudentRegistrationController {
         return "student_sex" + gender;
     }
 
-    @GetMapping("/parentForm")
+    @GetMapping("/api/student/parentForm")
     public String showParentForm(Model model) {
         model.addAttribute("parents", new ParentPortal());
         return "parents";

@@ -221,4 +221,7 @@ public class StudentRegistration {
     public void setStudentDistrict(String studentDistrict) {
         this.studentDistrict = studentDistrict;
     }
+
+    public void setStudentPhotoPath(String fileName) {
+    }
 }

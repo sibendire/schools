@@ -25,7 +25,8 @@
 
 <div class="container mb-5 p-3 bg-light">
   <h1 class="text-center p-4">STUDENT ADMISSION FORM</h1>
-  <form th:action="@{saveStudent}" method="post" th:object="${student}">
+    <form th:action="@{/saveStudent}" method="post" th:object="${student}" enctype="multipart/form-data">
+
     <div class="row g-3 bg-light p-3 onset-md-2">
       <div class="col-md-5">
         <label for="firstName" class="form-label">First Name</label>
