@@ -1,8 +1,7 @@
 package com.schools.school.entity;
 
-import jakarta.persistence.*;
 
-import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Parents")

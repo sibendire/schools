@@ -1,5 +1,7 @@
 package com.schools.school.entity;
 
+
+
 import jakarta.persistence.*;
 
 

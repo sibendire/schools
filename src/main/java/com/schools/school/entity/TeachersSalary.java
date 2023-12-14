@@ -1,8 +1,7 @@
 package com.schools.school.entity;
 
-import jakarta.persistence.*;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Salary")
@@ -10,24 +9,34 @@ public class TeachersSalary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "first_Name")
     private String firstName;
+
     @Column(name = "other_Name")
     private String midName;
+
     @Column(name = "last_Name")
     private String lastName;
+
     @Column(name = "amount_Paid")
     private double amountReceived;
+
     @Column(name = "balance")
     private double balanceOwnSchool;
+
     @Column(name = "date")
     private String dateAmountReceived;
+
     @Column(name = "adverse_Amount")
     private double requestedInAdverse;
+
     @Column(name = "reason")
     private String reasonForAdverse;
+
     @Column(name = "allowance")
     private double allowance;
+
     @Column(name = "allowance_Reason")
     private String reasonForAllowance;
 

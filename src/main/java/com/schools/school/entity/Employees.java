@@ -1,8 +1,7 @@
 package com.schools.school.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +24,5 @@ public class Employees {
     private double salary;
     private String amountWords;
     private double balance;
+
 }
