@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class FeesPaymentController {
+    @Autowired
     private final FeesPaymentService feesPaymentService;
 
-    @Autowired
+
     public FeesPaymentController(FeesPaymentService feesPaymentService) {
         this.feesPaymentService = feesPaymentService;
     }
