@@ -37,7 +37,7 @@ public class StudentRegistration {
     @Column(name = "performance_records")
     private String formerSchoolPerformanceRecords;
     @Column(name = "Photo")
-    private String studentPhoto;
+    private String studentPhotoPath;
     @Column(name = "Home_Address")
     private String studentHomeAddress;
     @Column(name = "SubCounty")
@@ -63,7 +63,7 @@ public class StudentRegistration {
             String formerSchoolName,
             String reasonWhyChangedSchool,
             String formerSchoolPerformanceRecords,
-            String studentPhoto,
+            String studentPhotoPath,
             String studentHomeAddress,
             String studentSubCounty,
             String studentDistrict) {
@@ -80,7 +80,7 @@ public class StudentRegistration {
         this.formerSchoolName = formerSchoolName;
         this.reasonWhyChangedSchool = reasonWhyChangedSchool;
         this.formerSchoolPerformanceRecords = formerSchoolPerformanceRecords;
-        this.studentPhoto = studentPhoto;
+        this.studentPhotoPath = studentPhotoPath;
         this.studentHomeAddress = studentHomeAddress;
         this.studentSubCounty = studentSubCounty;
         this.studentDistrict = studentDistrict;
@@ -183,14 +183,13 @@ public class StudentRegistration {
         this.formerSchoolPerformanceRecords = formerSchoolPerformanceRecords;
     }
 
-    public String getStudentPhoto() {
-        return studentPhoto;
+    public String getStudentPhotoPath() {
+        return studentPhotoPath;
     }
 
-    public void setStudentPhoto(String studentPhoto) {
-        this.studentPhoto = studentPhoto;
+    public void setStudentPhotoPath(String studentPhotoPath) {
+        this.studentPhotoPath = studentPhotoPath;
     }
-
     public String getStudentHomeAddress() {
         return studentHomeAddress;
     }
@@ -223,6 +222,5 @@ public class StudentRegistration {
         this.studentDistrict = studentDistrict;
     }
 
-    public void setStudentPhotoPath(String fileName) {
-    }
+
 }

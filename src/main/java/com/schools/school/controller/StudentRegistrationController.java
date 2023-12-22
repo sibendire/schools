@@ -239,7 +239,7 @@ public class StudentRegistrationController {
                 studentRegistration.getFormerSchoolName(),
                 studentRegistration.getReasonWhyChangedSchool(),
                 studentRegistration.getFormerSchoolPerformanceRecords(),
-                studentRegistration.getStudentPhoto(),
+                studentRegistration.getStudentPhotoPath(),
                 studentRegistration.getStudentHomeAddress(),
                 studentRegistration.getStudentSubCounty(),
                 studentRegistration.getStudentDistrict());
@@ -287,7 +287,7 @@ public class StudentRegistrationController {
                 studentRegistration.getFormerSchoolName(),
                 studentRegistration.getReasonWhyChangedSchool(),
                 studentRegistration.getFormerSchoolPerformanceRecords(),
-                studentRegistration.getStudentPhoto(),
+                studentRegistration.getStudentPhotoPath(),
                 studentRegistration.getStudentHomeAddress(),
                 studentRegistration.getStudentSubCounty(),
                 studentRegistration.getStudentDistrict());
@@ -320,7 +320,7 @@ public class StudentRegistrationController {
                 studentRegistration.getFormerSchoolName(),
                 studentRegistration.getReasonWhyChangedSchool(),
                 studentRegistration.getFormerSchoolPerformanceRecords(),
-                studentRegistration.getStudentPhoto(),
+                studentRegistration.getStudentPhotoPath(),
                 studentRegistration.getStudentHomeAddress(),
                 studentRegistration.getStudentSubCounty(),
                 studentRegistration.getStudentDistrict());
@@ -353,7 +353,7 @@ public class StudentRegistrationController {
                 studentRegistration.getFormerSchoolName(),
                 studentRegistration.getReasonWhyChangedSchool(),
                 studentRegistration.getFormerSchoolPerformanceRecords(),
-                studentRegistration.getStudentPhoto(),
+                studentRegistration.getStudentPhotoPath(),
                 studentRegistration.getStudentHomeAddress(),
                 studentRegistration.getStudentSubCounty(),
                 studentRegistration.getStudentDistrict());
