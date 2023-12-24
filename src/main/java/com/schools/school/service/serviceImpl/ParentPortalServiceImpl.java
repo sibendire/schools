@@ -6,6 +6,7 @@ import com.schools.school.service.ParentPortalService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -21,16 +22,18 @@ import java.util.List;
             return parentPortalRepository.save(parentPortal);
         }
 
-        @Override
-        public ParentPortal updateParent(ParentPortal parentPortal) {
-            return parentPortalRepository.getReferenceById(updateParentById(parentPortal.getId()).getId());
-        }
 
-        @Override
-        public ParentPortal updateParentById(Long id) {
-            return parentPortalRepository.getById(id);
-        }
 
+    @Override
+    public ParentPortal updateParentById(Long id) {
+        Optional<ParentPortal> optionalParentPortal = parentPortalRepository.findById(id);
+        if (optionalParentPortal.isPresent()) {
+            ParentPortal parentPortal = optionalParentPortal.get();
+            // Update logic here
+            return parentPortalRepository.save(parentPortal);
+        }
+        throw new IllegalArgumentException("Parent with ID " + id + " not found");
+    }
         @Override
         public ParentPortal messageParentById(Long id) {
             return parentPortalRepository.findById(id).get();
@@ -56,5 +59,10 @@ import java.util.List;
             parentPortalRepository.deleteById(id);
 
         }
+
+    @Override
+    public ParentPortal getParentById(Long id) {
+        return parentPortalRepository.findById(id).get();
     }
+}
 

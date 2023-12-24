@@ -7,7 +7,6 @@ import java.util.List;
 public interface ParentPortalService {
     ParentPortal saveParent(ParentPortal parentPortal);
 
-    ParentPortal updateParent(ParentPortal parentPortal);
 
     ParentPortal updateParentById(Long id);
 
@@ -20,4 +19,6 @@ public interface ParentPortalService {
     List<ParentPortal> getAllParents();
 
     void deleteParentById(Long id);
+
+    ParentPortal getParentById(Long id);
 }

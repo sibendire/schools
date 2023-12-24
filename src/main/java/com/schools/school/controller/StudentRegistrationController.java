@@ -189,20 +189,20 @@ public class StudentRegistrationController {
         return "student_sex" + gender;
     }
 
-    @GetMapping("/api/student/parentForm")
+    @GetMapping("/parentForm")
     public String showParentForm(Model model) {
         model.addAttribute("parents", new ParentPortal());
         return "parents";
     }
 
-    @PostMapping("saveParent")
+    @PostMapping("/saveParent")
     public String saveParentInformation(@ModelAttribute("parents") ParentPortal parentPortal) {
         parentPortalService.saveParent(parentPortal);
         return "redirect:/api/parent/list";
 
     }
 
-    @GetMapping("/api/parent/list")
+    @RequestMapping("/api/parent/list")
     public String listParents(Model model) {
         model.addAttribute("parents", parentPortalService.getAllParents());
         return "parent_list";
@@ -210,7 +210,7 @@ public class StudentRegistrationController {
 
     @RequestMapping("/update/parent/{id}")
     public String editParentRecord(@PathVariable("id") Long id, Model model) {
-        ParentPortal parentPortal = parentPortalService.updateParentById(id);
+        ParentPortal parentPortal = parentPortalService.getParentById(id);
         model.addAttribute("parents", parentPortal);
         return "update_parent";
     }

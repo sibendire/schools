@@ -21,7 +21,7 @@
 </nav>
 <h1 class="text-center">PARENT DETAILS </h1>
 <div class="container my-2" style="border: 1px solid black;">
-    <form th:action="@{saveParent}" method="post" th:object="${parent}">
+    <form th:action="@{/saveParent}" method="post" th:object="${parent}">
         <input type="hidden" name="id" th:value="${parents.id}">
         <div class="row g-3">
             <div class="col-md-5">
@@ -32,7 +32,7 @@
             <div class="col-md-5">
                 <label for="other" class="form-label">Other Name</label>
                 <input type="text" class="form-control" id="other" aria-describedby="emailHelp" name="midName"
-                       th:value="${parents.minName}">
+                       th:value="${parents.midName}">
             </div>
             <div class="col-md-5">
                 <label for="lastName" class="form-label">last Name</label>
