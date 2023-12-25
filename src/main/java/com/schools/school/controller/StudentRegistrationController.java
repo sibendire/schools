@@ -26,8 +26,6 @@ public class StudentRegistrationController {
     private final SeniorFourService seniorFourService;
     @Autowired
     private final StudentRegistrationService studentRegistrationService;
-    @Autowired
-    private final ParentPortalService parentPortalService;
     private List<StudentRegistration> selectedStudent = new ArrayList<StudentRegistration>();
     private Long id;
     @Autowired
@@ -38,14 +36,13 @@ public class StudentRegistrationController {
                                          SeniorTwoService seniorTwoService,
                                          SeniorThreeService seniorThreeService,
                                          SeniorFourService seniorFourService,
-                                         StudentRegistrationService studentRegistrationService,
-                                         ParentPortalService parentPortalService) {
+                                         StudentRegistrationService studentRegistrationService) {
         this.seniorOneService = seniorOneService;
         this.seniorTwoService = seniorTwoService;
         this.seniorThreeService = seniorThreeService;
         this.seniorFourService = seniorFourService;
         this.studentRegistrationService = studentRegistrationService;
-        this.parentPortalService = parentPortalService;
+
     }
 
 
@@ -95,14 +92,14 @@ public class StudentRegistrationController {
 
     }
 
-    @GetMapping("/api/student/single/{id}")
-    public StudentRegistration getSingleStudent(@PathVariable Long id) {
-        StudentRegistration studentRegistration = studentRegistrationService.getStudentRegistrationById(id);
-        if (studentRegistrationService == null) {
-            throw new IllegalArgumentException("student not registered with an ID " + id);
-        }
-        return studentRegistration;
-    }
+//    @GetMapping("/api/student/single/{id}")
+//    public StudentRegistration getSingleStudent(@PathVariable Long id) {
+//        StudentRegistration studentRegistration = studentRegistrationService.getStudentRegistrationById(id);
+//        if (studentRegistrationService == null) {
+//            throw new IllegalArgumentException("student not registered with an ID " + id);
+//        }
+//        return studentRegistration;
+//    }
 
 //    @GetMapping("/search/name")
 //    public StudentRegistration getStudentByFirstName(@PathVariable String firstName) {
@@ -113,11 +110,19 @@ public class StudentRegistrationController {
 //        return studentRegistration;
 //    }
 
+
+//    @RequestMapping("/update/{id}")
+//    public String updateStudentRecord(@PathVariable("id") Long id,Model model ){
+//        // get the student record from the database if it exists
+//        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+//        model.addAttribute("student",studentRegistration);
+//        return "edit_student";
+//    }
+
     @RequestMapping("/update/{id}")
-    public String updateStudentRecord(@PathVariable("id") Long id,Model model ){
-        // get the student record from the database if it exists
-        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
-        model.addAttribute("student",studentRegistration);
+    public String updateStudentRecord(@PathVariable("id") Long id, Model model) {
+   StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+   model.addAttribute("students",studentRegistration);
         return "edit_student";
     }
 
@@ -180,40 +185,14 @@ public class StudentRegistrationController {
         return "redirect:/api/student/list";
     }
 
-    @GetMapping("/gender")
-    public String getStudentByGender(@PathVariable String gender) {
-        if (studentRegistrationService == null) {
-            throw new RuntimeException("student gender not found" + gender);
-        }
-        studentRegistrationService.getByGender(gender);
-        return "student_sex" + gender;
-    }
-
-    @GetMapping("/parentForm")
-    public String showParentForm(Model model) {
-        model.addAttribute("parents", new ParentPortal());
-        return "parents";
-    }
-
-    @PostMapping("/saveParent")
-    public String saveParentInformation(@ModelAttribute("parents") ParentPortal parentPortal) {
-        parentPortalService.saveParent(parentPortal);
-        return "redirect:/api/parent/list";
-
-    }
-
-    @RequestMapping("/api/parent/list")
-    public String listParents(Model model) {
-        model.addAttribute("parents", parentPortalService.getAllParents());
-        return "parent_list";
-    }
-
-    @RequestMapping("/update/parent/{id}")
-    public String editParentRecord(@PathVariable("id") Long id, Model model) {
-        ParentPortal parentPortal = parentPortalService.getParentById(id);
-        model.addAttribute("parents", parentPortal);
-        return "update_parent";
-    }
+//    @GetMapping("/gender")
+//    public String getStudentByGender(@PathVariable String gender) {
+//        if (studentRegistrationService == null) {
+//            throw new RuntimeException("student gender not found" + gender);
+//        }
+//        studentRegistrationService.getByGender(gender);
+//        return "student_sex" + gender;
+//    }
 
     @GetMapping("/seniorOne")
     public String getSeniorOne(Model model) {

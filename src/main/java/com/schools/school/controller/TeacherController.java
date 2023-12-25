@@ -58,9 +58,12 @@ public class TeacherController {
 //            return teachersService.getTeacherByName(name);
 //        }
 //    }
-
+// this method is tested
     @RequestMapping("/teacher/delete/{id}")
     public String deleteTeachersSalaryById(@PathVariable("id") Long id)  {
+        if (!teachersService.existById(id)){
+            throw new IllegalArgumentException("Teacher does not exist");
+        }
         teachersService.deleteTeachersById(id);
         return "success_delete";
     }

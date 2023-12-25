@@ -25,7 +25,7 @@ public class Salary {
     public String saveSalary(@ModelAttribute("employee") Employees employees) {
         employeesService.saveEmployees(employees);
         employeesService.calculateEmployeeSalary(employees);
-        return "redirect:/paidList";
+        return "redirect:/list";
     }
 
     @GetMapping("/list")

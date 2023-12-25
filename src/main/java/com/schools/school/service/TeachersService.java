@@ -15,4 +15,6 @@ public interface TeachersService {
     List<Teachers> getAllTeachersSalary();
     boolean deleteTeachersById(Long id);
     long getTeacherBalance(double balance);
+
+    boolean existById(Long id);
 }

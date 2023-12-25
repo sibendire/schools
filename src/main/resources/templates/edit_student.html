@@ -17,43 +17,43 @@
       <a class="nav-link" href="my_book">My Books</a>
 
     </div>
-    <a class="nav-link" th:href="@{/update/{id}(id=${student.id})}">New Student Register</a>
+    <a class="nav-link" th:href="@{/update/{id}(id=${students.id})}">New Student Register</a>
   </div>
   </div>
 </nav>
 <h1 class="text-center">Student Admission Form</h1>
 <div class="container my-2" style="border: 1px solid black;">
-  <form class="col-md-4 offset-md-4" th:action="@{/saveStudent}" method="post" th:object="${student}">
-    <input type="hidden" name="id" th:value="${student.id}">
+  <form class="col-md-4 offset-md-4" th:action="@{/saveStudent}" method="post" th:object="${student} " enctype="multipart/form-data">
+    <input type="hidden" name="id" th:value="${students.id}">
     <div class="row g-3">
       <div class="col-md-5">
         <label for="firstName" class="form-label">First Name</label>
         <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="studentFirstName"
-               required th:value="${student.studentFirstName}">
+               required th:value="${students.studentFirstName}">
       </div>
       <div class="col-md-5">
         <label for="other" class="form-label">Other Name</label>
         <input type="text" class="form-control" id="other" aria-describedby="emailHelp" name="studentMidName"
-        th:value="${student.studentMidName}">
+        th:value="${students.studentMidName}">
       </div>
       <div class="col-md-5">
         <label for="lastName" class="form-label">Last Name</label>
         <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name="studentLastName"
-               required th:value="${student.studentLastName}">
+               required th:value="${students.studentLastName}">
       </div>
       <div class="col-md-5">
         <label for="birth" class="form-label">Date of Birth</label>
         <input type="date" class="form-control" id="birth" aria-describedby="emailHelp" name="StudentDateOfBirth" required
-        th:value="${student.StudentDateOfBirth}">
+        th:value="${students.StudentDateOfBirth}">
       </div>
       <div class="col-md-5">
         <label for="national" class="form-label">National Identification Number(NIN)</label>
         <input type="text" class="form-control" id="national" aria-describedby="emailHelp"
-               name="studentNationalIdentificationNumberNIN" required th:value="${student.studentNationalIdentificationNumberNIN}">
+               name="studentNationalIdentificationNumberNIN" required th:value="${students.studentNationalIdentificationNumberNIN}">
       </div>
       <div class="col-md-5">
         <label for="gender" class="form-label">Gender</label>
-        <select class="form-select" id="gender" name="studentGender" required th:value="${student.studentGender}">
+        <select class="form-select" id="gender" name="studentGender" required th:value="${students.studentGender}">
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="others">Others</option>
@@ -62,7 +62,7 @@
 
       <div class="col-md-5">
         <label for="classes" class="form-label">Class Room</label>
-        <select class="form-select" id="classes" name="studentClass" required th:value="${student.studentClass}">
+        <select class="form-select" id="classes" name="studentClass" required th:value="${students.studentClass}">
           <option value="one">S.1</option>
           <option value="two">S.2</option>
           <option value="three">S.3</option>
@@ -73,30 +73,30 @@
       <div class="col-md-5">
         <label for="fees" class="form-label">Fees to be paid</label>
         <input type="number" class="form-control" id="fees" aria-describedby="emailHelp" name="feesToBeePaid"
-               required th:value="${student.feesToBeePaid}">
+               required th:value="${students.feesToBeePaid}">
 
       </div>
       <div class="col-md-5">
         <label for="health" class="form-label">Student Health Record</label>
         <input type="text" class="form-control" id="health" aria-describedby="emailHelp" name="studentHealthRecord"
-               required th:value="${student.studentHealthRecord}">
+               required th:value="${students.studentHealthRecord}">
       </div>
       <div class="col-md-5">
         <label for="formerschool" class="form-label">Student former school name</label>
         <input type="text" class="form-control" id="formerschool" aria-describedby="emailHelp"
-               name="formerSchoolName" required th:value="${student.formerSchoolName}">
+               name="formerSchoolName" required th:value="${students.formerSchoolName}">
       </div>
 
       <div class="col-md-5">
         <label for="reasontochange" class="form-label">Reason why Student to change school </label>
         <input type="text-area" class="form-control" id="reasontochange" aria-describedby="emailHelp"
-               name="reasonWhyChangedSchool" required th:value="${student.reasonWhyChangedSchool}">
+               name="reasonWhyChangedSchool" required th:value="${students.reasonWhyChangedSchool}">
       </div>
 
       <div class="col-md-5">
         <label for="performance" class="form-label">Performance Status</label>
         <select class="form-select" id="performance" name="formerSchoolPerformanceRecords"
-                required th:value="${student.formerSchoolPerformanceRecords}">
+                required th:value="${students.formerSchoolPerformanceRecords}">
           <option value="good">Good</option>
           <option value="Very">Very good</option>
           <option value="fair">Fair</option>
@@ -107,23 +107,22 @@
       </div>
       <div class="col-md-5">
         <label for="photo" class="form-label">Students photo</label>
-        <input type="file" class="form-control" id="photo" aria-describedby="emailHelp"
-               name="studentPhoto" required th:value="${student.studentPhoto}">
+        <input type="file" class="form-control" id="photo" aria-describedby="emailHelp" name="studentPhoto" required th:value="${students.studentPhotoPath}">
       </div>
       <div class="col-md-5">
         <label for="home" class="form-label">Home Address</label>
         <input type="text" class="form-control" id="home" aria-describedby="emailHelp"
-               name="studentHomeAddress" required th:value="${student.studentHomeAddress}">
+               name="studentHomeAddress" required th:value="${students.studentHomeAddress}">
       </div>
       <div class="col-md-5">
         <label for="subcounty" class="form-label">Sub-County</label>
         <input type="text" class="form-control" id="subcounty" aria-describedby="emailHelp"
-               name="studentSubCounty" required th:value="${student.studentSubCounty}">
+               name="studentSubCounty" required th:value="${students.studentSubCounty}">
       </div>
       <div class="col-md-5">
         <label for="district" class="form-label">District</label>
         <input type="text" class="form-control" id="district" aria-describedby="emailHelp"
-               name="studentDistrict" required th:value="${student.studentDistrict}">
+               name="studentDistrict" required th:value="${students.studentDistrict}">
       </div>
       <!-- Add other form elements similarly using the col-md-6 class -->
       <!-- ... -->

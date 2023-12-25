@@ -56,7 +56,10 @@ import java.util.List;
 
         @Override
         public boolean deleteTeachersById(Long id) {
+        if (teachersRepository.existsById(id)) {
             teachersRepository.deleteById(id);
+            return true;
+        }
             return false;
         }
 
@@ -64,5 +67,10 @@ import java.util.List;
         public long getTeacherBalance(double balance) {
             return teachersRepository.count();
         }
+
+    @Override
+    public boolean existById(Long id) {
+        return teachersRepository.existsById(id);
     }
+}
 
