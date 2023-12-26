@@ -22,4 +22,7 @@ public interface StudentRegistrationService {
 
     // Check if a student record with given ID exists
     boolean existsById(Long id);
+
+    List<StudentRegistration> getByGender(String studentGender);
+
 }

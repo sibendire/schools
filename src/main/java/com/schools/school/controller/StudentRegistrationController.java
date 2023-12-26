@@ -3,6 +3,8 @@ package com.schools.school.controller;
 import com.schools.school.entity.*;
 import com.schools.school.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -111,13 +113,7 @@ public class StudentRegistrationController {
 //    }
 
 
-//    @RequestMapping("/update/{id}")
-//    public String updateStudentRecord(@PathVariable("id") Long id,Model model ){
-//        // get the student record from the database if it exists
-//        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
-//        model.addAttribute("student",studentRegistration);
-//        return "edit_student";
-//    }
+
 
     @RequestMapping("/update/{id}")
     public String updateStudentRecord(@PathVariable("id") Long id, Model model) {
@@ -175,7 +171,6 @@ public class StudentRegistrationController {
 //        }
 
 
-
     @GetMapping("/api/student/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {
         if (!studentRegistrationService.existsById(id)) {
@@ -185,14 +180,19 @@ public class StudentRegistrationController {
         return "redirect:/api/student/list";
     }
 
-//    @GetMapping("/gender")
-//    public String getStudentByGender(@PathVariable String gender) {
-//        if (studentRegistrationService == null) {
-//            throw new RuntimeException("student gender not found" + gender);
-//        }
-//        studentRegistrationService.getByGender(gender);
-//        return "student_sex" + gender;
-//    }
+    @GetMapping("/gender/{gender}")
+    public String getStudentByGender(@PathVariable String gender, Model model) {
+        List<StudentRegistration> students = studentRegistrationService.getByGender(gender);
+
+        if (students.isEmpty()) {
+            return "noStudentsFound"; // This should be a Thymeleaf template name indicating no students found
+        }
+
+        model.addAttribute("students", students);
+        return "gender"; // This should be a Thymeleaf template name displaying the students
+    }
+
+
 
     @GetMapping("/seniorOne")
     public String getSeniorOne(Model model) {

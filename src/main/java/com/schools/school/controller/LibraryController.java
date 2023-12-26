@@ -26,7 +26,7 @@ public class LibraryController {
     @PostMapping("/save_book")
     public String saveBooks(@ModelAttribute("book") Library library) {
         libraryService.saveBook(library);
-        return "redirect:/available_books";
+        return "redirect:/listBooks";
     }
 
     @GetMapping("/listBooks")

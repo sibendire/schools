@@ -34,7 +34,7 @@ public class Salary {
        // employeesService.calculateEmployeeSalary(new Employees());
         return "paidList";
     }
-
+/// needs to be checked....................>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     @GetMapping("/pendingLit")
     public String getListOfStaffWithPending() {
         return "list";
@@ -63,6 +63,7 @@ public class Salary {
 
 
     // In your controller or a dedicated controller
+    ///tested
     @GetMapping("/calculateSalaries")
     public String calculateSalaries() {
         // ...
