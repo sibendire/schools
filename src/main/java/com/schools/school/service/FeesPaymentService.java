@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 public interface FeesPaymentService {
-    double calculateTotalFeesPaidByStudent(String firstName, String minName, String lastName);
 
-    double calculateFeeBalanceForStudent(String firstName, String minName, String lastName);
+    double calculateFeeBalanceForStudent(FeesPayment feesPayment);
 
     List<FeesPayment> getAllFeesPayments();
     FeesPayment getFeesPaymentById(Long id);

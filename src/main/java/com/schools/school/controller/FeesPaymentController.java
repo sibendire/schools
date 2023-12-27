@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/")
 public class FeesPaymentController {
     @Autowired
     private final FeesPaymentService feesPaymentService;
@@ -40,32 +39,9 @@ public class FeesPaymentController {
 
     @PostMapping("/saveFees")
     public String saveFeesPayment(@ModelAttribute FeesPayment feesPayment, Model model) {
-        try {
-            // Save fees payment
-            FeesPayment savedPayment = feesPaymentService.saveFees(feesPayment);
-
-            // Calculate total fees paid and fee balance
-            double totalFeesPaid = feesPaymentService.calculateTotalFeesPaidByStudent(
-                    feesPayment.getFirstName(), feesPayment.getMinName(), feesPayment.getLastName());
-
-            double feeBalance = feesPaymentService.calculateFeeBalanceForStudent(
-                    feesPayment.getFirstName(), feesPayment.getMinName(), feesPayment.getLastName());
-
-            // Add the calculated values to the model for display (optional)
-            model.addAttribute("totalFeesPaid", totalFeesPaid);
-            model.addAttribute("feeBalance", feeBalance);
-
-            // Redirect to a success page with calculated values (modify the template name as needed)
-            return "successPage";
-        } catch (Exception e) {
-            e.printStackTrace(); // Log the exception for further analysis
-
-            // Add an error message to the model (optional)
-            model.addAttribute("errorMessage", "An error occurred while processing the fees payment.");
-
-            // Redirect to an error page (modify the template name as needed)
-            return "errorPage";
-        }
+        feesPaymentService.saveFees(feesPayment);
+        feesPaymentService.calculateFeeBalanceForStudent(feesPayment);
+        return "successPage";
     }
 
     @GetMapping("/fees/list")
@@ -85,9 +61,6 @@ public class FeesPaymentController {
         feesPaymentService.deleteFeesPayment(id);
     }
 
-//    @GetMapping("/balance")
-//    public double calculateFeeBalance() {
-//        return feesPaymentService.calculateFeeBalanceForStudent(firstName, minName, lastName);
-//    }
+
 
 }

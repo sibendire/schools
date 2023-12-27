@@ -20,27 +20,13 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
     }
 
     @Override
-    public double calculateTotalFeesPaidByStudent(String firstName, String minName, String lastName) {
-        List<FeesPayment> paymentsByStudent = feesPaymentRepository.findByFirstNameAndMinNameAndLastName(firstName,
-                minName, lastName);
-
-        double totalFeesPaid = 0.00;
-        for (FeesPayment payment : paymentsByStudent) {
-            totalFeesPaid += payment.getFeesPaid();
-        }
-
-        return totalFeesPaid;
-    }
-
-    @Override
-    public double calculateFeeBalanceForStudent(String firstName, String minName, String lastName) {
-        double totalFeesCharged = 800000.0;
-        double totalFeesPaid = calculateTotalFeesPaidByStudent(firstName, minName, lastName);
-        double feeBalance = totalFeesCharged - totalFeesPaid;
-        if (totalFeesPaid != totalFeesCharged) {
-            return feeBalance;
-        } else
-            return totalFeesCharged;
+    public double calculateFeeBalanceForStudent(FeesPayment feesPayment) {
+        double feesPaid = feesPayment.getFeesPaid();
+        double deduction = 1000000.00;
+        double feeBalance = feesPaid - deduction;
+        feesPayment.setFeeBalance(feeBalance);
+      feesPaymentRepository.save(feesPayment);
+        return feesPaid;
     }
 
     @Override
@@ -56,7 +42,7 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
 
     @Override
     public FeesPayment saveFees(FeesPayment feesPayment) {
-        return feesPaymentRepository.save(feesPayment);
+     return feesPaymentRepository.save(feesPayment);
     }
 
 
