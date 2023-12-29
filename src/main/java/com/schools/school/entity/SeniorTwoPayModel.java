@@ -6,8 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "S.1Fees")
-public class SeniorOnePayModel {
+@Table(name = "S2_Fees")
+public class SeniorTwoPayModel {
     @Id
     private Long id;
     @Column(name = "class_Room")
@@ -27,10 +27,10 @@ public class SeniorOnePayModel {
     @Column(name = "balance")
     private double feeBalance;
 
-    public SeniorOnePayModel() {
+    public SeniorTwoPayModel() {
     }
 
-    public SeniorOnePayModel(Long id, String classRoom,
+    public SeniorTwoPayModel(Long id, String classRoom,
                              String firstName, String minName,
                              String lastName, String feesOfPayment,
                              double feesPaid, double feeBalance, String term) {

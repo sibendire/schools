@@ -1,25 +1,44 @@
 package com.schools.school.controller;
 
-import com.schools.school.entity.FeesPayment;
-import com.schools.school.entity.ResponseDTO;
-import com.schools.school.service.FeesPaymentService;
+import com.schools.school.entity.*;
+import com.schools.school.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class FeesPaymentController {
     @Autowired
+
+
     private final FeesPaymentService feesPaymentService;
+    @Autowired
 
+    private final SeniorOnePayModelService seniorOnePayModelService;
+    @Autowired
+    private final SeniorTwoPayModelService seniorTwoPayModelService;
+    @Autowired
+    private final SeniorThreePayModelService seniorThreePayModelService;
+    @Autowired
+    private final SeniorFourPayModelService seniorFourPayModelService;
 
-    public FeesPaymentController(FeesPaymentService feesPaymentService) {
+    private List<FeesPayment> selectedStudent = new ArrayList<>();
+    private Long id;
+
+    public FeesPaymentController(FeesPaymentService feesPaymentService,
+                                 SeniorOnePayModelService seniorOnePayModelService,
+                                 SeniorTwoPayModelService seniorTwoPayModelService,
+                                 SeniorThreePayModelService seniorThreePayModelService,
+                                 SeniorFourPayModelService seniorFourPayModelService) {
         this.feesPaymentService = feesPaymentService;
+        this.seniorOnePayModelService = seniorOnePayModelService;
+        this.seniorTwoPayModelService = seniorTwoPayModelService;
+        this.seniorThreePayModelService = seniorThreePayModelService;
+        this.seniorFourPayModelService = seniorFourPayModelService;
     }
 
     @GetMapping("/all")
@@ -31,6 +50,7 @@ public class FeesPaymentController {
     public FeesPayment getFeesPaymentById(@PathVariable Long id) {
         return feesPaymentService.getFeesPaymentById(id);
     }
+
     @GetMapping("/paymentForm")
     public String showPaymentForm(Model model) {
         model.addAttribute("payments", new FeesPayment());
@@ -45,8 +65,8 @@ public class FeesPaymentController {
     }
 
     @GetMapping("/fees/list")
-    public String listStudentPayment(Model model){
-        model.addAttribute("payments",feesPaymentService.getAllFeesPayments());
+    public String listStudentPayment(Model model) {
+        model.addAttribute("payments", feesPaymentService.getAllFeesPayments());
         return "list_payment";
     }
 
@@ -61,6 +81,93 @@ public class FeesPaymentController {
         feesPaymentService.deleteFeesPayment(id);
     }
 
+    @RequestMapping("/saveFees/one/{id}")
+    public String saveToSeniorOne(@PathVariable("id") Long id) {
+        FeesPayment feesPayment = feesPaymentService.getFeesPaymentById(id);
+        SeniorOnePayModel seniorOnePayModel = new SeniorOnePayModel(feesPayment.getId(),
+                feesPayment.getClassRoom(),
+                feesPayment.getFirstName(),
+                feesPayment.getMinName(),
+                feesPayment.getLastName(),
+                feesPayment.getFeesOfPayment(),
+                feesPayment.getFeesPaid(),
+                feesPayment.getFeeBalance(),
+                feesPayment.getTerm());
+        seniorOnePayModelService.saveSeniorOneFee(seniorOnePayModel);
+        selectedStudent.add(feesPayment);
+        return "SeniorOne_fees";
+    }
+    @GetMapping("/senior1/list")
+    public String getAllSeniorOne(Model model){
+        List<SeniorOnePayModel> list = seniorOnePayModelService.allSeniorStudentPaid();
+        model.addAttribute("student",list);
+        return "fees_list";
+    }
 
-
+    @RequestMapping("/saveFees/two/{id}")
+    public String saveToSeniorTwo(@PathVariable("id") Long id) {
+        FeesPayment feesPayment = feesPaymentService.getFeesPaymentById(id);
+        SeniorTwoPayModel seniorTwoPayModel = new SeniorTwoPayModel(feesPayment.getId(),
+                feesPayment.getClassRoom(),
+                feesPayment.getFirstName(),
+                feesPayment.getMinName(),
+                feesPayment.getLastName(),
+                feesPayment.getFeesOfPayment(),
+                feesPayment.getFeesPaid(),
+                feesPayment.getFeeBalance(),
+                feesPayment.getTerm());
+        seniorTwoPayModelService.saveSeniorTwoFee(seniorTwoPayModel);
+        selectedStudent.add(feesPayment);
+        return "SeniorTwo_fees";
+    }
+    @GetMapping("/senior2/list")
+    public String getAllSeniorTwo(Model model){
+        List<SeniorTwoPayModel> list = seniorTwoPayModelService.allSeniorStudentPaid();
+        model.addAttribute("student",list);
+        return "fees_list2";
+    }
+    @RequestMapping("/saveFees/three/{id}")
+    public String saveToSeniorThree(@PathVariable("id") Long id) {
+        FeesPayment feesPayment = feesPaymentService.getFeesPaymentById(id);
+        SeniorThreePayModel seniorThreePayModel = new SeniorThreePayModel(feesPayment.getId(),
+                feesPayment.getClassRoom(),
+                feesPayment.getFirstName(),
+                feesPayment.getMinName(),
+                feesPayment.getLastName(),
+                feesPayment.getFeesOfPayment(),
+                feesPayment.getFeesPaid(),
+                feesPayment.getFeeBalance(),
+                feesPayment.getTerm());
+        seniorThreePayModelService.saveSeniorThreeFee(seniorThreePayModel);
+        selectedStudent.add(feesPayment);
+        return "SeniorThree_fees";
+    }
+    @GetMapping("/senior3/list")
+    public String getAllSeniorThree(Model model){
+        List<SeniorThreePayModel> list = seniorThreePayModelService.allSeniorStudentPaid();
+        model.addAttribute("student",list);
+        return "fees_list3";
+    }
+    @RequestMapping("/saveFees/four/{id}")
+    public String saveToSeniorFour(@PathVariable("id") Long id) {
+        FeesPayment feesPayment = feesPaymentService.getFeesPaymentById(id);
+        SeniorFourPayModel seniorFourPayModel = new SeniorFourPayModel(feesPayment.getId(),
+                feesPayment.getClassRoom(),
+                feesPayment.getFirstName(),
+                feesPayment.getMinName(),
+                feesPayment.getLastName(),
+                feesPayment.getFeesOfPayment(),
+                feesPayment.getFeesPaid(),
+                feesPayment.getFeeBalance(),
+                feesPayment.getTerm());
+        seniorFourPayModelService.saveSeniorFourFee(seniorFourPayModel);
+        selectedStudent.add(feesPayment);
+        return "SeniorFour_fees";
+    }
+    @GetMapping("/senior4/list")
+    public String getAllSeniorFour(Model model){
+        List<SeniorFourPayModel> list = seniorFourPayModelService.allSeniorStudentPaid();
+        model.addAttribute("student",list);
+        return "fees_list4";
+    }
 }

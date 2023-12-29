@@ -1,9 +1,10 @@
 package com.schools.school.repository;
 
-import com.schools.school.entity.FeesPayment;
+
+import com.schools.school.entity.SeniorFourPayModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SeniorOneFeesModelRepository extends JpaRepository<FeesPayment, Long> {
+public interface SeniorFourPayModelRepository extends JpaRepository<SeniorFourPayModel,Long> {
 }
