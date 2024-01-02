@@ -46,11 +46,12 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
     }
 
     @Override
-    public void deleteStudentRecordById(Long id) {
-        if (!existsById(id)) {
-            throw new IllegalArgumentException("Student record with ID " + id + " not found.");
+    public boolean deleteStudentRecordById(Long id) {
+        if (studentRegistrationRepository.existsById(id)) {
+            studentRegistrationRepository.deleteById(id);
+            return true;
         }
-        studentRegistrationRepository.deleteById(id);
+        return false;
     }
 
     @Override

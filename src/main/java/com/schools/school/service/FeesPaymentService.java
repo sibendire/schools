@@ -17,6 +17,7 @@ public interface FeesPaymentService {
     void updateFeesPayment(@PathVariable long id, FeesPayment feesPayment);
 
     void deleteFeesPayment(Long id);
+    List<FeesPayment> getBalance(double feeBalance);
 
 
 }

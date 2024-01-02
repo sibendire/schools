@@ -71,4 +71,9 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
         }
         feesPaymentRepository.deleteById(id);
     }
+
+    @Override
+    public List<FeesPayment> getBalance(double feeBalance) {
+        return null;
+    }
 }

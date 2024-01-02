@@ -60,9 +60,12 @@
         <td th:text="${student.reasonWhyChangedSchool}"></td>
         <td th:text="${student.formerSchoolPerformanceRecords}"></td>
         <td th:text="${student.studentPhotoPath}"></td>
+        <img  th:src="@{'data:studentPhoto/jpg;base64,' + ${student.studentPhotoPath}}" alt="Student Photo" style="max-width: 300px;">
+
         <td th:text="${student.studentHomeAddress}"></td>
         <td th:text="${student.studentSubCounty}"></td>
         <td th:text="${student.studentDistrict}"></td>
+
         <td>
             <select name="group" class="form-select" >
                 <option value="saveToS1">S.1</option>

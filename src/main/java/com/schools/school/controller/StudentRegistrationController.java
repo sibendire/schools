@@ -60,17 +60,18 @@ public class StudentRegistrationController {
     }
 
     @PostMapping("/saveStudent")
-    public String saveStudent(@ModelAttribute("student") StudentRegistration studentRegistration,
-                              @RequestParam("studentPhoto") MultipartFile studentPhoto) {
-        if (!studentPhoto.isEmpty()) {
-            String fileName = "student_" + studentRegistration.getId() + "_" + UUID.randomUUID() +
-                    StringUtils.getFilenameExtension(studentPhoto.getOriginalFilename());
-
-            // Save the file to your storage service
-            fileStorageService.saveFile(fileName, studentPhoto);
-
-            // Save the file path to the studentRegistration or database
+    public String saveStudent( StudentRegistration studentRegistration,@RequestParam("studentPhoto") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             studentRegistration.setStudentPhotoPath(fileName);
+            StudentRegistration saveStudent = studentRegistrationService.saveStudentInformation(studentRegistration);
+            String upload = "photo/" + studentRegistration.getId();
+            FileUpload.saveFile(upload,fileName,multipartFile);
+        }else {
+            if (studentRegistration.getStudentPhotoPath().isEmpty()){
+                studentRegistration.setStudentPhotoPath(null );
+                studentRegistrationService.saveStudentInformation(studentRegistration);
+            }
         }
 
         studentRegistrationService.saveStudentInformation(studentRegistration);
@@ -171,8 +172,8 @@ public class StudentRegistrationController {
 //        }
 
 
-    @GetMapping("/api/student/delete/{id}")
-    public String deleteStudent(@PathVariable Long id) {
+    @RequestMapping("/api/student/delete/{id}")
+    public String deleteStudent(@PathVariable("id") Long id) {
         if (!studentRegistrationService.existsById(id)) {
             throw new IllegalArgumentException("student not found by the id");
         }
@@ -231,7 +232,7 @@ public class StudentRegistrationController {
     public String updateSeniorOneRecord(@PathVariable("id") Long id, Model model) {
         SeniorOne seniorOne = seniorOneService.getSeniorOneById(id);
         model.addAttribute("student", seniorOne);
-        return "edit_student";
+        return "editSenior_one";
     }
 
     @GetMapping("/delete/seniorOne/{id}")

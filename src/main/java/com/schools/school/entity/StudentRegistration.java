@@ -20,7 +20,7 @@ public class StudentRegistration {
     private String studentLastName;
     @Column(name = "Date_of_Birth")
     private String studentDateOfBirth;
-    @Column(name = "NIN",unique = true)
+    @Column(name = "NIN",unique = true,length = 17)
     private String studentNationalIdentificationNumberNIN;
     @Column(name = "gender")
     private String studentGender;
@@ -36,7 +36,7 @@ public class StudentRegistration {
     private String reasonWhyChangedSchool;
     @Column(name = "performance_records")
     private String formerSchoolPerformanceRecords;
-    @Column(name = "Photo")
+    @Column(name = "Photo", length= 64)
     private String studentPhotoPath;
     @Column(name = "Home_Address")
     private String studentHomeAddress;
@@ -222,5 +222,26 @@ public class StudentRegistration {
         this.studentDistrict = studentDistrict;
     }
 
-
+    @Override
+    public String toString() {
+        return "StudentRegistration{" +
+                "id=" + id +
+                ", studentFirstName='" + studentFirstName + '\'' +
+                ", studentMidName='" + studentMidName + '\'' +
+                ", studentLastName='" + studentLastName + '\'' +
+                ", studentDateOfBirth='" + studentDateOfBirth + '\'' +
+                ", studentNationalIdentificationNumberNIN='" + studentNationalIdentificationNumberNIN + '\'' +
+                ", studentGender='" + studentGender + '\'' +
+                ", studentClass='" + studentClass + '\'' +
+                ", feesToBeePaid=" + feesToBeePaid +
+                ", studentHealthRecord='" + studentHealthRecord + '\'' +
+                ", formerSchoolName='" + formerSchoolName + '\'' +
+                ", reasonWhyChangedSchool='" + reasonWhyChangedSchool + '\'' +
+                ", formerSchoolPerformanceRecords='" + formerSchoolPerformanceRecords + '\'' +
+                ", studentPhotoPath='" + studentPhotoPath + '\'' +
+                ", studentHomeAddress='" + studentHomeAddress + '\'' +
+                ", studentSubCounty='" + studentSubCounty + '\'' +
+                ", studentDistrict='" + studentDistrict + '\'' +
+                '}';
+    }
 }

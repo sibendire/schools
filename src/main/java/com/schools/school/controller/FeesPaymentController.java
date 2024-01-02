@@ -101,7 +101,7 @@ public class FeesPaymentController {
     public String getAllSeniorOne(Model model){
         List<SeniorOnePayModel> list = seniorOnePayModelService.allSeniorStudentPaid();
         model.addAttribute("student",list);
-        return "fees_list";
+        return "seniorOneFees_list";
     }
 
     @RequestMapping("/saveFees/two/{id}")
@@ -124,7 +124,7 @@ public class FeesPaymentController {
     public String getAllSeniorTwo(Model model){
         List<SeniorTwoPayModel> list = seniorTwoPayModelService.allSeniorStudentPaid();
         model.addAttribute("student",list);
-        return "fees_list2";
+        return "seniorTwoFees_list";
     }
     @RequestMapping("/saveFees/three/{id}")
     public String saveToSeniorThree(@PathVariable("id") Long id) {
@@ -146,7 +146,7 @@ public class FeesPaymentController {
     public String getAllSeniorThree(Model model){
         List<SeniorThreePayModel> list = seniorThreePayModelService.allSeniorStudentPaid();
         model.addAttribute("student",list);
-        return "fees_list3";
+        return "seniorThreeFees_list";
     }
     @RequestMapping("/saveFees/four/{id}")
     public String saveToSeniorFour(@PathVariable("id") Long id) {
@@ -168,6 +168,6 @@ public class FeesPaymentController {
     public String getAllSeniorFour(Model model){
         List<SeniorFourPayModel> list = seniorFourPayModelService.allSeniorStudentPaid();
         model.addAttribute("student",list);
-        return "fees_list4";
+        return "seniorFourFees_list";
     }
 }

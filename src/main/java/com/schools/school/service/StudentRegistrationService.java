@@ -18,7 +18,7 @@ public interface StudentRegistrationService {
     StudentRegistration getStudentById(Long id);
 
     // Delete a student record by ID
-    void deleteStudentRecordById(Long id);
+    boolean deleteStudentRecordById(Long id);
 
     // Check if a student record with given ID exists
     boolean existsById(Long id);
