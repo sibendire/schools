@@ -178,6 +178,10 @@ public class StudentRegistrationController {
             throw new IllegalArgumentException("student not found by the id");
         }
         studentRegistrationService.deleteStudentRecordById(id);
+        if (!seniorOneService.existById(id)){
+            throw new IllegalArgumentException("senior one record not found");
+        }
+        seniorOneService.deleteSeniorOneById(id);
         return "redirect:/api/student/list";
     }
 
@@ -235,7 +239,7 @@ public class StudentRegistrationController {
         return "editSenior_one";
     }
 
-    @GetMapping("/delete/seniorOne/{id}")
+    @RequestMapping("/delete/seniorOne/{id}")
     public String deleteSeniorOne(@PathVariable("id") Long id) {
         if (!seniorOneService.existById(id)) {
             throw new IllegalArgumentException("No records found with the ID in senior One");
