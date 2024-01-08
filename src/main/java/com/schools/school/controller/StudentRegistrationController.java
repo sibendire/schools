@@ -3,6 +3,7 @@ package com.schools.school.controller;
 import com.schools.school.entity.*;
 import com.schools.school.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -79,9 +80,10 @@ public class StudentRegistrationController {
     }
 
     @RequestMapping("/api/student/list")
-    public String listStudentRegistered(Model model) {
-        List<StudentRegistration> students = studentRegistrationService.getAllStudents();
+    public String listStudentRegistered(Model model, @Param("keyword") String keyword) {
+        List<StudentRegistration> students = studentRegistrationService.getAllStudents(keyword);
         model.addAttribute("students", students);
+        model.addAttribute("keyword",keyword);
         return "student_List";
     }
 

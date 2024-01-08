@@ -4,6 +4,9 @@ package com.schools.school.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Fees")
 public class FeesPayment {
@@ -26,6 +29,9 @@ public class FeesPayment {
     private double feesPaid;
     @Column(name = "balance")
     private double feeBalance;
+    @OneToMany(mappedBy = "feesPayment", cascade = CascadeType.ALL)
+    private List<Installment> installments = new ArrayList<>();
+
 
     public FeesPayment() {
     }
@@ -114,5 +120,10 @@ public class FeesPayment {
 
     public void setFeeBalance(double feeBalance) {
         this.feeBalance = feeBalance;
+    }
+
+    public double getTotalFees() {
+        double fixedTotalFee = 1000000.00;
+        return fixedTotalFee;
     }
 }

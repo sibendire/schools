@@ -9,7 +9,9 @@ public interface StudentRegistrationService {
     StudentRegistration saveStudentInformation(StudentRegistration studentRegistration);
 
     // Retrieve all student records
-    List<StudentRegistration> getAllStudents();
+//    List<StudentRegistration> getAllStudents();
+
+    List<StudentRegistration> getAllStudents(String keyword);
 
     // Update an existing student record
     StudentRegistration updateStudentRecord(Long id);
@@ -24,5 +26,6 @@ public interface StudentRegistrationService {
     boolean existsById(Long id);
 
     List<StudentRegistration> getByGender(String studentGender);
+
 
 }

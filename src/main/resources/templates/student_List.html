@@ -8,7 +8,6 @@
     <title>List of Student in the School</title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
@@ -17,7 +16,15 @@
             <a class="nav-link" href="/seniorThree">Senior Three</a>
             <a class="nav-link" href="/seniorFour">Senior Four</a>
         </div>
-        <a class="nav-link" href="@{/update/{id} (id=${student.id})}">New Student Register</a>
+
+        <!-- Search Form in Navbar -->
+        <form action="/api/student/list" method="GET" class="ms-auto d-flex align-items-center">
+            <div class="input-group rounded">
+                <input type="text" class="form-control rounded" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <button type="submit" class="btn btn-info">Search</button>
+                <button type="reset" class="btn btn-info">Reset</button>
+            </div>
+        </form>
     </div>
 </nav>
 <h1 class="text-center m-3">LIST OF STUDENT IN SCHOOL</h1>
