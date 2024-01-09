@@ -1,0 +1,50 @@
+package com.schools.school.service.serviceImpl;
+
+import com.schools.school.entity.SeniorOne;
+import com.schools.school.repository.SeniorOneRepository;
+import com.schools.school.service.SeniorOneService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class SeniorOneServiceImpl implements SeniorOneService {
+    @Autowired
+    SeniorOneRepository seniorOneRepository;
+
+    @Override
+    public void saveToSeniorOne(SeniorOne seniorOne) {
+        seniorOneRepository.save(seniorOne);
+    }
+
+    @Override
+    public List<SeniorOne> getAllSeniorList() {
+        return seniorOneRepository.findAll();
+    }
+
+    @Override
+    public SeniorOne updateSeniorOne(SeniorOne seniorOne) {
+        return seniorOneRepository.save(seniorOne);
+    }
+
+    @Override
+    public SeniorOne getSeniorOneById(Long id) {
+        return seniorOneRepository.findById(id).get();
+    }
+
+    @Override
+    public boolean deleteSeniorOneById(Long id) {
+        if (seniorOneRepository.existsById(id)){
+            seniorOneRepository.deleteById(id);
+            return true;
+        }
+        return false;
+
+    }
+
+    @Override
+    public boolean existById(Long id) {
+        return seniorOneRepository.existsById(id);
+    }
+}

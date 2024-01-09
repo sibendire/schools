@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>List of Student in the School</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <a class="nav-link me-3" href="/seniorOne">Senior One</a>
+            <a class="nav-link" href="/seniorTwo">Senior Two</a>
+            <a class="nav-link" href="/seniorThree">Senior Three</a>
+            <a class="nav-link" href="/seniorFour">Senior Four</a>
+        </div>
+
+        <!-- Search Form in Navbar -->
+        <form action="/api/student/list" method="GET" class="ms-auto d-flex align-items-center">
+            <div class="input-group rounded">
+                <input type="text" class="form-control rounded" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <button type="submit" class="btn btn-info">Search</button>
+                <button type="reset" class="btn btn-info">Reset</button>
+            </div>
+        </form>
+    </div>
+</nav>
+<h1 class="text-center m-3">LIST OF STUDENT IN SCHOOL</h1>
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">F Name</th>
+        <th scope="col">O Name</th>
+        <th scope="col">L Name</th>
+        <th scope="col">D.O.B</th>
+        <th scope="col">NIN</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Class</th>
+        <th scope="col">Fees</th>
+        <th scope="col">Health</th>
+        <th scope="col">Former S</th>
+        <th scope="col">Reason</th>
+        <th scope="col">Performance</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Address</th>
+        <th scope="col">Sub-C</th>
+        <th scope="col">District</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.studentFirstName}"></td>
+        <td th:text="${student.studentMidName}"></td>
+        <td th:text="${student.studentLastName}"></td>
+        <td th:text="${student.studentDateOfBirth}"></td>
+        <td th:text="${student.studentNationalIdentificationNumberNIN}"></td>
+        <td th:text="${student.studentGender}"></td>
+        <td th:text="${student.studentClass}"></td>
+        <td th:text="${student.feesToBeePaid}"></td>
+        <td th:text="${student.studentHealthRecord}"></td>
+        <td th:text="${student.formerSchoolName}"></td>
+        <td th:text="${student.reasonWhyChangedSchool}"></td>
+        <td th:text="${student.formerSchoolPerformanceRecords}"></td>
+        <td th:text="${student.studentPhotoPath}"></td>
+        <img  th:src="@{'data:studentPhoto/jpg;base64,' + ${student.studentPhotoPath}}" alt="Student Photo" style="max-width: 300px;">
+
+        <td th:text="${student.studentHomeAddress}"></td>
+        <td th:text="${student.studentSubCounty}"></td>
+        <td th:text="${student.studentDistrict}"></td>
+
+        <td>
+            <select name="group" class="form-select" >
+                <option value="saveToS1">S.1</option>
+                <option value="saveSeniorTwo">S.2</option>
+                <option value="saveSeniorThree">S.3</option>
+                <option value="saveSeniorFour">S.4</option>
+                <option value="update">Edit</option>
+            </select>
+
+            <a class="btn btn-secondary btn-sm"  th:href="@{/saveToS1/{id}(id=${student.id})}">Go</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/saveSeniorTwo/{id}(id=${student.id})}">Go</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/saveSeniorThree/{id}(id=${student.id})}">Go</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/saveSeniorFour/{id}(id=${student.id})}">Go</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/update/{id}(id=${student.id})}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+</html>

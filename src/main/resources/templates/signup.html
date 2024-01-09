@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Student Admission</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <a class="nav-link me-3" href="api">Home</a>
+            <a class="nav-link active" aria-current="page" href="teacher/list">List of teachers</a>
+            <a class="nav-link" href="my_book">My Books</a>
+        </div>
+        <a class="nav-link" href="teacherForm">New Teacher </a>
+    </div>
+</nav>
+<div class="container my-2">
+    <h1 class="text-center p-3">FILL THIS FORM TO CREATE ACCOUNT</h1>
+    <form th:action="@{/api/save/signup}" method="post" th:object="${appUser}">
+        <div class="row-2 bg-light p-3">
+            <div class=" col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+                       required>
+            </div>
+            <div class=" col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="password">
+            </div>
+            <div class=" col-md-6">
+                <label for="first" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first" aria-describedby="emailHelp" name="firstName"
+                       required>
+            </div>
+            <div class=" col-md-6">
+                <label for="chem" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="chem" aria-describedby="emailHelp" name="lastName"
+                       required>
+            </div>
+
+            <center>
+                <button type="submit" class="btn btn-primary">Submit</button>
+<!--                <button type="cancel" class="btn btn-primary">Cancel</button>-->
+            </center>
+        </div>
+    </form>
+</div>
+</body>
+</html>
