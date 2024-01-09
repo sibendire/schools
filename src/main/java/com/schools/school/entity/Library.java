@@ -3,8 +3,10 @@ package com.schools.school.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "Lib")
 public class Library {
     @Id
@@ -25,39 +27,39 @@ public class Library {
         this.yearOfPublicity = yearOfPublicity;
     }
 
-    public Library() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public String getYearOfPublicity() {
-        return yearOfPublicity;
-    }
-
-    public void setYearOfPublicity(String yearOfPublicity) {
-        this.yearOfPublicity = yearOfPublicity;
-    }
+//    public Library() {
+//
+//    }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getBookTitle() {
+//        return bookTitle;
+//    }
+//
+//    public void setBookTitle(String bookTitle) {
+//        this.bookTitle = bookTitle;
+//    }
+//
+//    public String getAuthorName() {
+//        return authorName;
+//    }
+//
+//    public void setAuthorName(String authorName) {
+//        this.authorName = authorName;
+//    }
+//
+//    public String getYearOfPublicity() {
+//        return yearOfPublicity;
+//    }
+//
+//    public void setYearOfPublicity(String yearOfPublicity) {
+//        this.yearOfPublicity = yearOfPublicity;
+//    }
 }
