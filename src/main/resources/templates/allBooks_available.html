@@ -5,47 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Student Admission</title>
+    <title>Payment</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-blue">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
-            <a class="nav-link me-3" href="/all">Home</a>
-            <a class="nav-link active" aria-current="page" href="/salaryForm">Available Student</a>
-            <!--            <a class="nav-link" href="my_book">My Books</a>-->
+            <a class="nav-link me-3" href="api">Home</a>
+            <a class="nav-link active" aria-current="page" href="available_books">Available Student</a>
+            <a class="nav-link" href="my_book">My Books</a>
         </div>
-        <a class="nav-link" href="/update">update payment</a>
+        <a class="nav-link" href="book_register">New Student Register</a>
     </div>
 </nav>
-<h2 class="text-center m-3">LIST OF PAYED SENIOR ONE STUDENTS</h2>
+<h1 class="text-center m-3">List of books</h1>
+
 <table class="table table-striped table">
     <thead>
     <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Class</th>
-        <th scope="col"> First Name</th>
-        <th scope="col">Other Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Date</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Balance</th>
+        <th scope="col"> ID</th>
+        <th scope="col"> Book name</th>
+        <th scope="col">Author name</th>
+        <th scope="col">Year of publication</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="payment : ${payments}">
-        <td th:text="${payment.id}"></td>
-        <th th:text="${payment.classRoom}"></th>
-        <td th:text="${payment.firstName}"></td>
-        <td th:text="${payment.minName}"></td>
-        <td th:text="${payment.lastName}"></td>
-        <td th:text="${payment.feesOfPayment}"></td>
-        <td th:text="${payment.feesPaid}"></td>
-        <td th:text="${payment.feeBalance}"></td>
+    <!-- Iterate over the list of students -->
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.bookTitle}"></td>
+        <td th:text="${book.authorName}"></td>
+        <td th:text="${book.yearOfPublicity}"></td>
+
+
     </tr>
     </tbody>
 </table>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -55,5 +50,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+
 </body>
 </html>

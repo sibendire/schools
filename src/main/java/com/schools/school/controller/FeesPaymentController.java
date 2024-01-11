@@ -58,9 +58,11 @@ public class FeesPaymentController {
     }
 
     @PostMapping("/saveFees")
-    public String saveFeesPayment(@ModelAttribute FeesPayment feesPayment, Model model) {
-        feesPaymentService.saveFees(feesPayment);
-        feesPaymentService.calculateFeeBalanceForStudent(feesPayment);
+    public String saveFeesPayment(@ModelAttribute FeesPayment feesPayment, Installment installment, Model model) {
+       FeesPayment savedPayment = feesPaymentService.saveFees(feesPayment);
+       double balance = feesPaymentService.calculateFeeBalanceForStudent(savedPayment.getId(),
+               installment.getInstallmentAmount());
+        model.addAttribute("balance",balance);
         return "successPage";
     }
 
@@ -100,7 +102,7 @@ public class FeesPaymentController {
     @GetMapping("/senior1/list")
     public String getAllSeniorOne(Model model){
         List<SeniorOnePayModel> list = seniorOnePayModelService.allSeniorStudentPaid();
-        model.addAttribute("student",list);
+        model.addAttribute("payments",list);
         return "seniorOneFees_list";
     }
 
@@ -118,12 +120,12 @@ public class FeesPaymentController {
                 feesPayment.getTerm());
         seniorTwoPayModelService.saveSeniorTwoFee(seniorTwoPayModel);
         selectedStudent.add(feesPayment);
-        return "SeniorTwo_fees";
+        return "redirect:/Senior2/list";
     }
     @GetMapping("/senior2/list")
     public String getAllSeniorTwo(Model model){
         List<SeniorTwoPayModel> list = seniorTwoPayModelService.allSeniorStudentPaid();
-        model.addAttribute("student",list);
+        model.addAttribute("payments",list);
         return "seniorTwoFees_list";
     }
     @RequestMapping("/saveFees/three/{id}")
@@ -140,12 +142,12 @@ public class FeesPaymentController {
                 feesPayment.getTerm());
         seniorThreePayModelService.saveSeniorThreeFee(seniorThreePayModel);
         selectedStudent.add(feesPayment);
-        return "SeniorThree_fees";
+        return "SeniorThreeFees_fees";
     }
     @GetMapping("/senior3/list")
     public String getAllSeniorThree(Model model){
         List<SeniorThreePayModel> list = seniorThreePayModelService.allSeniorStudentPaid();
-        model.addAttribute("student",list);
+        model.addAttribute("payments",list);
         return "seniorThreeFees_list";
     }
     @RequestMapping("/saveFees/four/{id}")
@@ -167,7 +169,7 @@ public class FeesPaymentController {
     @GetMapping("/senior4/list")
     public String getAllSeniorFour(Model model){
         List<SeniorFourPayModel> list = seniorFourPayModelService.allSeniorStudentPaid();
-        model.addAttribute("student",list);
+        model.addAttribute("payments",list);
         return "seniorFourFees_list";
     }
 }

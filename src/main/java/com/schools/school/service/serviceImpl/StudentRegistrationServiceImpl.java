@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,8 +28,11 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
     }
 
     @Override
-    public List<StudentRegistration> getAllStudents() {
-        return studentRegistrationRepository.findAll();
+    public List<StudentRegistration> getAllStudents(String keyword) {
+        if (keyword != null){
+           return studentRegistrationRepository.search(keyword);
+        }
+        return(List<StudentRegistration>) studentRegistrationRepository.findAll();
     }
 
     @Override
@@ -80,6 +82,14 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
             throw new IllegalArgumentException("Error retrieving students by gender: " + studentGender, e);
         }
     }
+
+//    @Override
+//    public List<StudentRegistration> search(String keyword) {
+//        if (keyword != null){
+//            return studentRegistrationRepository.search(keyword);
+//        }
+//        return null;
+//    }
 
 
 }

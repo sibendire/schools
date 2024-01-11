@@ -13,7 +13,7 @@ public interface SeniorOneService {
     List<SeniorOne> getAllSeniorList();
     SeniorOne updateSeniorOne(SeniorOne seniorOne);
     SeniorOne getSeniorOneById(Long id);
-    void deleteSeniorOneById(Long id);
+    boolean deleteSeniorOneById(Long id);
 
     boolean existById(Long id);
 }

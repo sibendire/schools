@@ -34,12 +34,17 @@ public class SeniorOneServiceImpl implements SeniorOneService {
     }
 
     @Override
-    public void deleteSeniorOneById(Long id) {
-        seniorOneRepository.deleteById(id);
+    public boolean deleteSeniorOneById(Long id) {
+        if (seniorOneRepository.existsById(id)){
+            seniorOneRepository.deleteById(id);
+            return true;
+        }
+        return false;
+
     }
 
     @Override
     public boolean existById(Long id) {
-        return false;
+        return seniorOneRepository.existsById(id);
     }
 }

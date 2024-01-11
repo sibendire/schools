@@ -11,7 +11,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-blue">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
-            <a class="nav-link me-3" href="/all">Home</a>
+            <a class="nav-link me-3" href="/api">Home</a>
+            <a class="nav-link me-3" href="/senior1/list">SENIOR ONE</a>
+            <a class="nav-link me-3" href="/senior2/list">SENIOR TWO</a>
+            <a class="nav-link me-3" href="/senior3/list">SENIOR THREE</a>
+            <a class="nav-link me-3" href="/senior4/list">SENIOR FOUR</a>
             <a class="nav-link active" aria-current="page" href="/salaryForm">Available Student</a>
 <!--            <a class="nav-link" href="my_book">My Books</a>-->
         </div>
@@ -42,6 +46,21 @@
         <td th:text="${payment.feesOfPayment}"></td>
         <td th:text="${payment.feesPaid}"></td>
         <td th:text="${payment.feeBalance}"></td>
+        <td>
+            <select name="group" class="form-select" >
+                <option value="saveFees/one">S.1</option>
+                <option value="saveFees/two">S.2</option>
+                <option value="saveFees/three">S.3</option>
+                <option value="saveFees/four">S.4</option>
+                <option value="update">Edit</option>
+            </select>
+
+            <a class="btn btn-secondary btn-sm"  th:href="@{/saveFees/one/{id}(id=${payment.id})}">Go</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/saveFees/two/{id}(id=${payment.id})}">Go</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/saveFees/three/{id}(id=${payment.id})}">Go</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/saveFees/four/{id}(id=${payment.id})}">Go</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/update/{id}(id=${payment.id})}">Edit</a>
+        </td>
     </tr>
     </tbody>
 </table>

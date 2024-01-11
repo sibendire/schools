@@ -3,6 +3,7 @@ package com.schools.school.controller;
 import com.schools.school.entity.*;
 import com.schools.school.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -79,9 +80,10 @@ public class StudentRegistrationController {
     }
 
     @RequestMapping("/api/student/list")
-    public String listStudentRegistered(Model model) {
-        List<StudentRegistration> students = studentRegistrationService.getAllStudents();
+    public String listStudentRegistered(Model model, @Param("keyword") String keyword) {
+        List<StudentRegistration> students = studentRegistrationService.getAllStudents(keyword);
         model.addAttribute("students", students);
+        model.addAttribute("keyword",keyword);
         return "student_List";
     }
 
@@ -178,6 +180,10 @@ public class StudentRegistrationController {
             throw new IllegalArgumentException("student not found by the id");
         }
         studentRegistrationService.deleteStudentRecordById(id);
+        if (!seniorOneService.existById(id)){
+            throw new IllegalArgumentException("senior one record not found");
+        }
+        seniorOneService.deleteSeniorOneById(id);
         return "redirect:/api/student/list";
     }
 
@@ -235,7 +241,7 @@ public class StudentRegistrationController {
         return "editSenior_one";
     }
 
-    @GetMapping("/delete/seniorOne/{id}")
+    @RequestMapping("/delete/seniorOne/{id}")
     public String deleteSeniorOne(@PathVariable("id") Long id) {
         if (!seniorOneService.existById(id)) {
             throw new IllegalArgumentException("No records found with the ID in senior One");
