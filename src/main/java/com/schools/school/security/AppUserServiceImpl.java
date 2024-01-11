@@ -11,7 +11,7 @@
 //
 //@AllArgsConstructor
 //@Service
-//public class AppUserServiceImpl implements AppUserService {
+//public class AppUserServiceImpl {
 //
 //    private final AppUserRepository appUserRepository;
 //    @Override

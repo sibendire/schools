@@ -1,8 +1,7 @@
 package com.schools.school.entity;
 
 
-
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Lib")
