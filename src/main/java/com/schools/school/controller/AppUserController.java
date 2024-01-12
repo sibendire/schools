@@ -1,7 +1,5 @@
 package com.schools.school.controller;
 
-//import com.schools.school.entity.AppUser;
-//import com.schools.school.service.AppUserService;
 import com.schools.school.entity.AppUser;
 import com.schools.school.repository.AppUserRepository;
 import lombok.AllArgsConstructor;

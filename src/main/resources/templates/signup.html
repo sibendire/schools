@@ -8,16 +8,7 @@
     <title>Student Admission</title>
 </head>
 <body>
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-dark">-->
-<!--    <div class="container-fluid">-->
-<!--        <div class="d-flex align-items-center">-->
-<!--            <a class="nav-link me-3" href="api">Home</a>-->
-<!--            <a class="nav-link active" aria-current="page" href="teacher/list">List of teachers</a>-->
-<!--            <a class="nav-link" href="my_book">My Books</a>-->
-<!--        </div>-->
-<!--        <a class="nav-link" href="teacherForm">New Teacher </a>-->
-<!--    </div>-->
-<!--</nav>-->
+
 <div class="container my-2">
     <h1 class="text-center p-3">FILL THIS FORM TO CREATE ACCOUNT</h1>
     <form th:action="@{/api/save/signup}" method="post" th:object="${appUser}">
