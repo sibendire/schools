@@ -2,6 +2,8 @@ package com.schools.school.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Students")
@@ -21,6 +23,9 @@ public class StudentRegistration {
     @Column(name = "Date_of_Birth")
     private String studentDateOfBirth;
     @Column(name = "NIN",unique = true,length = 17)
+    @Size(max = 14,min = 14, message = "NIN should be 14 Digit")
+    @Pattern(regexp = "^[0-9]{14}$", message = "Please Enter Valid Uganda NIN")
+
     private String studentNationalIdentificationNumberNIN;
     @Column(name = "gender")
     private String studentGender;
