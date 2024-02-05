@@ -50,8 +50,11 @@ import java.util.Optional;
         }
 
         @Override
-        public List<ParentPortal> getAllParents() {
-            return parentPortalRepository.findAll();
+        public List<ParentPortal> getAllParents(String Keyword) {
+            if (Keyword != null ){
+                return parentPortalRepository.search(Keyword);
+            }
+            return(List<ParentPortal>) parentPortalRepository.findAll();
         }
 
         @Override

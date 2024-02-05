@@ -1,11 +1,16 @@
 package com.schools.school.controller;
 
 import com.schools.school.entity.ParentPortal;
+import com.schools.school.entity.StudentRegistration;
 import com.schools.school.service.ParentPortalService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @Controller
 @AllArgsConstructor
 public class ParentController {
@@ -25,10 +30,18 @@ public class ParentController {
     }
 
     @RequestMapping("/api/parent/list")
-    public String listParents(Model model) {
-        model.addAttribute("parents", parentPortalService.getAllParents());
+    public String listParents(Model model,@Param("keyword") String Keyword) {
+        model.addAttribute("parents", parentPortalService.getAllParents(Keyword));
+        model.addAttribute("Keyword",Keyword);
         return "parent_list";
     }
+//    @RequestMapping("/api/student/list")
+//    public String listStudentRegistered(Model model, @Param("keyword") String keyword) {
+//        List<ParentPortal> parents = studentRegistrationService.getAllStudents(keyword);
+//        model.addAttribute("parents", parents);
+//        model.addAttribute("keyword",keyword);
+//        return "student_List";
+//    }
 
     @RequestMapping("/update/parent/{id}")
     public String editParentRecord(@PathVariable("id") Long id, Model model) {

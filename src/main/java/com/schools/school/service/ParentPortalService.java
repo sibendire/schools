@@ -16,7 +16,7 @@ public interface ParentPortalService {
 
     ParentPortal messageAllParents(ParentPortal parentPortal);
 
-    List<ParentPortal> getAllParents();
+    List<ParentPortal> getAllParents(String Keyword);
 
     void deleteParentById(Long id);
 
