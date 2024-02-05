@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AppUserController {
     @Autowired
     private  final AppUserRepository appUserRepository;
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(){
         return "index";
     }

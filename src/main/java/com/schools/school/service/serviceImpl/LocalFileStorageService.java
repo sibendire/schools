@@ -16,7 +16,7 @@ public class LocalFileStorageService implements FileStorageService {
     private String uploadDir;  // Set this in your application.properties or application.yml
 
     @Override
-    public void saveFile(String fileName, MultipartFile file) {
+    public void saveFile(String fileName, String name, MultipartFile file) {
         try {
             Path uploadPath = Paths.get(uploadDir);
 

@@ -61,7 +61,8 @@ public class StudentRegistrationController {
     }
 
     @PostMapping("/saveStudent")
-    public String saveStudent( StudentRegistration studentRegistration,@RequestParam("studentPhoto") MultipartFile multipartFile) throws IOException {
+    public String saveStudent( StudentRegistration studentRegistration,@RequestParam("studentPhoto")
+    MultipartFile multipartFile) throws IOException {
         if (!multipartFile.isEmpty()) {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             studentRegistration.setStudentPhotoPath(fileName);
@@ -78,6 +79,21 @@ public class StudentRegistrationController {
         studentRegistrationService.saveStudentInformation(studentRegistration);
         return "redirect:/api/student/list";
     }
+//@PostMapping("/saveStudent")
+//public String saveStudent(@ModelAttribute StudentRegistration studentRegistration,
+//                          @RequestParam("studentPhoto") MultipartFile multipartFile) throws IOException {
+//
+//    if (!multipartFile.isEmpty()) {
+//        // Save the image file
+//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//        studentRegistration.setStudentPhotoPath("photo/" + fileName);
+//        fileStorageService.saveFile("photo", fileName, multipartFile);
+//    }
+//
+//    studentRegistrationService.saveStudentInformation(studentRegistration);
+//    return "redirect:/api/student/list";
+//}
+
 
     @RequestMapping("/api/student/list")
     public String listStudentRegistered(Model model, @Param("keyword") String keyword) {
@@ -114,7 +130,6 @@ public class StudentRegistrationController {
 //        }
 //        return studentRegistration;
 //    }
-
 
 
 
@@ -192,11 +207,11 @@ public class StudentRegistrationController {
         List<StudentRegistration> students = studentRegistrationService.getByGender(gender);
 
         if (students.isEmpty()) {
-            return "noStudentsFound"; // This should be a Thymeleaf template name indicating no students found
+            return "noStudentsFound";
         }
 
         model.addAttribute("students", students);
-        return "gender"; // This should be a Thymeleaf template name displaying the students
+        return "gender";
     }
 
 
@@ -207,7 +222,7 @@ public class StudentRegistrationController {
         model.addAttribute("students", list);
         return "senior_List";
     }
-    // this method is tested
+
 
     @RequestMapping("/saveToS1/{id}")
     public String getSeniorOneList(@PathVariable("id") Long id) {

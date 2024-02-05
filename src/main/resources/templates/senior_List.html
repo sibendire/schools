@@ -15,7 +15,13 @@
             <a class="nav-link me-3" href="api">Home</a>
             <a class="nav-link" href="seniorOne">Senior One</a>
         </div>
-        <a class="nav-link" href="api/student/edit/{id}">New Student Register</a>
+        <form action="/api/student/list" method="GET" class="ms-auto d-flex align-items-center">
+            <div class="input-group rounded">
+                <input type="text" class="form-control rounded" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <button type="submit" class="btn btn-info">Search</button>
+                <button type="reset" class="btn btn-info">Reset</button>
+            </div>
+        </form>
     </div>
 </nav>
 <h1 class="text-center m-3">LIST OF SENIOR  ONE STUDENTS </h1>
@@ -27,7 +33,7 @@
         <th scope="col">O Name</th>
         <th scope="col">LName</th>
         <th scope="col">D.O.B</th>
-        <th scope="col">NIN</th>
+<!--        <th scope="col">NIN</th>-->
         <th scope="col">Gender</th>
         <th scope="col">Class</th>
         <th scope="col">Fees</th>
@@ -48,7 +54,7 @@
         <td th:text="${student.studentMidName}"></td>
         <td th:text="${student.studentLastName}"></td>
         <td th:text="${student.studentDateOfBirth}"></td>
-        <td th:text="${student.studentNationalIdentificationNumberNIN}"></td>
+<!--        <td th:text="${student.studentNationalIdentificationNumberNIN}"></td>-->
         <td th:text="${student.studentGender}"></td>
         <td th:text="${student.studentClass}"></td>
         <td th:text="${student.feesToBeePaid}"></td>
@@ -65,7 +71,7 @@
                        <option value="">DELETE</option>
                        <option>EDIT</option>
                    </select>
-                    <a class="btn btn-secondary btn-sm" th:href="@/delete/seniorOne/{id}(id=${student.id})}">Delete</a>
+<!--                    <a class="btn btn-secondary btn-sm" th:href="@/delete/seniorOne/{id}(id=${student.id})}">Delete</a>-->
                    <a class="btn btn-secondary btn-sm"  th:href="@{/seniorOne/update/{id}(id=${student.id})}">Edit</a>
 
                 </td>

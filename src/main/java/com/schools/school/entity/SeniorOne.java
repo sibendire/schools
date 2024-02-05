@@ -19,7 +19,7 @@ public class SeniorOne {
     private String studentLastName;
     @Column(name = "Date_of_Birth")
     private String studentDateOfBirth;
-    @Column(name = "NIN",unique = true)
+    @Column(name = "NIN",nullable = false,unique = true,length = 14)
     private String studentNationalIdentificationNumberNIN;
     @Column(name = "Gender")
     private String studentGender;

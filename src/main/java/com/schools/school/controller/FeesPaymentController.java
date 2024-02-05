@@ -97,7 +97,7 @@ public class FeesPaymentController {
                 feesPayment.getTerm());
         seniorOnePayModelService.saveSeniorOneFee(seniorOnePayModel);
         selectedStudent.add(feesPayment);
-        return "SeniorOne_fees";
+        return "redirect:/senior1/list";
     }
     @GetMapping("/senior1/list")
     public String getAllSeniorOne(Model model){
@@ -120,7 +120,7 @@ public class FeesPaymentController {
                 feesPayment.getTerm());
         seniorTwoPayModelService.saveSeniorTwoFee(seniorTwoPayModel);
         selectedStudent.add(feesPayment);
-        return "redirect:/Senior2/list";
+        return "redirect:/senior2/list";
     }
     @GetMapping("/senior2/list")
     public String getAllSeniorTwo(Model model){
@@ -142,7 +142,7 @@ public class FeesPaymentController {
                 feesPayment.getTerm());
         seniorThreePayModelService.saveSeniorThreeFee(seniorThreePayModel);
         selectedStudent.add(feesPayment);
-        return "SeniorThreeFees_fees";
+        return "redirect:/senior3/list";
     }
     @GetMapping("/senior3/list")
     public String getAllSeniorThree(Model model){
@@ -164,7 +164,7 @@ public class FeesPaymentController {
                 feesPayment.getTerm());
         seniorFourPayModelService.saveSeniorFourFee(seniorFourPayModel);
         selectedStudent.add(feesPayment);
-        return "SeniorFour_fees";
+        return "redirect:/senior4/list";
     }
     @GetMapping("/senior4/list")
     public String getAllSeniorFour(Model model){

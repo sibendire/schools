@@ -18,13 +18,13 @@ public class ParentPortal {
     private String midName;
     @Column(name = "last_Name")
     private String lastName;
-    @Column(name = "email", unique = true)
+    @Column(name = "email",nullable = false, unique = true,length = 45)
     private String email;
     @Column(name = "phone_Number")
     private String phoneNumber;
-    @Column(name = "photo")
+    @Column(name = "photo",nullable = false,unique = true,length = 10)
     private String parentPhoto;
-    @Column(name = "nin", unique = true)
+    @Column(name = "nin",nullable = false, unique = true,length = 14)
     private String nationalIdentificationNumber;
     @Column(name = "gender")
     private String gender;

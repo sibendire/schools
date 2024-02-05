@@ -17,13 +17,13 @@ public class Teachers {
     private String lastName;
     @Column(name = "gender")
     private String gender;
-    @Column(name = "email", unique = true)
+    @Column(name = "email",nullable = false, unique = true,length = 45)
     private String email;
-    @Column(name = "phone_Number")
+    @Column(name = "phone_Number",nullable = false,unique = true,length = 10)
     private String phoneNumber;
     @Column(name = "teachers_Photo")
     private String teachersPhoto;
-    @Column(name = "NIN", unique = true, length = 14)
+    @Column(name = "NIN",nullable = false, unique = true, length = 14)
     private String nationalIdentificationNumber;
     @Column(name = "birth_Date")
     private String dateOfBirth;

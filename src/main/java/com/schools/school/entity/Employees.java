@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,6 +24,7 @@ public class Employees {
     private String firstName;
     private String otherName;
     private String lastName;
+    @Column(nullable = false, unique = true, length = 45)
     private String email;
     private String department;
     private double salary;
