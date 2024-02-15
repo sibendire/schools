@@ -13,15 +13,17 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 
 public class FeesPaymentServiceImpl implements FeesPaymentService {
     private final FeesPaymentRepository feesPaymentRepository;
     private final InstallmentRepository installmentRepository;
-   private static final double TOTAL_FEES_LIMIT = 1_000_000.00;
+    private static final double TOTAL_FEES_LIMIT = 1_000_000.00;
+
     @Autowired
     public FeesPaymentServiceImpl(FeesPaymentRepository feesPaymentRepository,
-                                  InstallmentRepository installmentRepository ) {
+                                  InstallmentRepository installmentRepository) {
         this.feesPaymentRepository = feesPaymentRepository;
         this.installmentRepository = installmentRepository;
     }
@@ -90,8 +92,11 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
 
 
     @Override
-    public List<FeesPayment> getAllFeesPayments() {
-        return feesPaymentRepository.findAll();
+    public List<FeesPayment> getAllFeesPayments(String keyword) {
+        if (keyword != null){
+            return feesPaymentRepository.search(keyword);
+        }
+        return(List<FeesPayment>) feesPaymentRepository.findAll();
     }
 
     @Override
@@ -102,7 +107,7 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
 
     @Override
     public FeesPayment saveFees(FeesPayment feesPayment) {
-     return feesPaymentRepository.save(feesPayment);
+        return feesPaymentRepository.save(feesPayment);
     }
 
 
@@ -126,7 +131,7 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
 
     @Override
     public void deleteFeesPayment(Long id) {
-        if (!feesPaymentRepository.existsById(id)){
+        if (!feesPaymentRepository.existsById(id)) {
             throw new IllegalArgumentException("No payment made by the id");
         }
         feesPaymentRepository.deleteById(id);
@@ -134,7 +139,7 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
 
     @Override
     public List<FeesPayment> getBalance(double feeBalance) {
-        return null;
+        return  feesPaymentRepository.findAll();
     }
 
     @Override

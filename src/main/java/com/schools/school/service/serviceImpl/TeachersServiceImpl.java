@@ -10,18 +10,22 @@ import java.util.List;
 
 
 @AllArgsConstructor
-    @Service
-    public class TeachersServiceImpl implements TeachersService {
-        private final TeachersRepository teachersRepository;
+@Service
+public class TeachersServiceImpl implements TeachersService {
+    private final TeachersRepository teachersRepository;
+
     @Override
     public Teachers saveTeacher(Teachers teachers) {
         return teachersRepository.save(teachers);
     }
 
-        @Override
-        public List<Teachers> getAllTeachers() {
-            return teachersRepository.findAll();
+    @Override
+    public List<Teachers> getAllTeachers(String teach) {
+        if (teach != null) {
+            return teachersRepository.search(teach);
         }
+        return (List<Teachers>) teachersRepository.findAll();
+    }
 
 //    @Override
 //    public Teachers getTeacherByName(String teachers) {
@@ -30,43 +34,43 @@ import java.util.List;
 
 
     @Override
-        public Teachers updateTeacherById(Long id) {
-            return teachersRepository.save(updateTeacherById(id));
-        }
+    public Teachers updateTeacherById(Long id) {
+        return teachersRepository.save(updateTeacherById(id));
+    }
 
-        @Override
-        public Teachers getTeacherById(Long id) {
-            return teachersRepository.findById(id).get();
-        }
+    @Override
+    public Teachers getTeacherById(Long id) {
+        return teachersRepository.findById(id).get();
+    }
 
-        @Override
-        public Teachers getTeacherSalaryById(Long id) {
-            return teachersRepository.findById(id).get();
-        }
+    @Override
+    public Teachers getTeacherSalaryById(Long id) {
+        return teachersRepository.findById(id).get();
+    }
 
-        @Override
-        public Teachers updateSalaryById(Long id) {
-            return teachersRepository.save(updateSalaryById(id));
-        }
+    @Override
+    public Teachers updateSalaryById(Long id) {
+        return teachersRepository.save(updateSalaryById(id));
+    }
 
-        @Override
-        public List<Teachers> getAllTeachersSalary() {
-            return teachersRepository.findAll();
-        }
+    @Override
+    public List<Teachers> getAllTeachersSalary() {
+        return  teachersRepository.findAll();
+    }
 
-        @Override
-        public boolean deleteTeachersById(Long id) {
+    @Override
+    public boolean deleteTeachersById(Long id) {
         if (teachersRepository.existsById(id)) {
             teachersRepository.deleteById(id);
             return true;
         }
-            return false;
-        }
+        return false;
+    }
 
-        @Override
-        public long getTeacherBalance(double balance) {
-            return teachersRepository.count();
-        }
+    @Override
+    public long getTeacherBalance(double balance) {
+        return teachersRepository.count();
+    }
 
     @Override
     public boolean existById(Long id) {

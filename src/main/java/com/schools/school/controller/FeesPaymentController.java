@@ -3,6 +3,7 @@ package com.schools.school.controller;
 import com.schools.school.entity.*;
 import com.schools.school.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +42,10 @@ public class FeesPaymentController {
         this.seniorFourPayModelService = seniorFourPayModelService;
     }
 
-    @GetMapping("/all")
-    public List<FeesPayment> getAllFeesPayments() {
-        return feesPaymentService.getAllFeesPayments();
-    }
+//    @GetMapping("/all")
+//    public List<FeesPayment> getAllFeesPayments() {
+//        return feesPaymentService.getAllFeesPayments();
+//    }
 
     @GetMapping("/{id}")
     public FeesPayment getFeesPaymentById(@PathVariable Long id) {
@@ -67,8 +68,9 @@ public class FeesPaymentController {
     }
 
     @GetMapping("/fees/list")
-    public String listStudentPayment(Model model) {
-        model.addAttribute("payments", feesPaymentService.getAllFeesPayments());
+    public String listStudentPayment(Model model,@Param("keyword") String keyword) {
+        model.addAttribute("payments", feesPaymentService.getAllFeesPayments(keyword));
+        model.addAttribute("keyword",keyword);
         return "list_payment";
     }
 
@@ -100,9 +102,10 @@ public class FeesPaymentController {
         return "redirect:/senior1/list";
     }
     @GetMapping("/senior1/list")
-    public String getAllSeniorOne(Model model){
-        List<SeniorOnePayModel> list = seniorOnePayModelService.allSeniorStudentPaid();
+    public String getAllSeniorOne(Model model,@Param("one") String one){
+        List<SeniorOnePayModel> list = seniorOnePayModelService.allSeniorStudentPaid(one);
         model.addAttribute("payments",list);
+        model.addAttribute("one",one);
         return "seniorOneFees_list";
     }
 
@@ -123,9 +126,10 @@ public class FeesPaymentController {
         return "redirect:/senior2/list";
     }
     @GetMapping("/senior2/list")
-    public String getAllSeniorTwo(Model model){
-        List<SeniorTwoPayModel> list = seniorTwoPayModelService.allSeniorStudentPaid();
+    public String getAllSeniorTwo(Model model,@Param("two") String two){
+        List<SeniorTwoPayModel> list = seniorTwoPayModelService.allSeniorStudentPaid(two);
         model.addAttribute("payments",list);
+        model.addAttribute("two",two);
         return "seniorTwoFees_list";
     }
     @RequestMapping("/saveFees/three/{id}")
@@ -145,9 +149,10 @@ public class FeesPaymentController {
         return "redirect:/senior3/list";
     }
     @GetMapping("/senior3/list")
-    public String getAllSeniorThree(Model model){
-        List<SeniorThreePayModel> list = seniorThreePayModelService.allSeniorStudentPaid();
+    public String getAllSeniorThree(Model model,@Param("three") String three){
+        List<SeniorThreePayModel> list = seniorThreePayModelService.allSeniorStudentPaid(three);
         model.addAttribute("payments",list);
+        model.addAttribute("three",three);
         return "seniorThreeFees_list";
     }
     @RequestMapping("/saveFees/four/{id}")
@@ -167,9 +172,10 @@ public class FeesPaymentController {
         return "redirect:/senior4/list";
     }
     @GetMapping("/senior4/list")
-    public String getAllSeniorFour(Model model){
-        List<SeniorFourPayModel> list = seniorFourPayModelService.allSeniorStudentPaid();
+    public String getAllSeniorFour(Model model, @Param("four") String four){
+        List<SeniorFourPayModel> list = seniorFourPayModelService.allSeniorStudentPaid(four);
         model.addAttribute("payments",list);
+        model.addAttribute("four",four);
         return "seniorFourFees_list";
     }
 }

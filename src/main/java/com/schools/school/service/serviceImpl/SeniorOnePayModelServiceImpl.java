@@ -22,7 +22,10 @@ public class SeniorOnePayModelServiceImpl implements SeniorOnePayModelService {
     }
 
     @Override
-    public List<SeniorOnePayModel> allSeniorStudentPaid() {
-        return seniorOnePayModelRepository.findAll();
+    public List<SeniorOnePayModel> allSeniorStudentPaid(String one) {
+        if (one != null){
+            return seniorOnePayModelRepository.search(one);
+        }
+        return (List<SeniorOnePayModel>) seniorOnePayModelRepository.findAll();
     }
 }

@@ -8,5 +8,5 @@ public interface SeniorTwoService {
     void saveToSeniorTwo(SeniorTwo seniorTwo);
 
 
-    List<SeniorTwo> getAllSeniorList();
+    List<SeniorTwo> getAllSeniorList(String two);
 }

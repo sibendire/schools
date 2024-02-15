@@ -7,17 +7,22 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class SeniorFourPayModelServiceImpl implements SeniorFourPayModelService {
     private final SeniorFourPayModelRepository seniorFourPayModelRepository;
+
     @Override
     public void saveSeniorFourFee(SeniorFourPayModel seniorfourPayModel) {
-        seniorFourPayModelRepository.save(seniorfourPayModel) ;
+        seniorFourPayModelRepository.save(seniorfourPayModel);
     }
 
     @Override
-    public List<SeniorFourPayModel> allSeniorStudentPaid() {
-        return seniorFourPayModelRepository.findAll();
+    public List<SeniorFourPayModel> allSeniorStudentPaid(String four) {
+        if (four != null) {
+            return seniorFourPayModelRepository.search(four);
+        }
+        return (List<SeniorFourPayModel>) seniorFourPayModelRepository.findAll();
     }
 }

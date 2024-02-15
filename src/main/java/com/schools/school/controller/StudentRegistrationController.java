@@ -265,10 +265,11 @@ public class StudentRegistrationController {
         return "records deleted successfully";
     }
 
-    @GetMapping("/seniorTwo")
-    public String getSeniorTwo(Model model) {
-        List<SeniorTwo> list = seniorTwoService.getAllSeniorList();
+    @RequestMapping("/seniorTwo")
+    public String getSeniorTwo(Model model,@Param("two") String two) {
+        List<SeniorTwo> list = seniorTwoService.getAllSeniorList(two);
         model.addAttribute("students", list);
+        model.addAttribute("two",two);
         return "seniorTwo_List";
     }
 

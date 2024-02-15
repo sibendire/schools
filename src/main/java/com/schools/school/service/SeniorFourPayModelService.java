@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface SeniorFourPayModelService {
     void saveSeniorFourFee(SeniorFourPayModel seniorfourPayModel);
-    List<SeniorFourPayModel> allSeniorStudentPaid();
+    List<SeniorFourPayModel> allSeniorStudentPaid(String four);
 }

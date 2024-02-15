@@ -15,10 +15,11 @@
             <a class="nav-link active" aria-current="page" href="available_books">Available Student</a>
             <a class="nav-link" href="my_book">My Books</a>
         </div>
-<!--        <a class="nav-link" href="book_register">New Student Register</a>-->
-        <form action="/api/student/list" method="GET" class="ms-auto d-flex align-items-center">
+        <!--        <a class="nav-link" href="book_register">New Student Register</a>-->
+        <form action="/teacher/list" method="GET" class="ms-auto d-flex align-items-center">
             <div class="input-group rounded">
-                <input type="text" class="form-control rounded" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <input type="text" class="form-control rounded" name="teach" placeholder="Search" aria-label="Search"
+                       aria-describedby="search-addon"/>
                 <button type="submit" class="btn btn-info">Search</button>
                 <button type="reset" class="btn btn-info">Reset</button>
             </div>

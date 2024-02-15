@@ -17,7 +17,10 @@ public class SeniorThreePayModelServiceImpl implements SeniorThreePayModelServic
     }
 
     @Override
-    public List<SeniorThreePayModel> allSeniorStudentPaid() {
-        return seniorThreePayModelRepository.findAll();
+    public List<SeniorThreePayModel> allSeniorStudentPaid(String three) {
+        if (three != null){
+            return seniorThreePayModelRepository.search(three);
+        }
+        return(List<SeniorThreePayModel>) seniorThreePayModelRepository.findAll();
     }
 }

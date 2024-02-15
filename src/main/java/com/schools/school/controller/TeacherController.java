@@ -3,6 +3,7 @@ package com.schools.school.controller;
 
 import com.schools.school.entity.Teachers;
 import com.schools.school.service.TeachersService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,9 @@ public class TeacherController {
 
     // this method is tested
     @RequestMapping("/teacher/list")
-    public String listTeachers(Model model) {
-        model.addAttribute("teachers", teachersService.getAllTeachers());
+    public String listTeachers(Model model,@Param ("teach") String teach) {
+        model.addAttribute("teachers", teachersService.getAllTeachers(teach));
+        model.addAttribute("teach",teach);
         return "teachers_list";
     }
 
@@ -48,6 +50,7 @@ public class TeacherController {
     @RequestMapping("/teacher/salary")
     public String getTeachersSalary(Model model) {
         model.addAttribute("teachersSalary", teachersService.getAllTeachersSalary());
+//        model.addAttribute("Key",Key);
         return "list_salary";
     }
 //    @GetMapping("/get/teacher/name")

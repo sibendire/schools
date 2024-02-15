@@ -12,7 +12,7 @@ public interface FeesPaymentService {
 
     double calculateFeeBalanceForStudent(Long feesPaymentId, double installmentAmount);
 
-    List<FeesPayment> getAllFeesPayments();
+    List<FeesPayment> getAllFeesPayments(String keyword);
     FeesPayment getFeesPaymentById(Long id);
     FeesPayment saveFees(FeesPayment feesPayment);
     void updateFeesPayment( FeesPayment feesPayment);

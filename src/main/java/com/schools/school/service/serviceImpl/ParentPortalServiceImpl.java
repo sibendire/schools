@@ -50,9 +50,9 @@ import java.util.Optional;
         }
 
         @Override
-        public List<ParentPortal> getAllParents(String Keyword) {
-            if (Keyword != null ){
-                return parentPortalRepository.search(Keyword);
+        public List<ParentPortal> getAllParents(String word) {
+            if (word != null ){
+                return parentPortalRepository.search(word);
             }
             return(List<ParentPortal>) parentPortalRepository.findAll();
         }

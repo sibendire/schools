@@ -22,8 +22,11 @@ public class EmployeesServiceImpl implements EmployeesService {
     }
 
     @Override
-    public List<Employees> getEmployeesList() {
-        return employeeRepository.findAll();
+    public List<Employees> getEmployeesList(String keyword) {
+        if (keyword != null){
+            return employeeRepository.search(keyword);
+        }
+        return(List<Employees>) employeeRepository.findAll();
     }
 
     @Override

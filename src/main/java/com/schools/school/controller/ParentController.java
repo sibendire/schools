@@ -30,9 +30,9 @@ public class ParentController {
     }
 
     @RequestMapping("/api/parent/list")
-    public String listParents(Model model,@Param("keyword") String Keyword) {
-        model.addAttribute("parents", parentPortalService.getAllParents(Keyword));
-        model.addAttribute("Keyword",Keyword);
+    public String listParents(Model model,@Param("word") String word) {
+        model.addAttribute("parents", parentPortalService.getAllParents(word));
+        model.addAttribute("words",word);
         return "parent_list";
     }
 //    @RequestMapping("/api/student/list")

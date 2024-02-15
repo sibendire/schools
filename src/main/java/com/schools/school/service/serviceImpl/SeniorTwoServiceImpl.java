@@ -24,7 +24,10 @@ public class SeniorTwoServiceImpl implements SeniorTwoService {
     }
 
     @Override
-    public List<SeniorTwo> getAllSeniorList() {
-        return seniorTwoRepository.findAll();
+    public List<SeniorTwo> getAllSeniorList(String two) {
+        if (two != null){
+            return seniorTwoRepository.search(two);
+        }
+        return (List<SeniorTwo>)seniorTwoRepository.findAll();
     }
 }

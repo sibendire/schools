@@ -3,6 +3,7 @@ package com.schools.school.controller;
 import com.schools.school.entity.Employees;
 import com.schools.school.service.EmployeesService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,10 @@ public class Salary {
     }
 
     @GetMapping("/list")
-    public String getListPaidStaff(Model model) {
-        model.addAttribute("employees",employeesService.getEmployeesList());
+    public String getListPaidStaff(Model model, @Param("keyword") String keyword) {
+        model.addAttribute("employees",employeesService.getEmployeesList(keyword));
        // employeesService.calculateEmployeeSalary(new Employees());
+        model.addAttribute("keyword",keyword);
         return "paidList";
     }
 /// needs to be checked....................>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -65,9 +67,9 @@ public class Salary {
     // In your controller or a dedicated controller
     ///tested
     @GetMapping("/calculateSalaries")
-    public String calculateSalaries() {
+    public String calculateSalaries(@Param("keyword") String keyword) {
         // ...
-        List<Employees> employeesList = employeesService.getEmployeesList();
+        List<Employees> employeesList = employeesService.getEmployeesList(keyword);
         for (Employees employee : employeesList) {
             employeesService.calculateEmployeeSalary(employee);
         }

@@ -17,7 +17,10 @@ public class SeniorTwoPayModelServiceImpl implements SeniorTwoPayModelService {
     }
 
     @Override
-    public List<SeniorTwoPayModel> allSeniorStudentPaid() {
-        return seniorTwoPayModelRepository.findAll();
+    public List<SeniorTwoPayModel> allSeniorStudentPaid(String two) {
+        if (two != null){
+            return seniorTwoPayModelRepository.search(two);
+        }
+        return(List<SeniorTwoPayModel>) seniorTwoPayModelRepository.findAll();
     }
 }
