@@ -15,7 +15,13 @@
             <a class="nav-link active" aria-current="page" href="/calculateSalaries">List of Paid employed</a>
             <a class="nav-link" href="/pendingLit">Pending payment</a>
         </div>
-        <a class="nav-link" href="paymentForm">New Student pay</a>
+        <form action="/list" method="GET" class="ms-auto d-flex align-items-center">
+            <div class="input-group rounded">
+                <input type="text" class="form-control rounded" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <button type="submit" class="btn btn-info">Search</button>
+                <button type="reset" class="btn btn-info">Reset</button>
+            </div>
+        </form>
     </div>
 </nav>
 <div class="container mb-4 bg-light">

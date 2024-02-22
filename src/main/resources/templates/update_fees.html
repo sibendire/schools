@@ -12,25 +12,20 @@
     <div class="container-fluid">
         <div class="d-flex align-items-center">
             <a class="nav-link me-3" href="api">Home</a>
-            <a class="nav-link active" aria-current="page" href="/fees/list">All student paid</a>
+            <a class="nav-link active" aria-current="page" href="fees/list">All student paid</a>
             <a class="nav-link" href="my_book">Update Account</a>
         </div>
-        <form action="/fees/list" method="GET" class="ms-auto d-flex align-items-center">
-            <div class="input-group rounded">
-                <input type="text" class="form-control rounded" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="submit" class="btn btn-info">Search</button>
-                <button type="reset" class="btn btn-info">Reset</button>
-            </div>
-        </form>
+        <a class="nav-link" href="paymentForm">New Student pay</a>
     </div>
 </nav>
 <div class="container mb-4 bg-light">
     <h1 class="text-center p-3">FEES PAYMENT FORM</h1>
     <form th:action="@{/saveFees}" method="post" th:object="${payment}">
+        <input type="hidden" name="id" th:value="${payments.id}">
         <div class="row g-3">
             <div class="col-md-5">
                 <label for="classes" class="form-label">Select student class</label>
-                <select class="form-select" id="classes" name="classRoom" required>
+                <select class="form-select" id="classes" name="classRoom" required th:value="${payments.classRoom}">
                     <option value="s1">S.1</option>
                     <option value="s2">S.2</option>
                     <option value="s3">S.3</option>
@@ -40,7 +35,7 @@
             </div>
             <div class="col-md-5">
                 <label for="terms" class="form-label">Select student term </label>
-                <select class="form-select" id="terms" name="term" required>
+                <select class="form-select" id="terms" name="term" required th:value="${payments.term}">
                     <option value="one">ONE</option>
                     <option value="two">TwO</option>
                     <option value="three">THREE</option>
@@ -50,38 +45,39 @@
             <div class="col-md-5">
                 <label for="firstName" class="form-label">Fill in student first name</label>
                 <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="firstName"
-                       required>
+                       required th:value="${payments.firstName}">
             </div>
 
             <div class="col-md-5">
                 <label for="otherName" class="form-label">Fill in student mid name</label>
-                <input type="text" class="form-control" id="otherName" aria-describedby="emailHelp" name="minName">
+                <input type="text" class="form-control" id="otherName" aria-describedby="emailHelp" name="minName"
+                th:value="${payments.minName}">
             </div>
             <div class="col-md-5">
                 <label for="lastName" class="form-label">Fill in student last name</label>
                 <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name="lastName"
-                       required>
+                       required th:value="${payments.lastName}">
             </div>
             <div class="col-md-5">
                 <label for="date" class="form-label">Provide Date of payment</label>
                 <input type="date" class="form-control" id="date" aria-describedby="emailHelp" name="feesOfPayment"
-                       required>
+                       required th:value="${payments.feesOfPayment}">
             </div>
 
             <div class="col-md-5">
                 <label for="amount" class="form-label">Please enter the amount paid </label>
                 <input type="number" step="00.0" class="form-control" id="amount" aria-describedby="emailHelp"
-                       name="feesPaid" required>
+                       name="feesPaid" required th:value="${payments.feesPaid}">
             </div>
-<!--            <div class="col-md-5">-->
-<!--                <label for="balance" class="form-label">Fees Balance </label>-->
-<!--                <input type="number" class="form-control" id="balance" aria-describedby="emailHelp" name="feeBalance"-->
-<!--                       required>-->
-<!--            </div>-->
-          <div class="align-center col-md-3 mt-4 mb-4 ">
-                    <button type="submit" class="btn btn-primary btn-lg p-3">Save</button>
-                    <button type="cancel" class="btn btn-primary btn-lg p-3">Cancel</button>
-                </div>
+            <!--            <div class="col-md-5">-->
+            <!--                <label for="balance" class="form-label">Fees Balance </label>-->
+            <!--                <input type="number" class="form-control" id="balance" aria-describedby="emailHelp" name="feeBalance"-->
+            <!--                       required>-->
+            <!--            </div>-->
+            <div class="align-center col-md-3 mt-4 mb-4 ">
+                <button type="submit" class="btn btn-primary btn-lg p-3">Save</button>
+                <button type="cancel" class="btn btn-primary btn-lg p-3">Cancel</button>
+            </div>
         </div>
     </form>
 </div>

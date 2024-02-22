@@ -108,8 +108,12 @@ public void calculateGrade(GradingStudent gradingStudent) {
     }
 
     @Override
-    public List<GradingStudent> getAllStudents() {
-        return gradingStudentRepository.findAll();
+    public List<GradingStudent> getAllStudents(String keyword) {
+        if (keyword != null){
+            return gradingStudentRepository.search(keyword);
+        }
+
+       return (List<GradingStudent>) gradingStudentRepository.findAll();
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.schools.school.service.GradingStudentService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,23 +51,18 @@ public class GradingStudentController {
     }
 
     @GetMapping("/total/marks")
-    public String getTotalMark(Model model) {
+    public String getTotalMark(Model model, @Param("keyword") String keyword) {
         // Retrieve all students from the service
-        List<GradingStudent> allStudents = gradingStudentService.getAllStudents();
+        List<GradingStudent> allStudents = gradingStudentService.getAllStudents(keyword);
 
          //Calculate grades for each student
         for (GradingStudent student : allStudents) {
             gradingStudentService.calculateGrade(student);
         }
-        // Inside your controller method
-//        for (GradingStudent student : allStudents) {
-//            gradingStudentService.calculateGrade(student);
-//            System.out.println("Student ID: " + student.getId() + ", Grade: " + student.getGrade());
-//        }
-
 
         // Add the list of students to the model
         model.addAttribute("students", allStudents);
+        model.addAttribute("keyword",keyword);
 
         return "mark_list";
     }

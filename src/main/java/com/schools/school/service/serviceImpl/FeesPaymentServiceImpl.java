@@ -111,13 +111,13 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
     }
 
 
-    @Override
-    public void updateFeesPayment(FeesPayment feesPayment) {
+//    @Override
+//    public void updateFeesPayment(FeesPayment feesPayment) {
+//
+//    }
 
-    }
-
     @Override
-    public void updateFeesPayment(@PathVariable long id, FeesPayment feesPayment) {
+    public void updateFeesPayment(long id, FeesPayment feesPayment) {
         FeesPayment existingPayment = feesPaymentRepository.findById(id).get();
         existingPayment.setFirstName(feesPayment.getFirstName());
         existingPayment.setMinName(feesPayment.getMinName());

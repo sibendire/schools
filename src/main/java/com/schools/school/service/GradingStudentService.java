@@ -17,7 +17,7 @@ public interface GradingStudentService {
 
     void deleteMarksById(Long gradingStudentId);
 
-    List<GradingStudent> getAllStudents();
+    List<GradingStudent> getAllStudents(String keyword);
 
     void calculateGradeForStudent(GradingStudent student);
 }

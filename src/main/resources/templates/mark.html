@@ -15,11 +15,17 @@
       <a class="nav-link active" aria-current="page" href="/total/marks">Mark List </a>
       <a class="nav-link" href="my_book">My Books</a>
     </div>
-    <a class="nav-link" href="teacherForm">New Teacher </a>
+    <form action="/total/marks" method="GET" class="ms-auto d-flex align-items-center">
+      <div class="input-group rounded">
+        <input type="text" class="form-control rounded" name="keyword" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button type="submit" class="btn btn-info">Search</button>
+        <button type="reset" class="btn btn-info">Reset</button>
+      </div>
+    </form>
   </div>
 </nav>
 <div class="container my-2">
-  <h1 class="text-center p-3">ADD NEW TEACHER TO STAFF</h1>
+  <h1 class="text-center p-3">ENTER STUDENT MARKS</h1>
   <form th:action="@{/api/save/marks}" method="post" th:object="${marks}">
     <div class="row g-3 bg-light p-3">
       <div class=" col-md-5">

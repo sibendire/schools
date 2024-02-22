@@ -19,8 +19,9 @@
         <a class="nav-link" href="studentForm">New Student Register</a>
     </div>
 </nav>
+<div class="container mb-4 bg-light">
 <h1 class="text-center">PARENT DETAILS </h1>
-<div class="container my-2" style="border: 1px solid black;">
+<!--<div class="container my-2" style="border: 1px solid black;">-->
     <form th:action="@{/saveParent}" method="post" th:object="${parents}">
         <div class="row g-3">
             <div class="col-md-5">
@@ -91,6 +92,7 @@
             </center>
         </div>
     </form>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

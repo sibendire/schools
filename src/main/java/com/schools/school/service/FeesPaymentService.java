@@ -15,9 +15,9 @@ public interface FeesPaymentService {
     List<FeesPayment> getAllFeesPayments(String keyword);
     FeesPayment getFeesPaymentById(Long id);
     FeesPayment saveFees(FeesPayment feesPayment);
-    void updateFeesPayment( FeesPayment feesPayment);
+//    void updateFeesPayment( FeesPayment feesPayment);
 
-    void updateFeesPayment(@PathVariable long id, FeesPayment feesPayment);
+    void updateFeesPayment( long id, FeesPayment feesPayment);
 
     void deleteFeesPayment(Long id);
     List<FeesPayment> getBalance(double feeBalance);

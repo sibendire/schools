@@ -60,12 +60,12 @@
                 <option value="saveFees/four">S.4</option>
                 <option value="update">Edit</option>
             </select>
-
+<!--Needs to checked-->
             <a class="btn btn-secondary btn-sm"  th:href="@{/saveFees/one/{id}(id=${payment.id})}">Go</a>
             <a class="btn btn-secondary btn-sm"  th:href="@{/saveFees/two/{id}(id=${payment.id})}">Go</a>
             <a class="btn btn-secondary btn-sm"  th:href="@{/saveFees/three/{id}(id=${payment.id})}">Go</a>
             <a class="btn btn-secondary btn-sm"  th:href="@{/saveFees/four/{id}(id=${payment.id})}">Go</a>
-            <a class="btn btn-secondary btn-sm"  th:href="@{/update/{id}(id=${payment.id})}">Edit</a>
+            <a class="btn btn-secondary btn-sm"  th:href="@{/updates/{id}(id=${payment.id})}">Edit</a>
         </td>
     </tr>
     </tbody>
