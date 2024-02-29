@@ -3,7 +3,9 @@ package com.schools.school.controller;
 import com.schools.school.entity.AppUser;
 import com.schools.school.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,22 +18,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 public class AppUserController {
     @Autowired
-    private  final AppUserRepository appUserRepository;
+    private final AppUserRepository appUserRepository;
+
     @GetMapping("/")
-    public String home(){
+    public String home() {
         return "index";
     }
+
     @GetMapping("/signup/account")
-    public String signupAccount(Model model){
+    public String signupAccount(Model model) {
         model.addAttribute("appUser", new AppUser());
         return "signup";
     }
+
     @PostMapping("/api/save/signup")
-    public String saveUser(@ModelAttribute("appUser") AppUser appUser){
-        BCryptPasswordEncoder encoder = new  BCryptPasswordEncoder();
+    public String saveUser(@ModelAttribute("appUser") AppUser appUser) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
-      appUserRepository.save(appUser);
-      return "success_page";
+
+        String randomCode = RandomString.make(64);
+        appUser.setVerificationCode(randomCode);
+        appUserRepository.save(appUser);
+        sendVerificationEmail(appUser);
+
+
+        return "success_page";
+    }
+
+    private void sendVerificationEmail(AppUser appUser) {
     }
 }

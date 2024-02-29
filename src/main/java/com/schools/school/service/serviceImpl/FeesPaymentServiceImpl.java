@@ -64,31 +64,33 @@ public class FeesPaymentServiceImpl implements FeesPaymentService {
         return feeBalance;  // Return the updated feeBalance after the installment
     }
 
+/**
 
-//    @Override
-//    public double calculateFeeBalanceForStudent(Long feesPaymentId, double installmentAmount) {
-//        FeesPayment feesPayment = feesPaymentRepository.findById(feesPaymentId).orElseThrow(() -> new IllegalArgumentException("Invalid fees payment ID"));
-//
-//        double currentFeesPaid = feesPayment.getFeesPaid();
-//
-//        // Check if adding the installment exceeds the total fee limit
-//        if (currentFeesPaid + installmentAmount > TOTAL_FEES_LIMIT) {
-//            throw new IllegalArgumentException("Payment limit exceeded. Cannot make further payments.");
-//        }
-//
-//        currentFeesPaid += installmentAmount;
-//        feesPayment.setFeesPaid(currentFeesPaid);
-//
-//        Installment installment = new Installment();
-//        installment.setFeesPayment(feesPayment);
-//        installment.setInstallmentAmount(installmentAmount);
-//        installment.setInstallmentDate(String.valueOf(Date.from(null)));
-//
-//        installmentRepository.save(installment);
-//        feesPaymentRepository.save(feesPayment);
-//
-//        return TOTAL_FEES_LIMIT - currentFeesPaid;  // Return the remaining balance after the installment
-//    }
+    @Override
+    public double calculateFeeBalanceForStudent(Long feesPaymentId, double installmentAmount) {
+        FeesPayment feesPayment = feesPaymentRepository.findById(feesPaymentId).orElseThrow(() -> new IllegalArgumentException("Invalid fees payment ID"));
+
+        double currentFeesPaid = feesPayment.getFeesPaid();
+
+        // Check if adding the installment exceeds the total fee limit
+        if (currentFeesPaid + installmentAmount > TOTAL_FEES_LIMIT) {
+            throw new IllegalArgumentException("Payment limit exceeded. Cannot make further payments.");
+        }
+
+        currentFeesPaid += installmentAmount;
+        feesPayment.setFeesPaid(currentFeesPaid);
+
+        Installment installment = new Installment();
+        installment.setFeesPayment(feesPayment);
+        installment.setInstallmentAmount(installmentAmount);
+        installment.setInstallmentDate(String.valueOf(Date.from(null)));
+
+        installmentRepository.save(installment);
+        feesPaymentRepository.save(feesPayment);
+
+        return TOTAL_FEES_LIMIT - currentFeesPaid;  // Return the remaining balance after the installment
+    }
+    */
 
 
     @Override

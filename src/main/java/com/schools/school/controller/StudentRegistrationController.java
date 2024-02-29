@@ -61,17 +61,17 @@ public class StudentRegistrationController {
     }
 
     @PostMapping("/saveStudent")
-    public String saveStudent( StudentRegistration studentRegistration,@RequestParam("studentPhoto")
+    public String saveStudent(StudentRegistration studentRegistration, @RequestParam("studentPhoto")
     MultipartFile multipartFile) throws IOException {
         if (!multipartFile.isEmpty()) {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             studentRegistration.setStudentPhotoPath(fileName);
             StudentRegistration saveStudent = studentRegistrationService.saveStudentInformation(studentRegistration);
             String upload = "photo/" + studentRegistration.getId();
-            FileUpload.saveFile(upload,fileName,multipartFile);
-        }else {
-            if (studentRegistration.getStudentPhotoPath().isEmpty()){
-                studentRegistration.setStudentPhotoPath(null );
+            FileUpload.saveFile(upload, fileName, multipartFile);
+        } else {
+            if (studentRegistration.getStudentPhotoPath().isEmpty()) {
+                studentRegistration.setStudentPhotoPath(null);
                 studentRegistrationService.saveStudentInformation(studentRegistration);
             }
         }
@@ -79,27 +79,29 @@ public class StudentRegistrationController {
         studentRegistrationService.saveStudentInformation(studentRegistration);
         return "redirect:/api/student/list";
     }
-//@PostMapping("/saveStudent")
-//public String saveStudent(@ModelAttribute StudentRegistration studentRegistration,
-//                          @RequestParam("studentPhoto") MultipartFile multipartFile) throws IOException {
-//
-//    if (!multipartFile.isEmpty()) {
-//        // Save the image file
-//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//        studentRegistration.setStudentPhotoPath("photo/" + fileName);
-//        fileStorageService.saveFile("photo", fileName, multipartFile);
-//    }
-//
-//    studentRegistrationService.saveStudentInformation(studentRegistration);
-//    return "redirect:/api/student/list";
-//}
+
+    /**
+     * @PostMapping("/saveStudent") public String saveStudent(@ModelAttribute StudentRegistration studentRegistration,
+     * @RequestParam("studentPhoto") MultipartFile multipartFile) throws IOException {
+     * <p>
+     * if (!multipartFile.isEmpty()) {
+     * // Save the image file
+     * String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+     * studentRegistration.setStudentPhotoPath("photo/" + fileName);
+     * fileStorageService.saveFile("photo", fileName, multipartFile);
+     * }
+     * <p>
+     * studentRegistrationService.saveStudentInformation(studentRegistration);
+     * return "redirect:/api/student/list";
+     * }
+     */
 
 
     @RequestMapping("/api/student/list")
     public String listStudentRegistered(Model model, @Param("keyword") String keyword) {
         List<StudentRegistration> students = studentRegistrationService.getAllStudents(keyword);
         model.addAttribute("students", students);
-        model.addAttribute("keyword",keyword);
+        model.addAttribute("keyword", keyword);
         return "student_List";
     }
 
@@ -113,80 +115,80 @@ public class StudentRegistrationController {
 
     }
 
-//    @GetMapping("/api/student/single/{id}")
-//    public StudentRegistration getSingleStudent(@PathVariable Long id) {
-//        StudentRegistration studentRegistration = studentRegistrationService.getStudentRegistrationById(id);
-//        if (studentRegistrationService == null) {
-//            throw new IllegalArgumentException("student not registered with an ID " + id);
-//        }
-//        return studentRegistration;
-//    }
-
-//    @GetMapping("/search/name")
-//    public StudentRegistration getStudentByFirstName(@PathVariable String firstName) {
-//        StudentRegistration studentRegistration = studentRegistrationService.getStudentByFirstName(firstName);
-//        if (studentRegistrationService == null) {
-//            throw new IllegalArgumentException("No student name matches your search" + firstName);
-//        }
-//        return studentRegistration;
-//    }
-
+    /**
+     * @GetMapping("/api/student/single/{id}") public StudentRegistration getSingleStudent(@PathVariable Long id) {
+     * StudentRegistration studentRegistration = studentRegistrationService.getStudentRegistrationById(id);
+     * if (studentRegistrationService == null) {
+     * throw new IllegalArgumentException("student not registered with an ID " + id);
+     * }
+     * return studentRegistration;
+     * }
+     * @GetMapping("/search/name") public StudentRegistration getStudentByFirstName(@PathVariable String firstName) {
+     * StudentRegistration studentRegistration = studentRegistrationService.getStudentByFirstName(firstName);
+     * if (studentRegistrationService == null) {
+     * throw new IllegalArgumentException("No student name matches your search" + firstName);
+     * }
+     * return studentRegistration;
+     * }
+     */
 
 
     @RequestMapping("/update/{id}")
     public String updateStudentRecord(@PathVariable("id") Long id, Model model) {
-   StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
-   model.addAttribute("students",studentRegistration);
+        StudentRegistration studentRegistration = studentRegistrationService.getStudentById(id);
+        model.addAttribute("students", studentRegistration);
         return "edit_student";
     }
 
-//        if (existingStudent != null) {
-//            if (studentRegistration.getStudentFirstName() != null) {
-//                existingStudent.setStudentFirstName(studentRegistration.getStudentFirstName());
-//            }
-//            if (studentRegistration.getStudentMidName() != null) {
-//                existingStudent.setStudentMidName(studentRegistration.getStudentMidName());
-//            }
-//            if (studentRegistration.getStudentLastName() != null) {
-//                existingStudent.setStudentLastName(studentRegistration.getStudentLastName());
-//            }
-//            if (studentRegistration.getStudentDateOfBirth() != null) {
-//                existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
-//            }
-//            if (studentRegistration.getStudentNationalIdentificationNumberNIN() != null) {
-//                existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
-//                        .getStudentNationalIdentificationNumberNIN());
-//            }
-//            if (studentRegistration.getStudentGender() != null) {
-//                existingStudent.setStudentGender(studentRegistration.getStudentGender());
-//            }
-//            if (studentRegistration.getStudentClass() != null) {
-//                existingStudent.setStudentClass(studentRegistration.getStudentClass());
-//            }
-//            if (studentRegistration.getStudentHealthRecord() != null) {
-//                existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
-//            }
-//            if (studentRegistration.getStudentPhoto() != null) {
-//                existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
-//            }
-//            if (studentRegistration.getStudentHomeAddress() != null) {
-//                existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
-//            }
-//
-//            if (studentRegistration.getStudentSubCounty() != null) {
-//                existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
-//            }
-//            if (studentRegistration.getStudentDistrict() != null) {
-//                existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());
-//            }
-//
-//            studentRegistrationService.updateStudentRecords(existingStudent);
-//            return "edit_student"; // Redirect to the list of students
-//        } else {
-//            // Handle the case where the student with the given ID is not found
-//            model.addAttribute("student", "Student not found with ID: " + id);
-//            return "error_page"; // Create an error page template for handling such cases
-//        }
+    /**
+     * if (existingStudent != null) {
+     * if (studentRegistration.getStudentFirstName() != null) {
+     * existingStudent.setStudentFirstName(studentRegistration.getStudentFirstName());
+     * }
+     * if (studentRegistration.getStudentMidName() != null) {
+     * existingStudent.setStudentMidName(studentRegistration.getStudentMidName());
+     * }
+     * if (studentRegistration.getStudentLastName() != null) {
+     * existingStudent.setStudentLastName(studentRegistration.getStudentLastName());
+     * }
+     * if (studentRegistration.getStudentDateOfBirth() != null) {
+     * existingStudent.setStudentDateOfBirth(studentRegistration.getStudentDateOfBirth());
+     * }
+     * if (studentRegistration.getStudentNationalIdentificationNumberNIN() != null) {
+     * existingStudent.setStudentNationalIdentificationNumberNIN(studentRegistration
+     * .getStudentNationalIdentificationNumberNIN());
+     * }
+     * if (studentRegistration.getStudentGender() != null) {
+     * existingStudent.setStudentGender(studentRegistration.getStudentGender());
+     * }
+     * if (studentRegistration.getStudentClass() != null) {
+     * existingStudent.setStudentClass(studentRegistration.getStudentClass());
+     * }
+     * if (studentRegistration.getStudentHealthRecord() != null) {
+     * existingStudent.setStudentHealthRecord(studentRegistration.getStudentHealthRecord());
+     * }
+     * if (studentRegistration.getStudentPhoto() != null) {
+     * existingStudent.setStudentPhoto(studentRegistration.getStudentPhoto());
+     * }
+     * if (studentRegistration.getStudentHomeAddress() != null) {
+     * existingStudent.setStudentHomeAddress(studentRegistration.getStudentHomeAddress());
+     * }
+     * <p>
+     * if (studentRegistration.getStudentSubCounty() != null) {
+     * existingStudent.setStudentSubCounty(studentRegistration.getStudentSubCounty());
+     * }
+     * if (studentRegistration.getStudentDistrict() != null) {
+     * existingStudent.setStudentDistrict(studentRegistration.getStudentDistrict());
+     * }
+     * <p>
+     * studentRegistrationService.updateStudentRecords(existingStudent);
+     * return "edit_student"; // Redirect to the list of students
+     * } else {
+     * // Handle the case where the student with the given ID is not found
+     * model.addAttribute("student", "Student not found with ID: " + id);
+     * return "error_page"; // Create an error page template for handling such cases
+     * }
+     */
 
 
     @RequestMapping("/api/student/delete/{id}")
@@ -195,7 +197,7 @@ public class StudentRegistrationController {
             throw new IllegalArgumentException("student not found by the id");
         }
         studentRegistrationService.deleteStudentRecordById(id);
-        if (!seniorOneService.existById(id)){
+        if (!seniorOneService.existById(id)) {
             throw new IllegalArgumentException("senior one record not found");
         }
         seniorOneService.deleteSeniorOneById(id);
@@ -213,7 +215,6 @@ public class StudentRegistrationController {
         model.addAttribute("students", students);
         return "gender";
     }
-
 
 
     @GetMapping("/seniorOne")
@@ -266,10 +267,10 @@ public class StudentRegistrationController {
     }
 
     @RequestMapping("/seniorTwo")
-    public String getSeniorTwo(Model model,@Param("two") String two) {
+    public String getSeniorTwo(Model model, @Param("two") String two) {
         List<SeniorTwo> list = seniorTwoService.getAllSeniorList(two);
         model.addAttribute("students", list);
-        model.addAttribute("two",two);
+        model.addAttribute("two", two);
         return "seniorTwo_List";
     }
 

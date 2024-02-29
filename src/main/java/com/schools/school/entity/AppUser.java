@@ -1,12 +1,10 @@
 package com.schools.school.entity;
 
 
-//import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 
@@ -24,4 +22,6 @@ public class AppUser {
     private String password;
     private String firstName;
     private String lastName;
+    @Column(length = 64,updatable = true,nullable = false)
+    private String verificationCode;
 }
